@@ -1,0 +1,150 @@
+{
+  "version": "0.1.0",
+  "updated": "2026-05-11",
+  "uk_nmw_annual": 23810,
+  "uk_nmw_basis": "£12.21/hour × 37.5h/week × 52 weeks (April 2025 rate). Update each April when the LPC rate changes.",
+  "trees": [
+    {
+      "id": "income-tax",
+      "label": "UK Income Tax",
+      "prompt": "If you paid",
+      "promptSuffix": "in income tax this year",
+      "defaultAmount": 5000,
+      "presets": [2000, 5000, 12000],
+      "root": {
+        "label": "UK Income Tax",
+        "source": "HMRC Annual Tax Summary, illustrative FY 2022-23 basis",
+        "note": "Income tax revenue allocated by central government across major spending categories. Excludes National Insurance, which is in principle hypothecated to contributory benefits and the NHS but in practice goes into the Consolidated Fund.",
+        "children": [
+          {
+            "label": "Welfare",
+            "share": 0.237,
+            "source": "DWP / HMT Public Expenditure Statistical Analyses",
+            "note": "Working-age benefits, family support, housing assistance, disability and incapacity payments. State pension is shown as a separate line.",
+            "children": [
+              { "label": "Working-age benefits (Universal Credit etc.)", "share": 0.40, "note": "Universal Credit replaces six legacy benefits and supports people both in and out of work. The single largest item within working-age welfare." },
+              { "label": "Disability & incapacity benefits", "share": 0.28, "note": "Includes Personal Independence Payment (PIP), Disability Living Allowance (DLA, including child DLA), Employment & Support Allowance (ESA) and Attendance Allowance. Funds extra costs of daily living and mobility." },
+              { "label": "Child & family benefits", "share": 0.14, "note": "Child Benefit and residual tax credit payments. Tapered for higher earners via the High Income Child Benefit Charge." },
+              { "label": "Housing benefit (legacy)", "share": 0.10, "note": "Being absorbed into Universal Credit. Remaining caseload is largely pensioners and supported-housing tenants." },
+              { "label": "Administration", "share": 0.08, "note": "DWP staff, IT systems, fraud and error operations, debt management." }
+            ]
+          },
+          {
+            "label": "Health",
+            "share": 0.207,
+            "source": "DHSC / NHS England annual report and accounts",
+            "note": "Predominantly NHS England, with smaller allocations to social care, public health, research and arms-length bodies.",
+            "children": [
+              { "label": "NHS front-line services", "share": 0.78, "note": "Hospitals, GP services, community and district nursing, ambulance, mental health, prescribing." },
+              { "label": "Adult social care (central contribution)", "share": 0.08, "note": "Most adult social care is funded by local authorities through council tax and the social care precept; this is the central government top-up via the Better Care Fund and grants." },
+              { "label": "Public health", "share": 0.05, "note": "Vaccination and screening programmes, health protection, smoking cessation, sexual health, drug and alcohol services." },
+              { "label": "Medical research & training", "share": 0.05, "note": "NIHR research funding, Health Education England, junior doctor and nurse training contributions." },
+              { "label": "NHS administration & arms-length bodies", "share": 0.04, "note": "NHS England HQ, NICE, CQC, regulatory and commissioning support costs." }
+            ]
+          },
+          { "label": "State pensions", "share": 0.111, "source": "DWP — single largest line item in welfare; reported separately in the HMRC summary", "note": "New State Pension and Basic State Pension paid to roughly 12.6 million pensioners. Annual uprating is governed by the triple-lock (highest of CPI, earnings, or 2.5%)." },
+          { "label": "Education", "share": 0.099, "source": "DfE annual report", "note": "State schools, sixth forms and FE colleges, higher education teaching grant, early years and childcare entitlements. Excludes student loan outlay, which is accounted for separately." },
+          { "label": "National debt interest", "share": 0.077, "source": "DMO / OBR Economic and Fiscal Outlook", "note": "Coupon and indexation payments on UK gilts. Has risen sharply since 2022 due to higher interest rates and RPI uplifts on index-linked gilts." },
+          { "label": "Defence", "share": 0.053, "source": "MoD annual report", "note": "Armed forces pay and pensions, equipment procurement, intelligence services (SIS, Security Service, GCHQ), NATO contribution." },
+          { "label": "Public order & safety", "share": 0.042, "source": "Home Office, Ministry of Justice", "note": "Police forces, prisons and probation, courts and tribunals, fire and rescue, border force, immigration enforcement." },
+          { "label": "Transport", "share": 0.032, "source": "Department for Transport", "note": "Rail subsidy and Network Rail, strategic road network (National Highways), HS2, local transport grants, aviation and maritime regulation." },
+          { "label": "Business & industry", "share": 0.025, "source": "DBT, DESNZ", "note": "R&D tax relief offsets, energy support schemes, regional growth funds, trade promotion, post-office and shipbuilding subsidies." },
+          { "label": "Government administration", "share": 0.021, "source": "Cabinet Office, HMT", "note": "Running costs of central departments and cross-government functions not allocated to a specific service." },
+          { "label": "Culture, sport & heritage", "share": 0.016, "source": "DCMS", "note": "Arts Council England, museums and galleries, Sport England, heritage bodies, BBC World Service grant." },
+          { "label": "Environment", "share": 0.015, "source": "Defra, DESNZ", "note": "Flood defence, agricultural transition payments, environmental protection, waste, air quality." },
+          { "label": "Housing & utilities", "share": 0.015, "source": "DLUHC (now MHCLG)", "note": "Affordable housing programme, building safety remediation, regulation of water and energy networks (central share)." },
+          { "label": "Overseas aid", "share": 0.010, "source": "FCDO", "note": "Cut from 0.7% to 0.5% of GNI in 2021 as a temporary measure. Includes humanitarian, development and multilateral commitments." },
+          { "label": "Other / rounding", "share": 0.040, "note": "Unallocated remainder. Reflects rounding in the published figures and minor items not assigned to a major category." }
+        ]
+      }
+    },
+    {
+      "id": "british-gas",
+      "label": "British Gas — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with British Gas",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "British Gas — annual gas bill",
+        "source": "Ofgem default tariff cap cost breakdown, illustrative; supplier-margin branch from Centrica plc Annual Report 2023",
+        "note": "British Gas is the retail brand of Centrica plc. The shape of every domestic gas bill in Great Britain is set by Ofgem's default tariff cap, which is built from a stack of cost components. Below is an approximate split of where each pound goes.",
+        "children": [
+          {
+            "label": "Wholesale gas",
+            "share": 0.38,
+            "source": "Ofgem default tariff cap; ICIS / Heren wholesale price benchmarks",
+            "note": "The cost of buying the gas itself on the wholesale market. Suppliers hedge purchases months ahead, so the price you pay reflects past traded prices rather than the spot price on the day.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Imported through the Langeled and Vesterled pipelines from the Norwegian Continental Shelf. Equinor (majority Norwegian state-owned) is the dominant supplier. Norway has been the UK's largest single source of gas since the loss of Russian supply in 2022." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic gas produced from North Sea and Irish Sea fields. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies. UK production is in long-term decline as fields mature." },
+              { "label": "LNG imports", "share": 0.18, "note": "Liquefied gas shipped to terminals at Milford Haven (South Hook, Dragon LNG) and Isle of Grain. Major sources include Qatar (QatarEnergy) and the United States (Cheniere). LNG's share has grown sharply since 2022." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "Costs of using gas storage (Centrica's own Rough field reopened in 2022), and the National Balancing Point market mechanism that keeps the system in equilibrium." }
+            ]
+          },
+          {
+            "label": "Network costs",
+            "share": 0.22,
+            "source": "Ofgem RIIO-2 price control; National Gas / GDN regulated revenues",
+            "note": "The cost of moving gas across the country and into your home. These charges are the same whoever your supplier is, because every supplier uses the same physical network.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "Operated by National Gas Transmission, which carries gas at high pressure across Great Britain. Sold by National Grid plc to a Macquarie-led consortium in early 2024." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Eight regional gas distribution networks deliver gas to homes at lower pressure. Cadent is the largest (covering much of England); the others are Northern Gas Networks, SGN and Wales & West Utilities. All are privately owned and regulated by Ofgem." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Costs of installing, maintaining and reading gas meters, including the national smart meter programme." }
+            ]
+          },
+          {
+            "label": "Operating costs",
+            "share": 0.14,
+            "source": "Ofgem operating cost allowance; Centrica annual report cost lines",
+            "note": "The cost of running British Gas as a retail supplier: paying staff, engineers, billing systems, vans and IT. Also covers bad debt (customers who don't pay), which has risen materially since 2022.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.45, "note": "Call centre staff, smart-meter installers, service engineers, account managers. British Gas employs around 20,000 people across the UK." },
+              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "The infrastructure that produces your bill, runs the website and app, handles direct debits and meter reads." },
+              { "label": "Bad debt provisions", "share": 0.18, "note": "An allowance for customers who fall behind on their bills. The cap explicitly includes a bad-debt allowance which has been increased since the cost-of-living crisis began." },
+              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Advertising and switching incentives. Has fallen significantly since the price cap reduced the headroom for competition." },
+              { "label": "Property & overheads", "share": 0.10, "note": "Offices, call-centre buildings, depots, head-office functions." }
+            ]
+          },
+          {
+            "label": "Policy & social costs",
+            "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes; Ofgem policy cost component",
+            "note": "Government schemes funded through your bill rather than through general taxation. Smaller for gas than electricity; most green levies sit on the electricity bill.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Suppliers are required to fund insulation, heating upgrades and other efficiency measures for low-income and vulnerable households. The cost is recovered across all customer bills." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "A £150 rebate paid to eligible low-income households over winter, recovered from suppliers and ultimately spread across all bill-payers." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Funds the Green Gas Support Scheme, which subsidises biomethane injection into the gas grid." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs and administrative levies attached to the gas bill." }
+            ]
+          },
+          {
+            "label": "Supplier margin (Centrica plc)",
+            "share": 0.02,
+            "source": "Ofgem EBIT allowance ~1.9% of cap; Centrica plc Annual Report 2023",
+            "note": "The profit allowance built into the price cap. Ofgem permits an EBIT margin of around 1.9% of the cap value. This is where the user's bill becomes the supplier's profit — and where it then flows out to shareholders, executives, the taxman and reinvestment.",
+            "children": [
+              { "label": "Corporation tax & energy profits levy", "share": 0.22, "note": "Profits from gas supply attract standard corporation tax (25% from April 2023). Centrica's upstream gas production is also subject to ring-fence corporation tax (30%) plus the Energy Profits Levy (35%). These payments flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." },
+              { "label": "Dividends to shareholders", "share": 0.30, "note": "Centrica plc is listed on the FTSE 100 with around 5.4 billion shares in issue. The largest shareholders are typically institutional investors: BlackRock, Vanguard, Legal & General Investment Management. Through pension funds and ISAs many UK households are indirect Centrica shareholders. The 2023 full-year dividend was 4.0p per share." },
+              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "Funds new investment by the group: Centrica's 15% stake in Sizewell C nuclear, the reopening and expansion of the Rough gas-storage field, battery storage, and trading-business growth. Reinvested profit grows the asset base rather than being paid out." },
+              {
+                "label": "Executive remuneration",
+                "share": 0.02,
+                "note": "Centrica's CEO Chris O'Shea reported total remuneration of around £8.2m for FY2023, predominantly from share awards rather than salary. This figure covers the entire Centrica group, not British Gas alone, so only a fraction is attributable to retail-supply profits.",
+                "payRatio": {
+                  "label": "Chris O'Shea, CEO — FY2023 single figure",
+                  "amount": 8200000,
+                  "caveats": "Single-figure remuneration is the standard UK reporting basis: salary, bonus, share awards and pension combined. Verify against Centrica's 2023 Annual Report Directors' Remuneration Report."
+                }
+              },
+              { "label": "Retained for the business", "share": 0.16, "note": "Earnings kept on the balance sheet to fund future operations, smooth volatility, and rebuild buffers depleted during the 2021-22 supplier collapses (Centrica was awarded the Bulb customer book under the Special Administration Regime)." }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Smaller line items inside the cap: an adjustment allowance for unrecovered costs, a headroom allowance to absorb forecasting error, and the net cost of the smart-meter rollout." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "The cap is built from a model. Real bills include cost-recovery items (under- or over-collection from prior periods) and supplier-specific adjustments. Treated here as unallocated so the bill totals to 100%." },
+          { "label": "VAT", "share": 0.05, "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total — but for an illustrative split it sits at roughly 5 percentage points of the headline. VAT receipts flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." }
+        ]
+      }
+    }
+  ]
+}
