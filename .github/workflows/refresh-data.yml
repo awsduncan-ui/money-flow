@@ -1,0 +1,39 @@
+name: Refresh data
+
+# NMW only changes once a year (every April), so weekly is plenty.
+# `workflow_dispatch` lets you trigger manually from the GitHub Actions tab.
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write  # needed to commit & push the refreshed data
+
+jobs:
+  refresh-nmw:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run NMW updater
+        run: python3 scripts/update_nmw.py
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet money-flow-data.json index.html; then
+            echo "No changes — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add money-flow-data.json index.html
+          NEW_NMW=$(python3 -c "import json; print(json.load(open('money-flow-data.json'))['uk_nmw_annual'])")
+          git commit -m "data: refresh UK NMW from gov.uk (£${NEW_NMW}/yr)"
+          git push

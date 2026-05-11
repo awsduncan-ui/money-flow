@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
   "updated": "2026-05-11",
-  "uk_nmw_annual": 23810,
-  "uk_nmw_basis": "£12.21/hour × 37.5h/week × 52 weeks (April 2025 rate). Update each April when the LPC rate changes.",
+  "uk_nmw_annual": 24780,
+  "uk_nmw_basis": "£12.71/hour × 37.5h/week × 52 weeks. Auto-refreshed from gov.uk on 2026-05-11.",
   "trees": [
     {
       "id": "income-tax",
