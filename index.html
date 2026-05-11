@@ -449,6 +449,38 @@ const BUNDLED_DATA = {
           { label: 'VAT', share: 0.05 }
         ]
       }
+    },
+    {
+      id: 'octopus-energy',
+      label: 'Octopus Energy — gas bill',
+      prompt: 'If your annual gas bill was',
+      promptSuffix: 'with Octopus Energy',
+      defaultAmount: 1000,
+      presets: [500, 1000, 2000],
+      root: {
+        label: 'Octopus Energy — annual gas bill',
+        source: 'Ofgem cap; Octopus Energy Group Ltd Companies House filings',
+        note: 'Privately held — major investors include Generation IM, CPP Investments, Tokyo Gas, KKR. No FTSE dividend.',
+        children: [
+          { label: 'Wholesale gas', share: 0.38 },
+          { label: 'Network costs', share: 0.22 },
+          { label: 'Operating costs', share: 0.14 },
+          { label: 'Policy & social costs', share: 0.04 },
+          {
+            label: 'Supplier margin (Octopus Energy Group)', share: 0.02,
+            children: [
+              { label: 'Corporation tax', share: 0.22 },
+              { label: 'Distributions to investors', share: 0.20 },
+              { label: 'Capital expenditure & reinvestment', share: 0.40 },
+              { label: 'Executive remuneration', share: 0.03 },
+              { label: 'Retained for growth', share: 0.15 }
+            ]
+          },
+          { label: 'Other allowances', share: 0.05 },
+          { label: 'Unallocated / cost recovery', share: 0.10 },
+          { label: 'VAT', share: 0.05 }
+        ]
+      }
     }
   ]
 };

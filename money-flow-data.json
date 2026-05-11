@@ -145,6 +145,105 @@
           { "label": "VAT", "share": 0.05, "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total — but for an illustrative split it sits at roughly 5 percentage points of the headline. VAT receipts flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." }
         ]
       }
+    },
+    {
+      "id": "octopus-energy",
+      "label": "Octopus Energy — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with Octopus Energy",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "Octopus Energy — annual gas bill",
+        "source": "Ofgem default tariff cap (top-level shape); Octopus Energy Group Ltd Companies House filings for supplier-margin branch",
+        "note": "Octopus Energy now supplies around 7 million UK households after the Bulb acquisition (2022) and the Shell Energy retail acquisition (2024). Their bills are governed by the same Ofgem default tariff cap as every other supplier, so the cost-stack shape is identical to British Gas's — but the supplier-margin branch differs substantially because Octopus is privately held rather than FTSE-listed. Octopus also frequently prices its Tracker and Agile tariffs below the cap, which in practice trims the margin component below what the cap implies.",
+        "children": [
+          {
+            "label": "Wholesale gas",
+            "share": 0.38,
+            "source": "Ofgem default tariff cap; national-level UK gas supply mix",
+            "note": "Identical structure to British Gas — at this scale, every UK supplier buys from the same global wholesale market.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Imported from the Norwegian Continental Shelf via the Langeled and Vesterled pipelines. Equinor remains the dominant supplier." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea / Irish Sea production. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies." },
+              { "label": "LNG imports", "share": 0.18, "note": "Liquefied gas from Qatar (QatarEnergy) and the United States (Cheniere) via Milford Haven and Isle of Grain terminals." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "Octopus operates its own wholesale trading desk; uses third-party storage including Centrica's Rough field." }
+            ]
+          },
+          {
+            "label": "Network costs",
+            "share": 0.22,
+            "source": "Ofgem RIIO-2 price control — regulated and identical across all suppliers",
+            "note": "Identical to British Gas. The same physical pipes deliver your gas regardless of which supplier sends the bill.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission — Macquarie-led consortium-owned since early 2024." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN: Cadent, Northern Gas Networks, SGN or Wales & West Utilities depending on postcode." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs. Octopus pushes smart-meter installations hard because their Agile and Tracker tariffs need half-hourly data." }
+            ]
+          },
+          {
+            "label": "Operating costs",
+            "share": 0.14,
+            "source": "Ofgem operating cost allowance; Octopus Energy Group Ltd accounts",
+            "note": "Same cap allowance as British Gas, but Octopus weights it differently — built around its proprietary Kraken platform, which automates customer management and significantly reduces headcount per customer. Kraken is also licensed to other suppliers globally (E.ON Next, EDF in France, Origin Energy in Australia and others), generating separate licensing revenue that doesn't flow through to UK domestic bills.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.35, "note": "Octopus employs roughly 8,000 people in the UK — proportionally lower per customer than a traditional supplier thanks to Kraken automation." },
+              { "label": "Billing, IT & customer systems (Kraken)", "share": 0.35, "note": "The Kraken platform — Octopus's own customer-service, billing, energy-management and trading software. A bigger share of operating costs than at a legacy supplier; the entire competitive thesis." },
+              { "label": "Bad debt provisions", "share": 0.15, "note": "Same statutory allowance as every supplier; raised since 2022 cost-of-living pressure." },
+              { "label": "Marketing & customer acquisition", "share": 0.08, "note": "Includes Octopus's £50 referral credit. Acquisition spend fell across the industry under the cap." },
+              { "label": "Property & overheads", "share": 0.07, "note": "Head office in London plus a small number of regional sites — smaller property footprint than a legacy supplier." }
+            ]
+          },
+          {
+            "label": "Policy & social costs",
+            "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes — statutory, identical across all suppliers",
+            "note": "Identical to British Gas: the same government levies are recovered from every supplier's bills.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory obligation on all suppliers to fund insulation and heating upgrades for low-income households." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate to eligible households, recovered across all bills." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Subsidises biomethane injection into the gas grid." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller statutory scheme costs and admin levies." }
+            ]
+          },
+          {
+            "label": "Supplier margin (Octopus Energy Group)",
+            "share": 0.02,
+            "source": "Ofgem EBIT allowance ~1.9% of cap; Octopus Energy Group Ltd Companies House accounts",
+            "note": "The profit allowance built into the cap. This is where the comparison with British Gas is sharpest — Octopus is privately held, has no FTSE dividend to pay, retains more profit for reinvestment, and (in practice) often takes less than the cap allowance by pricing below it.",
+            "children": [
+              {
+                "label": "Corporation tax",
+                "share": 0.22,
+                "note": "Retail-supply profits attract standard UK corporation tax (25% from April 2023) — the same rate as Centrica's retail business. Unlike Centrica, Octopus has no upstream gas production, so the ring-fence corporation tax and Energy Profits Levy don't apply. These payments flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app."
+              },
+              {
+                "label": "Distributions to investors",
+                "share": 0.20,
+                "note": "Octopus Energy Group is privately held — no public dividend. Major investors include Generation Investment Management (Al Gore's firm, an early backer), CPP Investments (Canada Pension Plan), Tokyo Gas, and KKR (which took roughly a 10–13% stake in 2024 for around $1.6bn, valuing the group at ~$9bn). Founder & CEO Greg Jackson retains a substantial personal stake. Investor returns will primarily come through a future liquidity event (IPO or onward sale) rather than annual dividends."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.40,
+                "note": "Weighted more heavily than at British Gas. Octopus reinvests aggressively into: (a) the Kraken platform — both for its own customers and for the licensing business; (b) generation assets through Octopus Energy Generation, which invests separately in wind and solar; (c) integrating acquired customer books (Bulb 2022, Shell Energy 2024). Sustained reinvestment is the engine that's grown Octopus from a 2015 start-up into one of the UK's largest suppliers."
+              },
+              {
+                "label": "Executive remuneration",
+                "share": 0.03,
+                "note": "Greg Jackson is founder, CEO and majority-or-near-majority shareholder. As a privately-held company, Octopus discloses director remuneration in its Companies House filings, but at less detail than the FTSE 'single figure' disclosure required of Centrica. Reported figures put Greg Jackson's annual compensation at materially less than Centrica's CEO (millions rather than tens of millions), with much of the founder's value tied up in his Octopus shareholding rather than cash compensation. Pay-ratio panel intentionally omitted until verified from the most recent accounts."
+              },
+              {
+                "label": "Retained for growth",
+                "share": 0.15,
+                "note": "Earnings kept on the balance sheet to fund further customer-book acquisitions, technology investment, and to maintain operating reserves under Ofgem's financial resilience rules (tightened after the 2021–22 supplier collapses)."
+              }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Same as British Gas: smaller line items inside the cap, including adjustment allowance, headroom for forecasting error, and smart-meter rollout costs." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "Same residual as British Gas. Octopus often charges below the cap on its Tracker and Agile tariffs, so actual bills can have a smaller margin component than the cap-derived split implies." },
+          { "label": "VAT", "share": 0.05, "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate as every domestic energy bill. VAT receipts flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." }
+        ]
+      }
     }
   ]
 }

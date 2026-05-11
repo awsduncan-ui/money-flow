@@ -58,7 +58,8 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 ## Currently modelled
 
 - **UK Income Tax** — HMRC Annual Tax Summary, FY 2022-23 basis. 15 top-level categories. Welfare and Health drill one level deeper.
-- **British Gas — annual gas bill** — Ofgem default-tariff-cap cost stack (wholesale / network / operating / policy / margin / VAT / other). Wholesale, network, operating, policy all drill one level deeper. Supplier margin breaks down into corporation tax, dividends to shareholders, capex, executive remuneration (with NMW multiple), retained earnings.
+- **British Gas — annual gas bill** — Ofgem default-tariff-cap cost stack (wholesale / network / operating / policy / margin / VAT / other). Wholesale, network, operating, policy all drill one level deeper. Supplier margin breaks down into corporation tax, dividends to shareholders, capex, executive remuneration (Centrica CEO, with NMW multiple), retained earnings.
+- **Octopus Energy — annual gas bill** — Same Ofgem cap shape (because it's the same regulated structure), with a deliberately contrasting supplier-margin branch: privately held (no FTSE dividend; investors are Generation IM, CPP Investments, Tokyo Gas, KKR), heavier reinvestment weighting (Kraken platform + Octopus Energy Generation), lower executive pay. Pay-ratio panel intentionally omitted on Greg Jackson pending verification from Companies House.
 
 ## Editorial principles
 
@@ -97,10 +98,11 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 ## Roadmap
 
 ### Next up
-- [ ] **Cross-tree links** — click VAT or corporation tax inside the gas-bill tree and jump into the income-tax tree at the right amount. The moment "everything connects" becomes visible. Add an `xref` field on nodes; the UI switches tree and seeds the input amount.
-- [ ] **Octopus Energy as second supplier** — same Ofgem cap shape, but supplier margin differs significantly: privately held, KKR + Generation Investment Management as backers, different shareholder distribution, no FTSE dividend. Excellent compare-and-contrast with British Gas.
+- [ ] **Cross-tree links** — click VAT or corporation tax inside a gas-bill tree and jump into the income-tax tree at the right amount. The moment "everything connects" becomes visible. Add an `xref` field on nodes; the UI switches tree and seeds the input amount.
+- [ ] **Verify Greg Jackson's compensation** from Octopus Energy Group Ltd's most recent Companies House accounts, then add a `payRatio` block on the executive-remuneration node.
 - [ ] **Verify FY 2022-23 income-tax figures** against the latest HMRC Annual Tax Summary publication and bump to the most recent published year.
 - [ ] **Validate shares sum to ~1** in CI on every commit. Cheap safety net.
+- [x] ~~**Octopus Energy as second supplier**~~ — added 2026-05-11. See below.
 
 ### More item types to model
 - [ ] Mortgage payment (interest + capital + securitisation chain → MBS investors)
@@ -165,6 +167,7 @@ A brief log of what changed each working session, so a fresh session can catch u
 - Split data into separate `money-flow-data.json`; HTML now fetches it with a bundled fallback for local file use.
 - Moved project from Desktop to `~/Code/money-flow/`. Initialised git, created public GitHub repo, enabled GitHub Pages at https://awsduncan-ui.github.io/money-flow/.
 - Built NMW auto-refresh: `scripts/update_nmw.py` (stdlib + curl) and `.github/workflows/refresh-data.yml` (weekly + manual dispatch). First run picked up the April 2026 rate (£12.71/hr → £24,780/yr), replacing the previously hardcoded April 2025 figure.
+- Added **Octopus Energy** as a third tree — Ali's own supplier. Same Ofgem cap top-level shape as British Gas (because every UK supplier is governed by the same regulated stack), with deliberately contrasting supplier-margin branch: privately held (no FTSE dividend), heavier reinvestment weighting, different investor set (Generation IM, CPP Investments, Tokyo Gas, KKR), lower exec pay. Pay-ratio for Greg Jackson left as a stub pending verification from Companies House. Bundled fallback in `index.html` extended to match.
 
 ## Collaboration
 
