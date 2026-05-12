@@ -255,6 +255,48 @@
     letter-spacing: 0.08em;
   }
 
+  /* Flow bar — stacked horizontal proportional bar above each child list.
+     Each segment's width is the child's share of the parent. Acts as a visual
+     summary of the current level; the list below is the labelled legend. */
+  .flow-bar {
+    display: flex;
+    width: 100%;
+    height: 28px;
+    margin-bottom: 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .flow-segment {
+    background: var(--money);
+    cursor: default;
+    transition: filter 140ms ease, opacity 140ms ease;
+    min-width: 1px;
+    border-right: 1px solid rgba(10,10,12,0.4);
+    position: relative;
+  }
+  .flow-segment:last-child { border-right: none; }
+  .flow-segment.is-clickable { cursor: pointer; }
+  .flow-segment.is-xref { background: var(--interactive); }
+  .flow-segment.shade-0 { opacity: 1; }
+  .flow-segment.shade-1 { opacity: 0.78; }
+  .flow-segment.shade-2 { opacity: 0.58; }
+  .flow-segment.shade-3 { opacity: 0.42; }
+  .flow-segment:hover, .flow-segment.is-hover {
+    filter: brightness(1.3);
+    opacity: 1;
+  }
+  /* matching highlight on the row when hovering the bar */
+  .child.is-hover {
+    background: var(--surface-hover);
+    border-left-color: var(--money);
+  }
+  .child.is-hover::before { border-top-color: var(--money); width: 1.2rem; }
+  .child.is-xref.is-hover {
+    border-left-color: var(--interactive);
+  }
+  .child.is-xref.is-hover::before { border-top-color: var(--interactive); }
+
   .leaf-card {
     border-left: 1px solid var(--border-strong);
     padding: 1rem 1.3rem 1rem 1.5rem;
@@ -347,6 +389,7 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+  .compare-card .flow-bar { height: 18px; margin-bottom: 0.8rem; }
   .compare-row {
     display: flex;
     justify-content: space-between;
@@ -445,6 +488,7 @@
   <div id="single-view">
     <nav class="breadcrumb" id="breadcrumb"></nav>
     <section id="header-area"></section>
+    <div id="flow-bar-container"></div>
     <ul class="children" id="children"></ul>
   </div>
 
@@ -457,7 +501,7 @@
     <p><strong>On the data.</strong> The income-tax allocation follows HMRC's Annual Tax Summary methodology (FY 2022&ndash;23 basis). Energy-bill trees use Ofgem's default-tariff-cap cost stack at the top level — identical across every supplier because Ofgem sets it — with each supplier-margin branch built from the parent company's most recent annual report or Companies House filing. All figures are illustrative and should be checked against current publications before being relied on.</p>
     <p>Each node carries a source line so claims can be traced. Many lower branches are deliberately stubbed &mdash; the structure is the point of this prototype, not the precision.</p>
     <p>Data lives in <code>money-flow-data.json</code> alongside this page. The page fetches it on load; if the fetch fails (e.g. opened as a local file) it falls back to a bundled copy. The UK National Minimum Wage is auto-refreshed weekly from gov.uk via a GitHub Action. Open an issue or pull request to refine anything.</p>
-    <p>Click any row marked &rsaquo; to drill deeper. Click an &uarr;&nbsp;link to follow money into another tree (e.g. VAT &rarr; UK Income Tax). Click a breadcrumb to step back up. Use the &quot;Compare suppliers&quot; toggle to view every energy supplier side by side.</p>
+    <p>The bar above each level is a stacked proportional visual — each segment's width is its share of the total. Hover or click a segment to highlight the matching row below; click a row marked &rsaquo; to drill deeper. Slate-coloured segments and &uarr;&nbsp;arrows follow money into another tree (e.g. VAT &rarr; UK Income Tax). Click a breadcrumb to step back up. Use the &quot;Compare suppliers&quot; toggle to view every energy supplier side by side.</p>
   </footer>
 </div>
 
@@ -774,6 +818,42 @@ function el(tag, cls, text) {
   return e;
 }
 
+// Stacked-bar visual for a level's children. Returns a DOM element. Each segment's
+// width is proportional to the child's share; segments cycle through 4 opacity
+// shades so adjacent slices are distinguishable. xref segments use the slate
+// accent so cross-tree links read as "leaves this tree" at a glance.
+//
+// pairRows: optional NodeList/array of corresponding row elements. If supplied,
+// hovering a bar segment highlights its row (and vice versa), and clicking a
+// segment fires the row's click handler.
+function renderFlowBar(children, pairRows) {
+  const bar = el('div', 'flow-bar');
+  if (!children || !children.length) return bar;
+  // Order segments by descending share for cleaner visual; keep mapping back to original index.
+  const ordered = children.map((c, i) => ({ c, i })).sort((a, b) => b.c.share - a.c.share);
+  ordered.forEach((entry, rank) => {
+    const { c, i } = entry;
+    const seg = el('div', 'flow-segment shade-' + (rank % 4));
+    if (c.xref) seg.classList.add('is-xref');
+    seg.style.flex = c.share;
+    seg.title = c.label + ' — ' + fmtPct(c.share);
+
+    const row = pairRows ? pairRows[i] : null;
+    if (row) {
+      seg.classList.add('is-clickable');
+      const enter = () => { seg.classList.add('is-hover'); row.classList.add('is-hover'); };
+      const leave = () => { seg.classList.remove('is-hover'); row.classList.remove('is-hover'); };
+      seg.addEventListener('mouseenter', enter);
+      seg.addEventListener('mouseleave', leave);
+      row.addEventListener('mouseenter', enter);
+      row.addEventListener('mouseleave', leave);
+      seg.addEventListener('click', () => row.click());
+    }
+    bar.appendChild(seg);
+  });
+  return bar;
+}
+
 // Pay ratio = executive single-figure remuneration vs UK National Minimum Wage
 // (annual, full-time equivalent). NMW value comes from the data file, so a single
 // update there flows through every executive figure in the app.
@@ -886,6 +966,8 @@ function render() {
 
   const list = document.getElementById('children');
   list.innerHTML = '';
+  const barContainer = document.getElementById('flow-bar-container');
+  barContainer.innerHTML = '';
 
   if (!node.children || node.children.length === 0) {
     const li = el('li', 'leaf-card');
@@ -923,6 +1005,10 @@ function render() {
     if (c.payRatio) li.appendChild(renderPayRatio(c.payRatio));
     list.appendChild(li);
   });
+
+  // Build the flow bar, pairing each segment with the row we just rendered
+  // so hover/click can cross-link the two views.
+  barContainer.appendChild(renderFlowBar(node.children, list.querySelectorAll(':scope > li')));
 }
 
 // --- Compare mode: shows every energy-bill tree side by side at top level,
@@ -954,6 +1040,9 @@ function renderCompareView() {
     };
     card.appendChild(title);
 
+    // Top-level flow bar for this supplier
+    card.appendChild(renderFlowBar(t.root.children, null));
+
     // Top-level breakdown
     t.root.children.forEach(c => {
       const row = el('div', 'compare-row');
@@ -966,6 +1055,7 @@ function renderCompareView() {
     const margin = t.root.children.find(c => /supplier margin/i.test(c.label));
     if (margin && margin.children) {
       card.appendChild(el('h4', null, 'Inside supplier margin'));
+      card.appendChild(renderFlowBar(margin.children, null));
       const marginAmount = baseAmount * margin.share;
       margin.children.forEach(mc => {
         const row = el('div', 'compare-row margin-row');
