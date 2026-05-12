@@ -124,7 +124,7 @@
             "source": "Ofgem EBIT allowance ~1.9% of cap; Centrica plc Annual Report 2023",
             "note": "The profit allowance built into the price cap. Ofgem permits an EBIT margin of around 1.9% of the cap value. This is where the user's bill becomes the supplier's profit — and where it then flows out to shareholders, executives, the taxman and reinvestment.",
             "children": [
-              { "label": "Corporation tax & energy profits levy", "share": 0.22, "note": "Profits from gas supply attract standard corporation tax (25% from April 2023). Centrica's upstream gas production is also subject to ring-fence corporation tax (30%) plus the Energy Profits Levy (35%). These payments flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." },
+              { "label": "Corporation tax & energy profits levy", "share": 0.22, "xref": "income-tax", "note": "Profits from gas supply attract standard corporation tax (25% from April 2023). Centrica's upstream gas production is also subject to ring-fence corporation tax (30%) plus the Energy Profits Levy (35%). Click to follow these payments into the UK Income Tax tree." },
               { "label": "Dividends to shareholders", "share": 0.30, "note": "Centrica plc is listed on the FTSE 100 with around 5.4 billion shares in issue. The largest shareholders are typically institutional investors: BlackRock, Vanguard, Legal & General Investment Management. Through pension funds and ISAs many UK households are indirect Centrica shareholders. The 2023 full-year dividend was 4.0p per share." },
               { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "Funds new investment by the group: Centrica's 15% stake in Sizewell C nuclear, the reopening and expansion of the Rough gas-storage field, battery storage, and trading-business growth. Reinvested profit grows the asset base rather than being paid out." },
               {
@@ -142,7 +142,7 @@
           },
           { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Smaller line items inside the cap: an adjustment allowance for unrecovered costs, a headroom allowance to absorb forecasting error, and the net cost of the smart-meter rollout." },
           { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "The cap is built from a model. Real bills include cost-recovery items (under- or over-collection from prior periods) and supplier-specific adjustments. Treated here as unallocated so the bill totals to 100%." },
-          { "label": "VAT", "share": 0.05, "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total — but for an illustrative split it sits at roughly 5 percentage points of the headline. VAT receipts flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." }
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total. Click to follow VAT receipts into the UK Income Tax tree." }
         ]
       }
     },
@@ -215,7 +215,8 @@
               {
                 "label": "Corporation tax",
                 "share": 0.22,
-                "note": "Retail-supply profits attract standard UK corporation tax (25% from April 2023) — the same rate as Centrica's retail business. Unlike Centrica, Octopus has no upstream gas production, so the ring-fence corporation tax and Energy Profits Levy don't apply. These payments flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app."
+                "xref": "income-tax",
+                "note": "Retail-supply profits attract standard UK corporation tax (25% from April 2023). Unlike Centrica, Octopus has no upstream gas production, so the ring-fence corporation tax and Energy Profits Levy don't apply. Click to follow these payments into the UK Income Tax tree."
               },
               {
                 "label": "Distributions to investors",
@@ -241,7 +242,303 @@
           },
           { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Same as British Gas: smaller line items inside the cap, including adjustment allowance, headroom for forecasting error, and smart-meter rollout costs." },
           { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "Same residual as British Gas. Octopus often charges below the cap on its Tracker and Agile tariffs, so actual bills can have a smaller margin component than the cap-derived split implies." },
-          { "label": "VAT", "share": 0.05, "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate as every domestic energy bill. VAT receipts flow to HMRC and ultimately into the UK Income Tax tree elsewhere in this app." }
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate as every domestic energy bill. Click to follow VAT into the UK Income Tax tree." }
+        ]
+      }
+    },
+    {
+      "id": "eon-next",
+      "label": "E.ON Next — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with E.ON Next",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "E.ON Next — annual gas bill",
+        "source": "Ofgem default tariff cap (top-level shape); E.ON SE Annual Report for supplier-margin branch",
+        "note": "E.ON Next is the UK retail brand of E.ON SE, the German utility (Frankfurt Stock Exchange-listed, DAX 40). E.ON took over nPower's UK retail customer book in 2019, then rebranded the combined operation as E.ON Next. Around 5 million UK households. Built on the Kraken platform — E.ON was one of the first big external licensees of Octopus's technology.",
+        "children": [
+          {
+            "label": "Wholesale gas", "share": 0.38,
+            "source": "Ofgem default tariff cap; national wholesale market",
+            "note": "Same wholesale gas market as every UK supplier — country-of-origin shares are national-level.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf via Equinor and pipelines." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production — Shell, BP, Harbour Energy, TotalEnergies, Spirit Energy." },
+              { "label": "LNG imports", "share": 0.18, "note": "Qatar (QatarEnergy) and US (Cheniere) cargoes." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market and third-party storage." }
+            ]
+          },
+          {
+            "label": "Network costs", "share": 0.22,
+            "source": "Ofgem RIIO-2 price control — identical across suppliers",
+            "note": "Identical to every other supplier — the regulated network charges the same.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission (Macquarie consortium since 2024)." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Cadent, NGN, SGN or W&W Utilities depending on postcode." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs and the national smart meter programme." }
+            ]
+          },
+          {
+            "label": "Operating costs", "share": 0.14,
+            "source": "Ofgem operating cost allowance; E.ON SE UK segment reporting",
+            "note": "Same cap allowance as every supplier. E.ON Next runs on Kraken (licensed from Octopus), which has reduced the operating cost relative to legacy E.ON / nPower systems.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.40, "note": "Call centre and field engineering staff in the UK." },
+              { "label": "Billing, IT & customer systems (Kraken)", "share": 0.30, "note": "E.ON pays Octopus a per-customer licence fee for the Kraken platform — meaning a slice of E.ON Next's operating cost ends up as Octopus revenue." },
+              { "label": "Bad debt provisions", "share": 0.16, "note": "Standard Ofgem-cap bad-debt allowance." },
+              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced switching since the price cap began." },
+              { "label": "Property & overheads", "share": 0.07, "note": "Coventry HQ and regional sites." }
+            ]
+          },
+          {
+            "label": "Policy & social costs", "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes — statutory",
+            "note": "Identical to every supplier: statutory government levies.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory levy funding insulation and heating upgrades for low-income households." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate, recovered across all bills." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Subsidises biomethane injection into the grid." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs and admin levies." }
+            ]
+          },
+          {
+            "label": "Supplier margin (E.ON SE)", "share": 0.02,
+            "source": "Ofgem EBIT allowance; E.ON SE Annual Report",
+            "note": "E.ON's UK retail margin flows up the corporate chain to E.ON SE, parent group headquartered in Essen, Germany. E.ON SE is FTSE-equivalent in German terms — DAX 40, with major shareholders including German state RAG-Stiftung (~15%), BlackRock, and Norwegian sovereign wealth fund (Norges Bank Investment Management).",
+            "children": [
+              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax. Click to follow these into the UK Income Tax tree." },
+              { "label": "Dividends to E.ON SE shareholders", "share": 0.30, "note": "E.ON SE pays an annual dividend (€0.55/share FY2023). Largest shareholders are RAG-Stiftung (the German foundation that manages legacy coal-mining liabilities and is funded by stakes in big German energy companies), BlackRock, Vanguard, and Norges Bank. A meaningful share of E.ON's annual dividend is therefore paid into the German social-cost/legacy-clean-up trust." },
+              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "E.ON group is investing heavily in distribution networks and customer-solutions (heat pumps, EV charging, solar) — the bulk goes to E.ON's German and central-European businesses rather than the UK retail arm." },
+              { "label": "Executive remuneration", "share": 0.03, "note": "Chris Norbury (CEO, E.ON Next UK) — UK retail-segment executive pay is not separately disclosed at FTSE/DAX 'single figure' level. Group CEO Leonhard Birnbaum's FY2023 total comp was around €5–6m. Pay-ratio panel omitted pending verification of the specific UK figure." },
+              { "label": "Retained for the business", "share": 0.17, "note": "Earnings retained in the UK subsidiary and/or repatriated to the group." }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Same as British Gas: adjustment, headroom and smart-meter rollout components of the cap." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — model vs actual variance", "note": "Same residual treatment as other suppliers." },
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate. Click to follow into the UK Income Tax tree." }
+        ]
+      }
+    },
+    {
+      "id": "edf-energy",
+      "label": "EDF Energy — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with EDF Energy",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "EDF Energy — annual gas bill",
+        "source": "Ofgem default tariff cap (top-level shape); EDF SA Annual Report for supplier-margin branch",
+        "note": "EDF Energy is the UK retail and generation arm of Électricité de France (EDF SA), now 100% owned by the French state following completion of renationalisation in 2023. EDF operates the UK's nuclear fleet (Heysham, Hartlepool, Hinkley Point B/C, Sizewell B) and leads the Sizewell C development consortium (Centrica holds a smaller stake). Around 5 million UK customers across gas and electricity.",
+        "children": [
+          {
+            "label": "Wholesale gas", "share": 0.38,
+            "source": "Ofgem default tariff cap; national wholesale market",
+            "note": "Same wholesale gas market as every UK supplier.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf via Equinor and pipelines." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
+              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+            ]
+          },
+          {
+            "label": "Network costs", "share": 0.22,
+            "source": "Ofgem RIIO-2 price control — identical across suppliers",
+            "note": "Same regulated network costs as every other supplier.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN — Cadent / NGN / SGN / W&W." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter and smart-meter programme costs." }
+            ]
+          },
+          {
+            "label": "Operating costs", "share": 0.14,
+            "source": "Ofgem operating cost allowance; EDF Energy UK accounts",
+            "note": "Same allowance as every supplier. EDF Energy uses its own legacy systems rather than Kraken.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.45, "note": "UK customer-service and field engineering — EDF Energy employs around 11,000 people in the UK across retail and generation." },
+              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "EDF's own platform." },
+              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap bad-debt allowance." },
+              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition spend across the industry under the cap." },
+              { "label": "Property & overheads", "share": 0.10, "note": "London HQ plus customer-service centres." }
+            ]
+          },
+          {
+            "label": "Policy & social costs", "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes — statutory",
+            "note": "Identical to every supplier.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory levy for low-income energy efficiency." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate, recovered across all bills." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme admin costs." }
+            ]
+          },
+          {
+            "label": "Supplier margin (EDF SA → French state)", "share": 0.02,
+            "source": "Ofgem EBIT allowance; EDF SA Annual Report",
+            "note": "EDF's UK retail margin flows up to EDF SA in Paris — and since the 2023 completion of renationalisation, EDF SA is wholly owned by the French state. Functionally that means the supplier-margin portion of every EDF Energy bill is ultimately revenue to the French government. Capital-intensive: EDF group reinvests heavily into UK nuclear (Hinkley Point C is the largest single nuclear construction project in Europe).",
+            "children": [
+              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of French state ownership). Click to follow into the UK Income Tax tree." },
+              { "label": "Distributions to the French state (sole shareholder)", "share": 0.20, "note": "Since EDF was taken fully back into state ownership in 2023, all distributions from EDF SA flow to the French Treasury. The annual dividend mechanism still applies but the recipient is the state, not a public shareholder base." },
+              { "label": "Capital expenditure & reinvestment", "share": 0.42, "note": "Weighted heavily because EDF is the lead developer of UK new-build nuclear (Hinkley C, Sizewell C) and operator of the existing fleet — a meaningful share of group capex sits in the UK." },
+              { "label": "Executive remuneration", "share": 0.02, "note": "Group CEO Luc Rémont's compensation is capped under French state-owned-enterprise rules at around €450,000 per year — dramatically lower than FTSE / DAX equivalents. The UK Energy CEO is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure." },
+              { "label": "Retained for the business", "share": 0.16, "note": "Retained for operating reserves and the UK generation business." }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+        ]
+      }
+    },
+    {
+      "id": "ovo-energy",
+      "label": "OVO Energy — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with OVO Energy",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "OVO Energy — annual gas bill",
+        "source": "Ofgem default tariff cap (top-level shape); OVO Group Ltd Companies House filings",
+        "note": "OVO Energy is a UK supplier founded in 2009 by Stephen Fitzpatrick. In January 2020 OVO acquired SSE's domestic energy retail business (~3.5m customers), which transformed it overnight into one of the UK's largest suppliers. OVO is privately held: Stephen Fitzpatrick's family office retains a major stake, Mitsubishi Corporation has held around a 20% strategic stake since 2019, and Mayfair Equity Partners has been an investor.",
+        "children": [
+          {
+            "label": "Wholesale gas", "share": 0.38,
+            "source": "Ofgem default tariff cap; national wholesale market",
+            "note": "Same wholesale market as every UK supplier.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
+              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+            ]
+          },
+          {
+            "label": "Network costs", "share": 0.22,
+            "source": "Ofgem RIIO-2 price control — identical across suppliers",
+            "note": "Same regulated network costs.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs." }
+            ]
+          },
+          {
+            "label": "Operating costs", "share": 0.14,
+            "source": "Ofgem operating cost allowance; OVO Group accounts",
+            "note": "Same allowance. OVO has gone through significant operational restructuring since the SSE acquisition, with headcount reductions in 2022–24.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.42, "note": "Customer-service and field engineering — has been reduced significantly since 2022." },
+              { "label": "Billing, IT & customer systems", "share": 0.25, "note": "OVO's own platform (Orion / Plan Zero family of products) — built and operated in-house." },
+              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap allowance." },
+              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition activity across the industry." },
+              { "label": "Property & overheads", "share": 0.08, "note": "Bristol HQ plus customer-service sites." }
+            ]
+          },
+          {
+            "label": "Policy & social costs", "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes — statutory",
+            "note": "Identical to every supplier.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory energy-efficiency levy." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs." }
+            ]
+          },
+          {
+            "label": "Supplier margin (OVO Group)", "share": 0.02,
+            "source": "Ofgem EBIT allowance; OVO Group Ltd Companies House accounts",
+            "note": "OVO is privately held — no public dividend. The supplier-margin component flows to OVO Group's investor base: founder Stephen Fitzpatrick's family office (controlling stake), Mitsubishi Corporation (~20% strategic stake since 2019), and other private-equity backers.",
+            "children": [
+              { "label": "Corporation tax", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax. Click to follow into the UK Income Tax tree." },
+              { "label": "Distributions to investors", "share": 0.22, "note": "No public dividend. Returns to investors come through retained-earnings growth, Mitsubishi Corporation's strategic accounting, and potential future liquidity events (an IPO has been periodically mooted but not executed)." },
+              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "Plan Zero (decarbonisation product suite), customer-service technology, and Kaluza (OVO's smart-grid / flexibility platform, run as a separate company)." },
+              { "label": "Executive remuneration", "share": 0.03, "note": "Stephen Fitzpatrick is founder and significant shareholder. As a privately-held UK company, OVO discloses director remuneration at Companies House — less granular than FTSE single-figure. The headline value to Fitzpatrick is in his shareholding rather than cash compensation. Pay-ratio panel omitted pending verification of the specific figure." },
+              { "label": "Retained for the business", "share": 0.25, "note": "Earnings retained to absorb post-2022 operational losses and to fund the integration of the SSE customer book — a particularly large share at OVO because the SSE acquisition consumed working capital for several years." }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+        ]
+      }
+    },
+    {
+      "id": "scottish-power",
+      "label": "Scottish Power — gas bill",
+      "prompt": "If your annual gas bill was",
+      "promptSuffix": "with Scottish Power",
+      "defaultAmount": 1000,
+      "presets": [500, 1000, 2000],
+      "root": {
+        "label": "Scottish Power — annual gas bill",
+        "source": "Ofgem default tariff cap (top-level shape); Iberdrola SA Annual Report for supplier-margin branch",
+        "note": "Scottish Power is the UK retail and generation business of Iberdrola SA, the Spanish utility group (Madrid Stock Exchange, IBEX 35). Iberdrola is one of the largest utilities in the world by market capitalisation. In the UK, Scottish Power operates a large onshore wind portfolio (ScottishPower Renewables) plus offshore wind through the East Anglia One project. Around 4 million UK retail customers.",
+        "children": [
+          {
+            "label": "Wholesale gas", "share": 0.38,
+            "source": "Ofgem default tariff cap; national wholesale market",
+            "note": "Same wholesale market as every UK supplier.",
+            "children": [
+              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf." },
+              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
+              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
+              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+            ]
+          },
+          {
+            "label": "Network costs", "share": 0.22,
+            "source": "Ofgem RIIO-2 price control — identical across suppliers",
+            "note": "Same regulated network costs as every supplier. Note: Scottish Power also operates electricity transmission and distribution networks (SP Energy Networks) — but those revenues come through a separate regulated arm, not through retail bills.",
+            "children": [
+              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
+              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN — same suppliers as every other retailer." },
+              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs." }
+            ]
+          },
+          {
+            "label": "Operating costs", "share": 0.14,
+            "source": "Ofgem operating cost allowance; Iberdrola UK segment reporting",
+            "note": "Same Ofgem allowance. Scottish Power's UK retail operation is integrated with the wider ScottishPower group (renewables, networks, retail), with shared back-office functions.",
+            "children": [
+              { "label": "Staff & field operations", "share": 0.45, "note": "UK customer-service staff, mainly based in Glasgow." },
+              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "Scottish Power's own platform, shared partly with the wider Iberdrola group." },
+              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap allowance." },
+              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition under the cap." },
+              { "label": "Property & overheads", "share": 0.10, "note": "Glasgow HQ and customer-service sites." }
+            ]
+          },
+          {
+            "label": "Policy & social costs", "share": 0.04,
+            "source": "BEIS / DESNZ levy schemes — statutory",
+            "note": "Identical to every supplier.",
+            "children": [
+              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory energy-efficiency levy." },
+              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate." },
+              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
+              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs." }
+            ]
+          },
+          {
+            "label": "Supplier margin (Iberdrola SA)", "share": 0.02,
+            "source": "Ofgem EBIT allowance; Iberdrola SA Annual Report",
+            "note": "Scottish Power's UK retail margin flows up to Iberdrola SA in Bilbao. Iberdrola is one of Europe's largest utilities — major shareholders include Qatar Investment Authority (~8–9%), Norges Bank, BlackRock and Spanish retail investors. Iberdrola pays one of the most consistent dividends in European utilities.",
+            "children": [
+              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of Spanish parent ownership). Click to follow into the UK Income Tax tree." },
+              { "label": "Dividends to Iberdrola SA shareholders", "share": 0.32, "note": "Iberdrola distributes around €0.50/share annually via its Dividendo Flexible scheme (option to take dividend in cash or scrip). Largest shareholders include Qatar Investment Authority (~9%, sovereign wealth), Norges Bank Investment Management (Norwegian SWF), BlackRock and Spanish retail investors." },
+              { "label": "Capital expenditure & reinvestment", "share": 0.28, "note": "Iberdrola invests heavily in renewables — Scottish Power Renewables operates one of the UK's largest onshore wind portfolios plus East Anglia offshore. A meaningful share of group capex sits in the UK." },
+              { "label": "Executive remuneration", "share": 0.05, "note": "Iberdrola has historically had one of the highest CEO pay packages in European utilities. Long-serving Chairman Ignacio Galán's total compensation has been reported at around €15m+ in recent years (Iberdrola is a public Spanish company so detailed disclosure is available). UK Scottish Power CEO Keith Anderson is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure." },
+              { "label": "Retained for the business", "share": 0.15, "note": "Earnings retained in the UK subsidiary or repatriated to Iberdrola group." }
+            ]
+          },
+          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
+          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
+          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
         ]
       }
     }

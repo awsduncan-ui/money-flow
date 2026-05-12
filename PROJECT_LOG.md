@@ -58,8 +58,15 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 ## Currently modelled
 
 - **UK Income Tax** — HMRC Annual Tax Summary, FY 2022-23 basis. 15 top-level categories. Welfare and Health drill one level deeper.
-- **British Gas — annual gas bill** — Ofgem default-tariff-cap cost stack (wholesale / network / operating / policy / margin / VAT / other). Wholesale, network, operating, policy all drill one level deeper. Supplier margin breaks down into corporation tax, dividends to shareholders, capex, executive remuneration (Centrica CEO, with NMW multiple), retained earnings.
-- **Octopus Energy — annual gas bill** — Same Ofgem cap shape (because it's the same regulated structure), with a deliberately contrasting supplier-margin branch: privately held (no FTSE dividend; investors are Generation IM, CPP Investments, Tokyo Gas, KKR), heavier reinvestment weighting (Kraken platform + Octopus Energy Generation), lower executive pay. Pay-ratio panel intentionally omitted on Greg Jackson pending verification from Companies House.
+- **Six UK energy suppliers — annual gas bill** — All share the same top-level Ofgem default-tariff-cap shape (because the cap is regulatory and identical for every supplier). The interesting differentiation is in each supplier-margin branch:
+  - **British Gas** — Centrica plc (FTSE 100). Dividends to public shareholders (BlackRock, Vanguard, L&G via pension funds). CEO Chris O'Shea ~£8.2m, shown as multiple of NMW.
+  - **Octopus Energy** — Privately held. Investors: Generation IM, CPP Investments, Tokyo Gas, KKR. No FTSE dividend. Heavier capex weighting (Kraken + Octopus Energy Generation). Greg Jackson pay TBD.
+  - **E.ON Next** — UK arm of E.ON SE (Germany, DAX 40). Built on Kraken (licensed from Octopus). Dividends include RAG-Stiftung (German foundation for legacy coal-mining liabilities).
+  - **EDF Energy** — UK arm of EDF SA, 100% French state-owned since 2023 renationalisation. Supplier margin ultimately accrues to the French Treasury. Group CEO pay capped under French state rules. Operates UK nuclear fleet.
+  - **OVO Energy** — UK private. Founder Stephen Fitzpatrick, Mitsubishi Corp ~20% stake. Took SSE retail 2020. Heavy retained-earnings weighting for SSE integration.
+  - **Scottish Power** — UK arm of Iberdrola SA (Spain, IBEX 35). QIA largest shareholder. Major UK wind portfolio. One of Europe's highest-paying utility-CEO packages at group level.
+- **Cross-tree links** — VAT and Corporation Tax inside every energy-bill tree are clickable: they jump into the UK Income Tax tree with the appropriate amount as the new root, completing the "everything connects" thesis.
+- **Compare-suppliers view** — Single ⇄ Compare toggle. Compare mode shows all six energy trees side by side at top level, plus their differing supplier-margin breakdowns. The visual makes the point: top-level is identical (Ofgem); supplier-margin is where the money goes differently.
 
 ## Editorial principles
 
@@ -98,11 +105,15 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 ## Roadmap
 
 ### Next up
-- [ ] **Cross-tree links** — click VAT or corporation tax inside a gas-bill tree and jump into the income-tax tree at the right amount. The moment "everything connects" becomes visible. Add an `xref` field on nodes; the UI switches tree and seeds the input amount.
-- [ ] **Verify Greg Jackson's compensation** from Octopus Energy Group Ltd's most recent Companies House accounts, then add a `payRatio` block on the executive-remuneration node.
+- [ ] **Verify executive remuneration figures and add payRatio blocks** for Greg Jackson (Octopus), Chris Norbury (E.ON Next UK), the relevant EDF UK CEO, Stephen Fitzpatrick (OVO), and Keith Anderson (Scottish Power) — most are stubbed pending verification because either the parent's disclosure isn't FTSE-style "single figure", or only the group CEO's number is public (which conflates UK and global responsibility). Octopus's latest accounts (PDF on Companies House, filed 09 Jan 2026, FY ending April 2025, 92 pages, image-only — requires OCR or manual lookup) are the priority since Octopus is Ali's own supplier.
+- [ ] **Smaller/niche energy suppliers** — Utilita (prepayment specialist), Ecotricity (private, Dale Vince), Good Energy (public, AIM-listed, ~120k customers, green-tariff focus), So Energy (owned by ESB, Irish state), Outfox the Market, plus a handful of regional / community-owned suppliers. Each deserves an editorial pass for its specific ownership and pay disclosure rather than being batched.
 - [ ] **Verify FY 2022-23 income-tax figures** against the latest HMRC Annual Tax Summary publication and bump to the most recent published year.
 - [ ] **Validate shares sum to ~1** in CI on every commit. Cheap safety net.
-- [x] ~~**Octopus Energy as second supplier**~~ — added 2026-05-11. See below.
+- [ ] **Visual indicator on cross-tree jumps** — when you arrive in a tree via an xref click, show a subtle "← from British Gas / VAT" breadcrumb prefix so users know how they got there.
+- [x] ~~**Cross-tree links**~~ — added 2026-05-12. VAT and Corporation Tax in every energy tree jump into the income-tax tree.
+- [x] ~~**Compare-suppliers mode**~~ — added 2026-05-12. Single ⇄ Compare toggle.
+- [x] ~~**Octopus Energy as second supplier**~~ — added 2026-05-11.
+- [x] ~~**Add the rest of the Big-Six majors**~~ — E.ON Next, EDF, OVO, Scottish Power added 2026-05-12.
 
 ### More item types to model
 - [ ] Mortgage payment (interest + capital + securitisation chain → MBS investors)
@@ -168,6 +179,13 @@ A brief log of what changed each working session, so a fresh session can catch u
 - Moved project from Desktop to `~/Code/money-flow/`. Initialised git, created public GitHub repo, enabled GitHub Pages at https://awsduncan-ui.github.io/money-flow/.
 - Built NMW auto-refresh: `scripts/update_nmw.py` (stdlib + curl) and `.github/workflows/refresh-data.yml` (weekly + manual dispatch). First run picked up the April 2026 rate (£12.71/hr → £24,780/yr), replacing the previously hardcoded April 2025 figure.
 - Added **Octopus Energy** as a third tree — Ali's own supplier. Same Ofgem cap top-level shape as British Gas (because every UK supplier is governed by the same regulated stack), with deliberately contrasting supplier-margin branch: privately held (no FTSE dividend), heavier reinvestment weighting, different investor set (Generation IM, CPP Investments, Tokyo Gas, KKR), lower exec pay. Pay-ratio for Greg Jackson left as a stub pending verification from Companies House. Bundled fallback in `index.html` extended to match.
+
+### 2026-05-12
+- Attempted **Greg Jackson Companies House lookup**: pulled the latest Octopus Energy Group Ltd accounts (filed 09 Jan 2026, FY ending 30 April 2025, 92 pages) from filing-history endpoint MzQ5ODI3MjQyMWFkaXF6a2N4. PDF is image-only — neither `pypdf` nor `pypdfium2` extract any text. Marked as a manual-OCR task; could be done with Tesseract or by Ali eyeballing the Directors' Remuneration Report section.
+- Built **cross-tree links** via a new `xref` field on `FlowNode`. Added to VAT and Corporation Tax in every energy-bill tree. Clicking such a node calls `jumpToTree(treeId, amount)` — switches to the target tree, seeds `baseAmount` with the carry-through amount, resets the path. Visual: a slate-coloured `↗ Target Tree Name` arrow distinguishes xref nodes from drill-in chevrons; hover turns amber. Bundled fallback updated.
+- Built a **Compare suppliers** view. View-toggle button next to the data-status line switches between Single trace and ⇄ Compare suppliers. Compare renders one card per energy tree showing top-level rows (label, amount, %) plus the supplier-margin children breakdown inline. Clicking a card title jumps back into single mode focused on that supplier. The visual reinforces the editorial point — top-level is identical (Ofgem), supplier-margin is where the differentiation lives.
+- Added four more UK suppliers as full trees: **E.ON Next** (E.ON SE, German DAX-listed, Kraken-licensee), **EDF Energy** (EDF SA, 100% French state-owned post-2023 renationalisation, lead UK nuclear operator), **OVO Energy** (UK private, Stephen Fitzpatrick + Mitsubishi Corp, integrated SSE retail 2020), **Scottish Power** (Iberdrola SA, Madrid IBEX 35, major wind portfolio). Each gets the full Ofgem cap structure with sub-children for wholesale / network / operating / policy, plus a distinct supplier-margin branch reflecting parent-company ownership and capital allocation. Pay-ratio panels stubbed across all four pending verification of each UK CEO's compensation. Bundled fallback in `index.html` extended to match.
+- Updated footer note to mention compare mode and xref behaviour. PROJECT_LOG roadmap updated: completed items struck, "smaller / niche suppliers" added as a future editorial pass rather than rushed in this turn.
 
 ## Collaboration
 
