@@ -855,6 +855,67 @@ const BUNDLED_DATA = {
           }
         ]
       }
+    },
+    {
+      id: 'starbucks-coffee',
+      category: 'consumer',
+      label: 'A coffee from Starbucks',
+      prompt: 'If you paid',
+      promptSuffix: 'for a grande latte at a UK Starbucks',
+      defaultAmount: 4.00,
+      presets: [3.85, 4.25, 4.85],
+      root: {
+        label: 'A grande latte — UK Starbucks',
+        note: 'Representative £4 grande latte. Famous for the post-2012 UK tax structure story — royalty to Starbucks Corp via Netherlands subsidiary.',
+        children: [
+          { label: 'VAT (20%)', share: 0.17, xref: 'income-tax' },
+          {
+            label: 'Cost of goods (ingredients & cup)', share: 0.13,
+            children: [
+              { label: 'Coffee beans', share: 0.18 },
+              { label: 'Milk', share: 0.35 },
+              { label: 'Cup, lid, sleeve, stirrer', share: 0.22 },
+              { label: 'Sugar, syrups, other', share: 0.15 },
+              { label: 'Wastage & spillage allowance', share: 0.10 }
+            ]
+          },
+          {
+            label: 'Store operating costs (Starbucks UK)', share: 0.45,
+            children: [
+              { label: 'Store labour (baristas, managers)', share: 0.50 },
+              { label: 'Store property rent', share: 0.25 },
+              { label: 'Utilities (electricity, gas, water)', share: 0.08 },
+              { label: 'Equipment depreciation & maintenance', share: 0.07 },
+              { label: 'Cleaning, supplies & consumables', share: 0.05 },
+              { label: 'Store-level overheads', share: 0.05 }
+            ]
+          },
+          { label: 'Group head office & marketing (Starbucks UK)', share: 0.07 },
+          {
+            label: 'Royalty / intellectual-property fee to Starbucks Corp', share: 0.05,
+            children: [
+              { label: 'Starbucks Corp operating costs (US head office, IP development)', share: 0.30 },
+              { label: 'Starbucks Corp marketing (global brand investment)', share: 0.15 },
+              {
+                label: 'Starbucks Corp operating profit', share: 0.55,
+                children: [
+                  { label: 'US federal & state corporation tax', share: 0.20 },
+                  { label: 'Dividends to Starbucks Corp shareholders', share: 0.30 },
+                  { label: 'Share buybacks', share: 0.20 },
+                  { label: 'Capital expenditure & reinvestment', share: 0.15 },
+                  {
+                    label: 'Executive remuneration', share: 0.02,
+                    payRatio: { label: 'Brian Niccol, Starbucks CEO — FY2025 first-year package', amount: 89000000 }
+                  },
+                  { label: 'Retained for the business', share: 0.13 }
+                ]
+              }
+            ]
+          },
+          { label: 'UK corporation tax (Starbucks UK)', share: 0.03, xref: 'income-tax' },
+          { label: 'Starbucks UK operating profit (or loss)', share: 0.10 }
+        ]
+      }
     }
   ]
 };

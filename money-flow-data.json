@@ -1643,6 +1643,203 @@
           }
         ]
       }
+    },
+    {
+      "id": "starbucks-coffee",
+      "category": "consumer",
+      "label": "A coffee from Starbucks",
+      "prompt": "If you paid",
+      "promptSuffix": "for a grande latte at a UK Starbucks",
+      "defaultAmount": 4.0,
+      "presets": [
+        3.85,
+        4.25,
+        4.85
+      ],
+      "root": {
+        "label": "A grande latte — UK Starbucks",
+        "source": "PRICE — no single authoritative source. Starbucks UK doesn't publish a national menu; prices vary by location 'tier' (Central London tier-1 is highest). The £4.00 default is a representative mid-2026 grande latte (16oz with milk); real prices range ~£3.65 (regional tall) to £4.85+ (Central London tier-1 / premium drinks). ONS CPI tracks 'hot drinks consumed away from home' at category level but not at SKU level. STRUCTURE — HMRC VAT Notice 709/1 (catering); Starbucks Coffee Company (UK) Ltd accounts at Companies House (company 02530907, https://find-and-update.company-information.service.gov.uk/company/02530907); Starbucks Corporation 10-K filings (https://investor.starbucks.com); the UK royalty/IP-fee structure is publicly known from the 2012 Public Accounts Committee inquiry and Reuters investigation, with subsequent restructuring.",
+        "note": "A grande (16oz) latte from a UK Starbucks. Starbucks UK is famous for its corporate-tax structure — across 14 years (1998-2012) it paid just £8.6m of UK corporation tax on £3bn+ of UK sales, largely via royalty payments to a Netherlands subsidiary (~6% of UK revenue) and intercompany coffee-sourcing through Switzerland. After the 2012 Public Accounts Committee inquiry and consumer backlash, Starbucks voluntarily paid additional UK tax and moved its European HQ from Amsterdam to London in 2014. IP-licensing arrangements continue and remain a meaningful share of where your £4 goes.",
+        "children": [
+          {
+            "label": "VAT (20%)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC VAT Notice 709/1 (catering and take-away food, https://www.gov.uk/guidance/catering-takeaway-food-and-vat-notice-7091). Hot drinks are standard-rated whether eaten in or taken away, unlike most cold takeaway food which is zero-rated.",
+            "note": "Hot drinks are standard-rated at 20% VAT regardless of eat-in or takeaway. On a £4 coffee, VAT is ~67p. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Cost of goods (ingredients & cup)",
+            "share": 0.13,
+            "source": "Industry estimates from coffee-retail analyst reports (Allegra Strategies World Coffee Portal, https://www.worldcoffeeportal.com); ICE Coffee Futures C-contract for arabica bean prices; AHDB UK Dairy Markets for milk pricing (https://ahdb.org.uk/dairy). Per-drink cost not separately disclosed by Starbucks UK.",
+            "note": "Surprisingly small share of the price. Arabica beans translate to ~10-15p per double-shot espresso; ~360ml of milk for a grande latte is ~15p at UK wholesale prices; the cup, lid and sleeve another ~10p. The famous fact that 'the coffee is among the cheapest ingredients' is genuinely true.",
+            "children": [
+              {
+                "label": "Coffee beans",
+                "share": 0.18,
+                "source": "ICE Coffee Futures C-contract benchmark (arabica) plus Starbucks's quality premium for C.A.F.E. Practices sourced beans; Starbucks 10-K commentary on coffee sourcing.",
+                "note": "A double-shot espresso uses ~14-18g of beans. At arabica futures of around $3-4/lb plus Starbucks's quality premium, bean cost per drink is around 10-15p."
+              },
+              {
+                "label": "Milk",
+                "share": 0.35,
+                "source": "AHDB UK Dairy Markets — wholesale milk prices (https://ahdb.org.uk/dairy/uk-and-eu-cow-milk-deliveries). UK farmgate ~40p/litre; wholesale to large food-service buyers via Müller / Arla supply contracts is higher.",
+                "note": "~360ml of whole milk per grande latte. Plant-based alternatives (oat, soy, almond) carry an upcharge to the customer that mostly covers the higher ingredient cost."
+              },
+              {
+                "label": "Cup, lid, sleeve, stirrer",
+                "share": 0.22,
+                "source": "Industry packaging cost data; Starbucks sustainability reporting on cup costs. The UK considered a 5-25p paper-cup levy in 2018 (Latte Levy proposal); not adopted nationally but informed industry cost disclosure.",
+                "note": "Takeaway disposables. Starbucks offers a 25p discount for customers using reusable cups as a soft incentive."
+              },
+              {
+                "label": "Sugar, syrups, other",
+                "share": 0.15,
+                "source": "Industry estimates; Starbucks doesn't itemise per-drink cost.",
+                "note": "Flavoured syrups (vanilla, caramel, hazelnut) carry a small premium mostly built into the syrup-shot upcharge a customer pays separately. Sugar, stirrers, napkins for those who use them."
+              },
+              {
+                "label": "Wastage & spillage allowance",
+                "share": 0.1,
+                "source": "Standard accounting allowance for shrinkage in food-service operations; not directly published by Starbucks.",
+                "note": "Drinks remade, spills, expired milk. Standard food-service allowance, roughly 5-10% of COGS."
+              }
+            ]
+          },
+          {
+            "label": "Store operating costs (Starbucks UK)",
+            "share": 0.45,
+            "source": "Starbucks Coffee Company (UK) Ltd accounts at Companies House (company 02530907) — aggregate cost lines disclosed but not per-store or per-drink. Sub-component allocations below are illustrative based on standard food-service-retail cost structures.",
+            "note": "By far the biggest slice of your £4. Store rent (especially Central London), barista wages, store-manager salaries, utilities, cleaning, equipment depreciation, training. Starbucks UK runs around 1,000 stores (mix of company-owned and licensed/franchised); company-owned costs flow through Starbucks Coffee Company (UK) Ltd.",
+            "children": [
+              {
+                "label": "Store labour (baristas, managers)",
+                "share": 0.5,
+                "source": "Starbucks Coffee Company (UK) Ltd accounts — employee costs line; Starbucks UK is an accredited Real Living Wage employer (https://www.livingwage.org.uk).",
+                "note": "Starbucks UK pays around £12.50-£13.50/hour at entry level (Real Living Wage), plus employer NI, holiday pay, pensions, store-manager salaries and training. About 5-6 baristas per high-street store at peak; on a £4 drink with peak throughput, ~50p represents direct labour cost."
+              },
+              {
+                "label": "Store property rent",
+                "share": 0.25,
+                "source": "Industry estimates from CoStar and Knight Frank retail-rent data; Starbucks doesn't publish per-store rent. Flagship Central London sites can exceed £200,000/year; smaller regional sites £40-80k.",
+                "note": "High in city locations. Often the second-largest single cost after labour. Starbucks's preference for prime corner / high-footfall sites pushes the rent line higher than for many quick-service competitors."
+              },
+              {
+                "label": "Utilities (electricity, gas, water)",
+                "share": 0.08,
+                "source": "Industry estimates; Starbucks UK sustainability and ESG reporting.",
+                "note": "Espresso machines, fridges, hot-water boilers, lighting, ventilation, refrigeration. Coffee shops are surprisingly energy-intensive — commercial espresso machines run continuously to maintain temperature."
+              },
+              {
+                "label": "Equipment depreciation & maintenance",
+                "share": 0.07,
+                "source": "Standard accounting depreciation as reported in Starbucks UK accounts.",
+                "note": "Espresso machines (~£15-20k each for commercial Mastrena 2 units), grinders, fridges, furniture and fittings spread over their useful life."
+              },
+              {
+                "label": "Cleaning, supplies & consumables",
+                "share": 0.05,
+                "source": "Standard food-service operations cost.",
+                "note": "Cleaning products, uniforms, small-wares, point-of-sale supplies, training materials."
+              },
+              {
+                "label": "Store-level overheads",
+                "share": 0.05,
+                "source": "Standard food-service operations cost.",
+                "note": "Music-licensing fees (Starbucks's instore playlists), store-manager salary allocation, internal communications, district-manager site visits."
+              }
+            ]
+          },
+          {
+            "label": "Group head office & marketing (Starbucks UK)",
+            "share": 0.07,
+            "source": "Starbucks Coffee Company (UK) Ltd accounts at Companies House — administrative expenses line.",
+            "note": "UK head office (London) — finance, HR, real estate, IT, marketing, supply-chain, district management. After the 2012 tax controversy, Starbucks moved its European HQ from Amsterdam to London in 2014 — a meaningful share of these costs are now genuinely UK-based rather than offshore."
+          },
+          {
+            "label": "Royalty / intellectual-property fee to Starbucks Corp",
+            "share": 0.05,
+            "source": "UK Public Accounts Committee inquiry into Starbucks (2012, https://publications.parliament.uk/pa/cm201213/cmselect/cmpubacc/716/716.pdf); Reuters investigation by Tom Bergin, 'Special Report: How Starbucks avoids UK taxes' (October 2012, https://www.reuters.com/article/us-britain-starbucks-tax-idUSBRE89E0EX20121015). Historic royalty rate ~6% of UK revenue paid to Starbucks Coffee EMEA BV (Netherlands). Restructuring post-2014 moved European HQ to London but intellectual-property licensing arrangements continue. Current rate not separately disclosed in published accounts.",
+            "note": "The famous slice. Starbucks UK pays Starbucks Corp (via its IP-holding subsidiaries) for the right to use the Starbucks brand, store designs, recipes and operating systems. Historically this royalty went to a Netherlands subsidiary, reducing UK taxable profit. Post-2012 the structure was modified but IP licensing payments continue. The drill-down below traces where Starbucks Corp's slice ultimately goes.",
+            "children": [
+              {
+                "label": "Starbucks Corp operating costs (US head office, IP development)",
+                "share": 0.3,
+                "source": "Starbucks Corporation 10-K — general & administrative expense line (https://investor.starbucks.com).",
+                "note": "Brand management, recipe R&D, store-design IP, marketing-platform development. Funded centrally and recovered from licensees and operating subsidiaries via royalty payments."
+              },
+              {
+                "label": "Starbucks Corp marketing (global brand investment)",
+                "share": 0.15,
+                "source": "Starbucks Corporation 10-K — marketing expense line.",
+                "note": "Global brand campaigns, sponsorships, digital platforms (Starbucks Rewards app, mobile ordering)."
+              },
+              {
+                "label": "Starbucks Corp operating profit",
+                "share": 0.55,
+                "source": "Starbucks Corporation 10-K — operating margin lines. Per-cup attribution from the UK royalty stream is illustrative because Starbucks Corp's profit is on global group operations, not on UK royalty income alone.",
+                "note": "Starbucks's global operating margin runs around 15-18% in normal years. Proceeds flow to US tax, dividends, buybacks, capex and executive pay.",
+                "children": [
+                  {
+                    "label": "US federal & state corporation tax",
+                    "share": 0.2,
+                    "source": "Starbucks Corp 10-K — provision for income taxes; effective tax rate around 22-26% in recent years.",
+                    "note": "US federal corporate tax (21%) plus state corporate taxes (varies by state mix)."
+                  },
+                  {
+                    "label": "Dividends to Starbucks Corp shareholders",
+                    "share": 0.3,
+                    "source": "Starbucks Corp dividend history; SBUX investor relations. Quarterly dividend of $0.61/share for FY2024 (~$2.44/share annual).",
+                    "note": "Largest shareholders per Starbucks proxy filings: Vanguard, BlackRock and State Street. Howard Schultz (founder) historically held a meaningful personal stake but has reduced it since stepping back from operational involvement."
+                  },
+                  {
+                    "label": "Share buybacks",
+                    "share": 0.2,
+                    "source": "Starbucks Corp 10-K — share repurchase programme disclosures.",
+                    "note": "Starbucks has historically bought back significant amounts of its own shares — another route for returning capital to shareholders."
+                  },
+                  {
+                    "label": "Capital expenditure & reinvestment",
+                    "share": 0.15,
+                    "source": "Starbucks Corp 10-K — capex line.",
+                    "note": "New stores, store refurbishment, technology platforms (Starbucks Rewards, mobile ordering), supply-chain capex."
+                  },
+                  {
+                    "label": "Executive remuneration",
+                    "share": 0.02,
+                    "source": "Starbucks Corp 2024 DEF 14A proxy filing (https://investor.starbucks.com/financial-data/proxy-statements/). Brian Niccol's first-year package was widely reported at approximately $113m total.",
+                    "note": "Brian Niccol joined as Starbucks CEO in August 2024, recruited from Chipotle with a record-setting package. The widely-reported FY2025 figure of ~$113m was largely sign-on equity designed to replace what he relinquished at Chipotle; ongoing annual target compensation is materially lower (~$17m). A famous detail: Niccol kept his California home and Starbucks provides a corporate jet for his commute to Seattle HQ.",
+                    "payRatio": {
+                      "label": "Brian Niccol, Starbucks CEO — FY2025 total package (first-year, including sign-on equity)",
+                      "amount": 89000000,
+                      "caveats": "Approximately $113m total (~£89m at recent GBP/USD ~0.79), of which the bulk is one-off sign-on equity replacing Chipotle awards Niccol forfeited when leaving. Ongoing annual target compensation is materially lower (~$17m, around £13m → ~530× NMW). The multiple shown therefore reflects the sign-on year specifically — future years' ratios will be much smaller. Verify against Starbucks's 2024 DEF 14A proxy filing."
+                    }
+                  },
+                  {
+                    "label": "Retained for the business",
+                    "share": 0.13,
+                    "source": "Starbucks Corp 10-K — retained earnings.",
+                    "note": "Earnings kept on the balance sheet for future investment or volatility buffer."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "label": "UK corporation tax (Starbucks UK)",
+            "share": 0.03,
+            "xref": "income-tax",
+            "source": "Starbucks Coffee Company (UK) Ltd accounts at Companies House — tax expense line. Historically extremely low due to the royalty / intercompany cost structure; somewhat higher since post-2014 restructuring but still modest relative to UK turnover. Famous 2012 Public Accounts Committee figure: £8.6m of UK corporation tax paid on over £3bn of UK sales across 14 years (~0.3% of revenue).",
+            "note": "Standard 25% UK corporation tax applies in principle, but the royalty payments to Starbucks Corp (and other intercompany charges) substantially reduce UK taxable profit. Post-restructuring the proportion has risen but remains lower than a standalone UK retailer would pay. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Starbucks UK operating profit (or loss)",
+            "share": 0.1,
+            "source": "Starbucks Coffee Company (UK) Ltd accounts at Companies House — operating profit line. Some recent years have shown losses or thin profits at the UK entity, partly because the royalty and intercompany cost lines absorb much of what would otherwise be UK profit.",
+            "note": "What's left after all the above. In some years Starbucks UK has reported losses; in others modest profit. The reported UK operating profit understates the economic return to Starbucks group from UK operations, because the royalty / IP-fee line (paid to other Starbucks subsidiaries upstream) is itself a transfer of UK-generated economic value to other tax jurisdictions."
+          }
+        ]
+      }
     }
   ]
 }
