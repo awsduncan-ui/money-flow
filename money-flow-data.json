@@ -181,9 +181,10 @@
     {
       "id": "british-gas",
       "category": "energy",
-      "label": "British Gas — gas bill",
+      "group": "gas-bill",
+      "label": "British Gas",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with British Gas",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
@@ -392,9 +393,10 @@
     {
       "id": "octopus-energy",
       "category": "energy",
-      "label": "Octopus Energy — gas bill",
+      "group": "gas-bill",
+      "label": "Octopus Energy",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with Octopus Energy",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
@@ -598,9 +600,10 @@
     {
       "id": "eon-next",
       "category": "energy",
-      "label": "E.ON Next — gas bill",
+      "group": "gas-bill",
+      "label": "E.ON Next",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with E.ON Next",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
@@ -804,9 +807,10 @@
     {
       "id": "edf-energy",
       "category": "energy",
-      "label": "EDF Energy — gas bill",
+      "group": "gas-bill",
+      "label": "EDF Energy",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with EDF Energy",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
@@ -1010,9 +1014,10 @@
     {
       "id": "ovo-energy",
       "category": "energy",
-      "label": "OVO Energy — gas bill",
+      "group": "gas-bill",
+      "label": "OVO Energy",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with OVO Energy",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
@@ -1216,9 +1221,10 @@
     {
       "id": "scottish-power",
       "category": "energy",
-      "label": "Scottish Power — gas bill",
+      "group": "gas-bill",
+      "label": "Scottish Power",
       "prompt": "If your annual gas bill was",
-      "promptSuffix": "with Scottish Power",
+      "promptSuffix": "with",
       "defaultAmount": 1000,
       "presets": [
         500,
