@@ -57,16 +57,19 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 
 ## Currently modelled
 
-- **UK Income Tax** — HMRC Annual Tax Summary, FY 2022-23 basis. 15 top-level categories. Welfare and Health drill one level deeper.
-- **Six UK energy suppliers — annual gas bill** — All share the same top-level Ofgem default-tariff-cap shape (because the cap is regulatory and identical for every supplier). The interesting differentiation is in each supplier-margin branch:
+Each tree now carries a `category` field: `tax`, `energy`, or `consumer`. The compare-mode view filters on `category === 'energy'` so it doesn't sweep in unrelated trees.
+
+- **UK Income Tax** *(category: tax)* — HMRC Annual Tax Summary, FY 2022-23 basis. 15 top-level categories. Welfare and Health drill one level deeper.
+- **Six UK energy suppliers — annual gas bill** *(category: energy)* — All share the same top-level Ofgem default-tariff-cap shape (because the cap is regulatory and identical for every supplier). The interesting differentiation is in each supplier-margin branch:
   - **British Gas** — Centrica plc (FTSE 100). Dividends to public shareholders (BlackRock, Vanguard, L&G via pension funds). CEO Chris O'Shea ~£8.2m, shown as multiple of NMW.
   - **Octopus Energy** — Privately held. Investors: Generation IM, CPP Investments, Tokyo Gas, KKR. No FTSE dividend. Heavier capex weighting (Kraken + Octopus Energy Generation). Greg Jackson pay TBD.
   - **E.ON Next** — UK arm of E.ON SE (Germany, DAX 40). Built on Kraken (licensed from Octopus). Dividends include RAG-Stiftung (German foundation for legacy coal-mining liabilities).
   - **EDF Energy** — UK arm of EDF SA, 100% French state-owned since 2023 renationalisation. Supplier margin ultimately accrues to the French Treasury. Group CEO pay capped under French state rules. Operates UK nuclear fleet.
   - **OVO Energy** — UK private. Founder Stephen Fitzpatrick, Mitsubishi Corp ~20% stake. Took SSE retail 2020. Heavy retained-earnings weighting for SSE integration.
   - **Scottish Power** — UK arm of Iberdrola SA (Spain, IBEX 35). QIA largest shareholder. Major UK wind portfolio. One of Europe's highest-paying utility-CEO packages at group level.
-- **Cross-tree links** — VAT and Corporation Tax inside every energy-bill tree are clickable: they jump into the UK Income Tax tree with the appropriate amount as the new root, completing the "everything connects" thesis.
-- **Compare-suppliers view** — Single ⇄ Compare toggle. Compare mode shows all six energy trees side by side at top level, plus their differing supplier-margin breakdowns. The visual makes the point: top-level is identical (Ofgem); supplier-margin is where the money goes differently.
+- **A can of Coke** *(category: consumer)* — A 330ml can from a UK supermarket at a representative 85p. Top-level shape: VAT (17%) → income-tax, Sugar Tax/SDIL (9%) → income-tax, supermarket margin (15%), Coca-Cola Europacific Partners (59%). Inside CCEP: the famous concentrate-fee line flowing to The Coca-Cola Company in Atlanta, plus aluminium-can cost, raw materials, distribution, marketing, CCEP operating margin (which drills further into UK corp tax, dividends to Olive Partners + TCCC + free float, capex, exec pay). The TCCC concentrate fee drills further into US tax, TCCC dividends (Berkshire Hathaway ~9%, Vanguard, BlackRock), buybacks, and James Quincey's executive pay. Headline figures (VAT, SDIL) are firm; the deeper cost-component splits are illustrative because exact contract terms are commercially confidential.
+- **Cross-tree links** — VAT and Corporation Tax inside every energy-bill tree, plus VAT/SDIL/UK corp tax inside the Coke tree, are clickable: they jump into the UK Income Tax tree with the appropriate amount as the new root, completing the "everything connects" thesis.
+- **Compare-energy-suppliers view** — Single ⇄ Compare toggle. Compare mode shows all six energy trees side by side at top level, plus their differing supplier-margin breakdowns. The visual makes the point: top-level is identical (Ofgem); supplier-margin is where the money goes differently. Filter is `category === 'energy'` so non-energy trees (income-tax, Coke, future consumer items) don't pollute the view.
 
 ## Editorial principles
 
@@ -124,6 +127,7 @@ The multiple is computed at render time as `amount / uk_nmw_annual`. NMW lives a
 - [ ] A pint at the pub (beer cost, duty, VAT, pub margin, brewery margin)
 - [ ] Council tax (services breakdown by local authority — needs postcode input)
 - [ ] Pension contribution (where does it actually get invested?)
+- [x] ~~A can of Coke~~ — added 2026-05-12 as the first `consumer` category tree.
 
 ### Bigger features
 - [ ] **Paste-a-statement mode** — upload a bank statement CSV, auto-categorise each line, show "where my month went" in aggregate
@@ -179,6 +183,13 @@ A brief log of what changed each working session, so a fresh session can catch u
 - Moved project from Desktop to `~/Code/money-flow/`. Initialised git, created public GitHub repo, enabled GitHub Pages at https://awsduncan-ui.github.io/money-flow/.
 - Built NMW auto-refresh: `scripts/update_nmw.py` (stdlib + curl) and `.github/workflows/refresh-data.yml` (weekly + manual dispatch). First run picked up the April 2026 rate (£12.71/hr → £24,780/yr), replacing the previously hardcoded April 2025 figure.
 - Added **Octopus Energy** as a third tree — Ali's own supplier. Same Ofgem cap top-level shape as British Gas (because every UK supplier is governed by the same regulated stack), with deliberately contrasting supplier-margin branch: privately held (no FTSE dividend), heavier reinvestment weighting, different investor set (Generation IM, CPP Investments, Tokyo Gas, KKR), lower exec pay. Pay-ratio for Greg Jackson left as a stub pending verification from Companies House. Bundled fallback in `index.html` extended to match.
+
+### 2026-05-12 (evening)
+- Added a **can of Coke** tree — first consumer-goods item. Tracked the chain from supermarket shelf back through HMRC (VAT + Sugar Tax via cross-tree links), the supermarket margin, Coca-Cola Europacific Partners as the bottler, and the concentrate fee flowing to The Coca-Cola Company in Atlanta. The TCCC operating profit drill-down — through US tax, dividends to Berkshire Hathaway / Vanguard / BlackRock, buybacks — is the first non-UK money-flow modelled in the app, and a useful proof that the tree structure handles multinational supply chains.
+- Introduced a **`category` field on every tree** (`tax`, `energy`, `consumer`). Necessary because the `isEnergyTree` filter for compare-mode was previously "everything except income-tax", which would have incorrectly swept the Coke tree into compare-suppliers view. Now it filters cleanly on `category === 'energy'`. Future categories: `housing`, `transport`, `subscription` etc. as more item types are added.
+- Improved the **input step calculation** to handle sub-£10 amounts — now scales from £100 step (≥£1000) down to £0.05 step (<£1). Necessary so the up/down arrows on the Coke input nudge by 5p rather than £50.
+- Fixed preset rendering: switched `'£' + v.toLocaleString('en-GB')` to `fmtMoney(v)` so £1.20 doesn't render as "£1.2".
+- Renamed compare-mode button to **"⇄ Compare energy suppliers"** for accuracy.
 
 ### 2026-05-12 (afternoon)
 - Added a **stacked proportional flow bar** above each level in both single and compare views. Decided against a pie chart after weighing it: pie wedges become unreadable below ~3% (many income-tax categories sit there), are hard to compare at similar sizes, and don't compose well across drill-downs. Stacked horizontal bar gives the same proportional reading, scales to many categories, is mobile-friendly, and lets the existing list stay as the legend. Segments cycle through four opacity shades so adjacent slices distinguish; xref segments use the slate accent so cross-tree links read as "leaves this tree" at a glance. Hover on a bar segment highlights the matching row; clicking a segment fires the row's click handler (drill or jump).

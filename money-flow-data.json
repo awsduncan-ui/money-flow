@@ -6,6 +6,7 @@
   "trees": [
     {
       "id": "income-tax",
+      "category": "tax",
       "label": "UK Income Tax",
       "prompt": "If you paid",
       "promptSuffix": "in income tax this year",
@@ -60,6 +61,7 @@
     },
     {
       "id": "british-gas",
+      "category": "energy",
       "label": "British Gas — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with British Gas",
@@ -148,6 +150,7 @@
     },
     {
       "id": "octopus-energy",
+      "category": "energy",
       "label": "Octopus Energy — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with Octopus Energy",
@@ -248,6 +251,7 @@
     },
     {
       "id": "eon-next",
+      "category": "energy",
       "label": "E.ON Next — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with E.ON Next",
@@ -322,6 +326,7 @@
     },
     {
       "id": "edf-energy",
+      "category": "energy",
       "label": "EDF Energy — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with EDF Energy",
@@ -396,6 +401,7 @@
     },
     {
       "id": "ovo-energy",
+      "category": "energy",
       "label": "OVO Energy — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with OVO Energy",
@@ -470,6 +476,7 @@
     },
     {
       "id": "scottish-power",
+      "category": "energy",
       "label": "Scottish Power — gas bill",
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with Scottish Power",
@@ -539,6 +546,100 @@
           { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
           { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
           { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+        ]
+      }
+    },
+    {
+      "id": "coke-can",
+      "category": "consumer",
+      "label": "A can of Coke",
+      "prompt": "If you paid",
+      "promptSuffix": "for a 330ml can of Coke at a UK supermarket",
+      "defaultAmount": 0.85,
+      "presets": [0.85, 1.20, 0.50],
+      "root": {
+        "label": "A 330ml can of Coca-Cola — UK supermarket",
+        "source": "HMRC for VAT/SDIL; Coca-Cola Europacific Partners and The Coca-Cola Company Annual Reports for the corporate splits; supermarket margin and CCEP cost-component splits are industry-illustrative — exact contract terms are commercially confidential",
+        "note": "A standard 330ml can of Coke from a UK supermarket (representative price ~85p; actual prices range from about 75p to £1.20 depending on retailer, location and pack size). The chain of hands is longer than the price suggests: HMRC takes two bites (VAT and the sugar tax), the supermarket takes its retail margin, the bottler — Coca-Cola Europacific Partners — takes the largest share, and a famous concentrate fee flows from CCEP to The Coca-Cola Company in Atlanta. The headline figures are firm (VAT and SDIL are statutory); the deeper splits are illustrative.",
+        "children": [
+          {
+            "label": "VAT (20%)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC; soft drinks are standard-rated for VAT",
+            "note": "Soft drinks are standard-rated, so VAT is one-sixth of the sticker price. On an 85p can the VAT is roughly 14p. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Soft Drinks Industry Levy (sugar tax)",
+            "share": 0.09,
+            "xref": "income-tax",
+            "source": "HMRC; SDIL higher band (24p/litre) for drinks with >8g sugar per 100ml",
+            "note": "Standard Coke is over the 8g sugar / 100ml threshold so attracts the higher SDIL rate of 24p per litre — about 8p on a 330ml can. The levy is paid by the bottler to HMRC and passed through in the wholesale price to the retailer. Introduced 2018; standard Coke chose not to reformulate. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Supermarket retailer margin",
+            "share": 0.15,
+            "source": "Industry estimates; branded soft-drink gross margin typically 10–20%",
+            "note": "The supermarket buys the can wholesale from the bottler and resells with a margin covering staff, refrigeration, rent, distribution to store, and operating profit. Coke is a 'destination' SKU — supermarkets often advertise Coke pricing competitively, so margins compress periodically. The sub-split below is illustrative; supermarkets don't publish margin breakdowns at SKU level.",
+            "children": [
+              { "label": "Store operating costs (staff, lighting, refrigeration)", "share": 0.45, "note": "Wages, electricity, in-store labour allocated to this category." },
+              { "label": "Distribution from regional DC to store", "share": 0.18, "note": "The supermarket's own logistics network — separate from the bottler's distribution to the supermarket's DC." },
+              { "label": "Property & overheads", "share": 0.12, "note": "Store property costs and head-office allocation." },
+              { "label": "Retailer operating profit", "share": 0.25, "note": "Becomes part of the parent retailer's group profit. Tesco and Sainsbury's are FTSE 100 plcs paying public dividends; Asda is owned by TDR Capital and the Issa brothers; Morrisons is owned by Clayton, Dubilier & Rice (private equity, since 2021)." }
+            ]
+          },
+          {
+            "label": "Coca-Cola Europacific Partners (bottler)",
+            "share": 0.59,
+            "source": "CCEP FY2023 Annual Report (segment results); cost-component splits within COGS and SG&A are illustrative",
+            "note": "Coca-Cola Europacific Partners (CCEP) bottles, distributes and sells Coke under licence across Western Europe, Indonesia, Australia and the Pacific. Listed on NYSE and Euronext Amsterdam, headquartered in Madrid. Largest shareholder is Olive Partners (the Daurella family's Cobega vehicle, ~36%); The Coca-Cola Company itself holds ~19%; the rest is public free float (BlackRock, Vanguard etc.). CCEP buys concentrate from TCCC, adds water/sugar/CO2, packages and sells to retailers.",
+            "children": [
+              {
+                "label": "Concentrate fee to The Coca-Cola Company (TCCC)",
+                "share": 0.18,
+                "source": "Industry estimates from TCCC and CCEP segment reporting; the exact per-can fee is commercially confidential",
+                "note": "The marquee line on any Coke cost structure: CCEP pays TCCC for the concentrate (the syrup that becomes Coke when mixed with carbonated water). TCCC's gross margin on concentrate sales is famously around 60–65%, making this one of the most profitable products in branded consumer goods. The drill-down below estimates where TCCC's share of the can ultimately goes.",
+                "children": [
+                  { "label": "TCCC concentrate manufacturing & ingredients", "share": 0.30, "note": "Sweetener concentrate, flavourings, secret-formula additives, drum packaging for shipment to bottlers." },
+                  { "label": "TCCC global marketing & brand investment", "share": 0.20, "note": "Global brand campaigns, sponsorships (Olympics, FIFA World Cup), the Christmas truck advertising. TCCC funds the global brand; CCEP and other regional bottlers do local activation separately." },
+                  { "label": "TCCC R&D, overheads & corporate functions", "share": 0.08, "note": "New product development (Coke Zero, Diet Coke variants), corporate functions, IT systems." },
+                  {
+                    "label": "TCCC operating profit",
+                    "share": 0.42,
+                    "source": "TCCC FY2023 10-K (concentrate operations are one of TCCC's most profitable lines)",
+                    "note": "Proceeds flow to US federal and state corporation tax, dividends to TCCC shareholders, share buybacks, capex and executive pay.",
+                    "children": [
+                      { "label": "US federal & state corporation tax", "share": 0.18, "note": "TCCC's effective tax rate has historically been around 18–22% after various international structures." },
+                      { "label": "Dividends to TCCC shareholders", "share": 0.40, "note": "TCCC pays a quarterly dividend with one of the longest unbroken increase streaks in US equities. Largest shareholders: Berkshire Hathaway (~9%, Warren Buffett's longest-held position), Vanguard, BlackRock, and US retail investors." },
+                      { "label": "Share buybacks", "share": 0.15, "note": "TCCC regularly buys back its own shares — a different form of capital return to shareholders." },
+                      { "label": "Capital expenditure & reinvestment", "share": 0.10, "note": "Concentrate production facilities, R&D capex, brand investments capitalised on the balance sheet." },
+                      { "label": "Executive remuneration (TCCC)", "share": 0.02, "note": "TCCC CEO James Quincey — total compensation reported in SEC proxy filings, of the order of $20–28m in recent years. Pay-ratio panel omitted pending verification of the most recent figure." },
+                      { "label": "Retained for the business", "share": 0.15, "note": "Earnings kept on the balance sheet for future investment." }
+                    ]
+                  }
+                ]
+              },
+              { "label": "Aluminium can", "share": 0.16, "note": "The can itself is among the largest raw-material costs. Aluminium price moves with the London Metal Exchange. UK can supply is dominated by Ball Corporation and Crown Holdings, the two largest global beverage-can makers." },
+              { "label": "Sugar, water, CO2 & labels", "share": 0.07, "note": "Sugar (largely from British Sugar — Tate & Lyle pulled out of UK beet sugar — and imported cane), carbon dioxide (industrial-gas market), purified water from CCEP's UK plants, and printed label artwork." },
+              { "label": "Manufacturing & bottling labour", "share": 0.10, "note": "Wages at CCEP's UK plants (Wakefield, Sidcup, Edmonton, Milton Keynes), plus plant utilities and maintenance." },
+              { "label": "Distribution & logistics", "share": 0.12, "note": "CCEP's fleet, warehousing, and transport to supermarket regional distribution centres." },
+              { "label": "Sales, customer activation & local marketing", "share": 0.09, "note": "CCEP's UK marketing spend (separate from TCCC's global brand investment), in-store promotions, key-account management with the major grocers." },
+              { "label": "Overheads & admin", "share": 0.05, "note": "Head-office costs, finance, HR, IT across the CCEP group." },
+              {
+                "label": "CCEP operating margin",
+                "share": 0.23,
+                "source": "CCEP FY2023 Annual Report — group operating margin",
+                "note": "From CCEP's operating margin, profits flow to UK corporation tax, dividends to CCEP shareholders (Olive Partners ~36%, TCCC ~19%, public free float ~45%), capital investment, and executive pay.",
+                "children": [
+                  { "label": "UK corporation tax (CCEP)", "share": 0.20, "xref": "income-tax", "note": "Standard 25% UK corporation tax on UK-attributable profits. Click to follow into the UK Income Tax tree." },
+                  { "label": "Dividends to CCEP shareholders", "share": 0.35, "note": "CCEP pays a quarterly dividend. Largest beneficiaries: Olive Partners (the Daurella family's Cobega vehicle, ~36%), The Coca-Cola Company itself (~19% — so a slice of CCEP dividends recycles back to TCCC), and public free-float holders." },
+                  { "label": "Capital expenditure & reinvestment", "share": 0.28, "note": "Bottling plant upgrades, fleet electrification, digital systems, packaging-line automation." },
+                  { "label": "Executive remuneration (CCEP)", "share": 0.02, "note": "CCEP CEO Damian Gammell — total compensation disclosed in CCEP's Annual Report (NYSE-listed, so full disclosure). Pay-ratio panel omitted pending verification of the specific most-recent figure." },
+                  { "label": "Retained for the business", "share": 0.15, "note": "Earnings kept on the balance sheet for future investment or volatility buffer." }
+                ]
+              }
+            ]
+          }
         ]
       }
     }

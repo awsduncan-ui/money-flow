@@ -480,7 +480,7 @@
     <div class="input-row" id="input-row"></div>
     <div class="view-toggle" id="view-toggle">
       <button data-mode="single" class="active">Single trace</button>
-      <button data-mode="compare">⇄ Compare suppliers</button>
+      <button data-mode="compare">⇄ Compare energy suppliers</button>
     </div>
     <div class="data-status" id="data-status"></div>
   </header>
@@ -517,6 +517,7 @@ const BUNDLED_DATA = {
   trees: [
     {
       id: 'income-tax',
+      category: 'tax',
       label: 'UK Income Tax',
       prompt: 'If you paid',
       promptSuffix: 'in income tax this year',
@@ -569,6 +570,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'british-gas',
+      category: 'energy',
       label: 'British Gas — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with British Gas',
@@ -604,6 +606,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'octopus-energy',
+      category: 'energy',
       label: 'Octopus Energy — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with Octopus Energy',
@@ -636,6 +639,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'eon-next',
+      category: 'energy',
       label: 'E.ON Next — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with E.ON Next',
@@ -667,6 +671,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'edf-energy',
+      category: 'energy',
       label: 'EDF Energy — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with EDF Energy',
@@ -698,6 +703,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'ovo-energy',
+      category: 'energy',
       label: 'OVO Energy — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with OVO Energy',
@@ -729,6 +735,7 @@ const BUNDLED_DATA = {
     },
     {
       id: 'scottish-power',
+      category: 'energy',
       label: 'Scottish Power — gas bill',
       prompt: 'If your annual gas bill was',
       promptSuffix: 'with Scottish Power',
@@ -757,6 +764,72 @@ const BUNDLED_DATA = {
           { label: 'VAT', share: 0.05, xref: 'income-tax' }
         ]
       }
+    },
+    {
+      id: 'coke-can',
+      category: 'consumer',
+      label: 'A can of Coke',
+      prompt: 'If you paid',
+      promptSuffix: 'for a 330ml can of Coke at a UK supermarket',
+      defaultAmount: 0.85,
+      presets: [0.85, 1.20, 0.50],
+      root: {
+        label: 'A 330ml can of Coca-Cola — UK supermarket',
+        note: 'Representative single-can supermarket price ~85p. HMRC takes VAT + sugar tax, supermarket takes its margin, the bottler takes the largest slice, and a concentrate fee flows to The Coca-Cola Company in Atlanta.',
+        children: [
+          { label: 'VAT (20%)', share: 0.17, xref: 'income-tax' },
+          { label: 'Soft Drinks Industry Levy (sugar tax)', share: 0.09, xref: 'income-tax' },
+          {
+            label: 'Supermarket retailer margin', share: 0.15,
+            children: [
+              { label: 'Store operating costs', share: 0.45 },
+              { label: 'Distribution from regional DC to store', share: 0.18 },
+              { label: 'Property & overheads', share: 0.12 },
+              { label: 'Retailer operating profit', share: 0.25 }
+            ]
+          },
+          {
+            label: 'Coca-Cola Europacific Partners (bottler)', share: 0.59,
+            children: [
+              {
+                label: 'Concentrate fee to The Coca-Cola Company (TCCC)', share: 0.18,
+                children: [
+                  { label: 'TCCC concentrate manufacturing & ingredients', share: 0.30 },
+                  { label: 'TCCC global marketing & brand investment', share: 0.20 },
+                  { label: 'TCCC R&D, overheads & corporate functions', share: 0.08 },
+                  {
+                    label: 'TCCC operating profit', share: 0.42,
+                    children: [
+                      { label: 'US federal & state corporation tax', share: 0.18 },
+                      { label: 'Dividends to TCCC shareholders', share: 0.40 },
+                      { label: 'Share buybacks', share: 0.15 },
+                      { label: 'Capital expenditure & reinvestment', share: 0.10 },
+                      { label: 'Executive remuneration (TCCC)', share: 0.02 },
+                      { label: 'Retained for the business', share: 0.15 }
+                    ]
+                  }
+                ]
+              },
+              { label: 'Aluminium can', share: 0.16 },
+              { label: 'Sugar, water, CO2 & labels', share: 0.07 },
+              { label: 'Manufacturing & bottling labour', share: 0.10 },
+              { label: 'Distribution & logistics', share: 0.12 },
+              { label: 'Sales, customer activation & local marketing', share: 0.09 },
+              { label: 'Overheads & admin', share: 0.05 },
+              {
+                label: 'CCEP operating margin', share: 0.23,
+                children: [
+                  { label: 'UK corporation tax (CCEP)', share: 0.20, xref: 'income-tax' },
+                  { label: 'Dividends to CCEP shareholders', share: 0.35 },
+                  { label: 'Capital expenditure & reinvestment', share: 0.28 },
+                  { label: 'Executive remuneration (CCEP)', share: 0.02 },
+                  { label: 'Retained for the business', share: 0.15 }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 };
@@ -770,7 +843,7 @@ let baseAmount = DATA.trees[0].defaultAmount;
 let viewMode = 'single'; // 'single' or 'compare'
 
 function currentTree() { return DATA.trees[currentTreeIdx]; }
-function isEnergyTree(t) { return t.id !== 'income-tax'; }
+function isEnergyTree(t) { return t.category === 'energy'; }
 
 // Jump from one tree to another (cross-tree link). Carries the amount through
 // so that clicking on VAT inside a gas bill takes you into the income-tax tree
@@ -916,7 +989,11 @@ function renderInputRow() {
   inp.type = 'number';
   inp.min = '0';
   inp.value = baseAmount;
-  inp.step = baseAmount >= 1000 ? '100' : '50';
+  inp.step = baseAmount >= 1000 ? '100'
+           : baseAmount >= 100 ? '10'
+           : baseAmount >= 10 ? '1'
+           : baseAmount >= 1 ? '0.10'
+           : '0.05';
   inp.addEventListener('input', e => {
     const v = parseFloat(e.target.value);
     baseAmount = isFinite(v) && v >= 0 ? v : 0;
@@ -926,7 +1003,7 @@ function renderInputRow() {
   row.appendChild(inp);
   row.appendChild(el('span', null, t.promptSuffix + ' — try'));
   t.presets.forEach(v => {
-    const p = el('span', 'preset', '£' + v.toLocaleString('en-GB'));
+    const p = el('span', 'preset', fmtMoney(v));
     p.onclick = () => {
       baseAmount = v;
       inp.value = v;
