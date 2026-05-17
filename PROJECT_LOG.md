@@ -74,10 +74,11 @@ Each tree now carries a `category` field: `tax`, `energy`, or `consumer`. The co
 ## Editorial principles
 
 1. **Sources beat precision.** A directional figure with a clear citation beats a polished number from nowhere.
-2. **Stubs are honest.** Branches we haven't modelled show "— end of trace —" rather than fabricating a breakdown.
-3. **Pay against NMW.** Executive remuneration is always shown as a multiple of the UK National Minimum Wage. Universal, statutory, transparent, single-point-of-update.
-4. **Caveats inline.** Big-claim figures (CEO pay, contested allocations) carry a verification note inline so a reader knows where to push back.
-5. **No demo magic at the expense of truth.** Better to model fewer things accurately than many things speculatively.
+2. **Every node carries a source field.** Either a real citation (with URL where stable), or an explicit explanation of why no published source exists for that figure (e.g. "Illustrative — supermarkets don't disclose category-level margins"). Audited and enforced by `scripts/fill_sources.py`; the script reports any node missing a `source` field and exits non-zero in `--check` mode so it can be wired into CI later.
+3. **Stubs are honest.** Branches we haven't modelled show "— end of trace —" rather than fabricating a breakdown.
+4. **Pay against NMW.** Executive remuneration is always shown as a multiple of the UK National Minimum Wage. Universal, statutory, transparent, single-point-of-update.
+5. **Caveats inline.** Big-claim figures (CEO pay, contested allocations) carry a verification note inline so a reader knows where to push back.
+6. **No demo magic at the expense of truth.** Better to model fewer things accurately than many things speculatively.
 
 ## Design language
 
@@ -183,6 +184,13 @@ A brief log of what changed each working session, so a fresh session can catch u
 - Moved project from Desktop to `~/Code/money-flow/`. Initialised git, created public GitHub repo, enabled GitHub Pages at https://awsduncan-ui.github.io/money-flow/.
 - Built NMW auto-refresh: `scripts/update_nmw.py` (stdlib + curl) and `.github/workflows/refresh-data.yml` (weekly + manual dispatch). First run picked up the April 2026 rate (£12.71/hr → £24,780/yr), replacing the previously hardcoded April 2025 figure.
 - Added **Octopus Energy** as a third tree — Ali's own supplier. Same Ofgem cap top-level shape as British Gas (because every UK supplier is governed by the same regulated stack), with deliberately contrasting supplier-margin branch: privately held (no FTSE dividend), heavier reinvestment weighting, different investor set (Generation IM, CPP Investments, Tokyo Gas, KKR), lower exec pay. Pay-ratio for Greg Jackson left as a stub pending verification from Companies House. Bundled fallback in `index.html` extended to match.
+
+### 2026-05-12 (late evening)
+- **Source-coverage audit and fill.** Audited every node in every tree against the principle that "every node carries a source field". 161 of 238 nodes lacked one — almost entirely repeated sub-children that appear identically across the six energy trees (wholesale gas, network costs, policy levies) plus the executive-pay-split children. Built `scripts/fill_sources.py` with a lookup table keyed on `(parent_label, child_label)` and per-tree fall-through rules, applied to fill all 161 gaps in one pass. The script is idempotent and re-runnable (existing sources are never overwritten), exits non-zero in `--check` mode if any gaps remain — could be wired into CI to enforce the principle for new nodes.
+- Also strengthened root-level sources on every tree with stable URLs (HMRC Annual Tax Summary, Ofgem price-cap page, each company's investor relations or Companies House page).
+- Strengthened the **Coke price source** specifically per Ali's call-out: the root `source` field now explicitly explains there's no single authoritative source for a "UK average can price" (ONS CPI tracks at category not SKU level, Coke doesn't publish RRP), explains the 85p default is a representative 2025-26 single-can supermarket figure based on observed Tesco/Sainsbury's pricing, and gives the realistic range (75p–£1.20).
+- A note on JSON formatting: the source-fill script writes with `json.dumps(..., indent=2)` which expanded previously-inline child objects (e.g. `{ "label": "X", "share": 0.5, "note": "..." }`) onto separate lines. The file is now ~1,640 lines vs ~620 before; the change is purely cosmetic and the NMW auto-refresh script still parses and writes the file correctly.
+- A note on bundled fallback: BUNDLED_DATA in index.html still carries no sources or notes (just structure + shares + xref + payRatio). This is a deliberate trade-off — keeps the bundled fallback lean for `file://` users. The data-status line ("Offline · bundled data") makes the limitation visible. Documenting here in case we want to revisit.
 
 ### 2026-05-12 (evening)
 - Added a **can of Coke** tree — first consumer-goods item. Tracked the chain from supermarket shelf back through HMRC (VAT + Sugar Tax via cross-tree links), the supermarket margin, Coca-Cola Europacific Partners as the bottler, and the concentrate fee flowing to The Coca-Cola Company in Atlanta. The TCCC operating profit drill-down — through US tax, dividends to Berkshire Hathaway / Vanguard / BlackRock, buybacks — is the first non-UK money-flow modelled in the app, and a useful proof that the tree structure handles multinational supply chains.

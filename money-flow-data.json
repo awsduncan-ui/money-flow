@@ -11,10 +11,14 @@
       "prompt": "If you paid",
       "promptSuffix": "in income tax this year",
       "defaultAmount": 5000,
-      "presets": [2000, 5000, 12000],
+      "presets": [
+        2000,
+        5000,
+        12000
+      ],
       "root": {
         "label": "UK Income Tax",
-        "source": "HMRC Annual Tax Summary, illustrative FY 2022-23 basis",
+        "source": "HMRC Annual Tax Summary methodology — https://www.gov.uk/government/collections/annual-tax-summary. Figures shown are on a FY 2022-23 basis and should be re-baselined against the latest published year before relying on specific percentages.",
         "note": "Income tax revenue allocated by central government across major spending categories. Excludes National Insurance, which is in principle hypothecated to contributory benefits and the NHS but in practice goes into the Consolidated Fund.",
         "children": [
           {
@@ -23,11 +27,36 @@
             "source": "DWP / HMT Public Expenditure Statistical Analyses",
             "note": "Working-age benefits, family support, housing assistance, disability and incapacity payments. State pension is shown as a separate line.",
             "children": [
-              { "label": "Working-age benefits (Universal Credit etc.)", "share": 0.40, "note": "Universal Credit replaces six legacy benefits and supports people both in and out of work. The single largest item within working-age welfare." },
-              { "label": "Disability & incapacity benefits", "share": 0.28, "note": "Includes Personal Independence Payment (PIP), Disability Living Allowance (DLA, including child DLA), Employment & Support Allowance (ESA) and Attendance Allowance. Funds extra costs of daily living and mobility." },
-              { "label": "Child & family benefits", "share": 0.14, "note": "Child Benefit and residual tax credit payments. Tapered for higher earners via the High Income Child Benefit Charge." },
-              { "label": "Housing benefit (legacy)", "share": 0.10, "note": "Being absorbed into Universal Credit. Remaining caseload is largely pensioners and supported-housing tenants." },
-              { "label": "Administration", "share": 0.08, "note": "DWP staff, IT systems, fraud and error operations, debt management." }
+              {
+                "label": "Working-age benefits (Universal Credit etc.)",
+                "share": 0.4,
+                "source": "DWP Benefit Expenditure and Caseload Tables 2023-24 (https://www.gov.uk/government/collections/benefit-expenditure-tables); allocation within the Welfare category of HMRC's Annual Tax Summary.",
+                "note": "Universal Credit replaces six legacy benefits and supports people both in and out of work. The single largest item within working-age welfare."
+              },
+              {
+                "label": "Disability & incapacity benefits",
+                "share": 0.28,
+                "source": "DWP Benefit Expenditure and Caseload Tables — PIP, DLA, ESA and Attendance Allowance lines; HMRC Annual Tax Summary methodology.",
+                "note": "Includes Personal Independence Payment (PIP), Disability Living Allowance (DLA, including child DLA), Employment & Support Allowance (ESA) and Attendance Allowance. Funds extra costs of daily living and mobility."
+              },
+              {
+                "label": "Child & family benefits",
+                "share": 0.14,
+                "source": "HMRC Child Benefit Statistics; DWP residual tax credit caseload data; HMRC Annual Tax Summary Welfare sub-allocation.",
+                "note": "Child Benefit and residual tax credit payments. Tapered for higher earners via the High Income Child Benefit Charge."
+              },
+              {
+                "label": "Housing benefit (legacy)",
+                "share": 0.1,
+                "source": "DWP Housing Benefit Caseload Statistics; being absorbed into Universal Credit. Residual caseload is largely pensioners and supported-housing tenants.",
+                "note": "Being absorbed into Universal Credit. Remaining caseload is largely pensioners and supported-housing tenants."
+              },
+              {
+                "label": "Administration",
+                "share": 0.08,
+                "source": "DWP Annual Report and Accounts — operating cost lines; allocation within HMRC Annual Tax Summary Welfare category.",
+                "note": "DWP staff, IT systems, fraud and error operations, debt management."
+              }
             ]
           },
           {
@@ -36,26 +65,116 @@
             "source": "DHSC / NHS England annual report and accounts",
             "note": "Predominantly NHS England, with smaller allocations to social care, public health, research and arms-length bodies.",
             "children": [
-              { "label": "NHS front-line services", "share": 0.78, "note": "Hospitals, GP services, community and district nursing, ambulance, mental health, prescribing." },
-              { "label": "Adult social care (central contribution)", "share": 0.08, "note": "Most adult social care is funded by local authorities through council tax and the social care precept; this is the central government top-up via the Better Care Fund and grants." },
-              { "label": "Public health", "share": 0.05, "note": "Vaccination and screening programmes, health protection, smoking cessation, sexual health, drug and alcohol services." },
-              { "label": "Medical research & training", "share": 0.05, "note": "NIHR research funding, Health Education England, junior doctor and nurse training contributions." },
-              { "label": "NHS administration & arms-length bodies", "share": 0.04, "note": "NHS England HQ, NICE, CQC, regulatory and commissioning support costs." }
+              {
+                "label": "NHS front-line services",
+                "share": 0.78,
+                "source": "DHSC Annual Report and Accounts 2023-24; NHS England Annual Report. Front-line services include hospitals, primary care, community care, ambulance and mental health.",
+                "note": "Hospitals, GP services, community and district nursing, ambulance, mental health, prescribing."
+              },
+              {
+                "label": "Adult social care (central contribution)",
+                "share": 0.08,
+                "source": "DHSC Annual Report — Better Care Fund and adult social care grant lines. Most adult social care is funded by local authorities via council tax and the social care precept; this is the central top-up only.",
+                "note": "Most adult social care is funded by local authorities through council tax and the social care precept; this is the central government top-up via the Better Care Fund and grants."
+              },
+              {
+                "label": "Public health",
+                "share": 0.05,
+                "source": "Office for Health Improvement and Disparities (OHID, formerly Public Health England) reporting; UK Health Security Agency annual report.",
+                "note": "Vaccination and screening programmes, health protection, smoking cessation, sexual health, drug and alcohol services."
+              },
+              {
+                "label": "Medical research & training",
+                "share": 0.05,
+                "source": "NIHR (National Institute for Health and Care Research) annual report; Health Education England (now part of NHS England) workforce-training reporting.",
+                "note": "NIHR research funding, Health Education England, junior doctor and nurse training contributions."
+              },
+              {
+                "label": "NHS administration & arms-length bodies",
+                "share": 0.04,
+                "source": "DHSC ALB annual reports (NICE, CQC); NHS England HQ administration costs as published in NHS England annual report.",
+                "note": "NHS England HQ, NICE, CQC, regulatory and commissioning support costs."
+              }
             ]
           },
-          { "label": "State pensions", "share": 0.111, "source": "DWP — single largest line item in welfare; reported separately in the HMRC summary", "note": "New State Pension and Basic State Pension paid to roughly 12.6 million pensioners. Annual uprating is governed by the triple-lock (highest of CPI, earnings, or 2.5%)." },
-          { "label": "Education", "share": 0.099, "source": "DfE annual report", "note": "State schools, sixth forms and FE colleges, higher education teaching grant, early years and childcare entitlements. Excludes student loan outlay, which is accounted for separately." },
-          { "label": "National debt interest", "share": 0.077, "source": "DMO / OBR Economic and Fiscal Outlook", "note": "Coupon and indexation payments on UK gilts. Has risen sharply since 2022 due to higher interest rates and RPI uplifts on index-linked gilts." },
-          { "label": "Defence", "share": 0.053, "source": "MoD annual report", "note": "Armed forces pay and pensions, equipment procurement, intelligence services (SIS, Security Service, GCHQ), NATO contribution." },
-          { "label": "Public order & safety", "share": 0.042, "source": "Home Office, Ministry of Justice", "note": "Police forces, prisons and probation, courts and tribunals, fire and rescue, border force, immigration enforcement." },
-          { "label": "Transport", "share": 0.032, "source": "Department for Transport", "note": "Rail subsidy and Network Rail, strategic road network (National Highways), HS2, local transport grants, aviation and maritime regulation." },
-          { "label": "Business & industry", "share": 0.025, "source": "DBT, DESNZ", "note": "R&D tax relief offsets, energy support schemes, regional growth funds, trade promotion, post-office and shipbuilding subsidies." },
-          { "label": "Government administration", "share": 0.021, "source": "Cabinet Office, HMT", "note": "Running costs of central departments and cross-government functions not allocated to a specific service." },
-          { "label": "Culture, sport & heritage", "share": 0.016, "source": "DCMS", "note": "Arts Council England, museums and galleries, Sport England, heritage bodies, BBC World Service grant." },
-          { "label": "Environment", "share": 0.015, "source": "Defra, DESNZ", "note": "Flood defence, agricultural transition payments, environmental protection, waste, air quality." },
-          { "label": "Housing & utilities", "share": 0.015, "source": "DLUHC (now MHCLG)", "note": "Affordable housing programme, building safety remediation, regulation of water and energy networks (central share)." },
-          { "label": "Overseas aid", "share": 0.010, "source": "FCDO", "note": "Cut from 0.7% to 0.5% of GNI in 2021 as a temporary measure. Includes humanitarian, development and multilateral commitments." },
-          { "label": "Other / rounding", "share": 0.040, "note": "Unallocated remainder. Reflects rounding in the published figures and minor items not assigned to a major category." }
+          {
+            "label": "State pensions",
+            "share": 0.111,
+            "source": "DWP — single largest line item in welfare; reported separately in the HMRC summary",
+            "note": "New State Pension and Basic State Pension paid to roughly 12.6 million pensioners. Annual uprating is governed by the triple-lock (highest of CPI, earnings, or 2.5%)."
+          },
+          {
+            "label": "Education",
+            "share": 0.099,
+            "source": "DfE annual report",
+            "note": "State schools, sixth forms and FE colleges, higher education teaching grant, early years and childcare entitlements. Excludes student loan outlay, which is accounted for separately."
+          },
+          {
+            "label": "National debt interest",
+            "share": 0.077,
+            "source": "DMO / OBR Economic and Fiscal Outlook",
+            "note": "Coupon and indexation payments on UK gilts. Has risen sharply since 2022 due to higher interest rates and RPI uplifts on index-linked gilts."
+          },
+          {
+            "label": "Defence",
+            "share": 0.053,
+            "source": "MoD annual report",
+            "note": "Armed forces pay and pensions, equipment procurement, intelligence services (SIS, Security Service, GCHQ), NATO contribution."
+          },
+          {
+            "label": "Public order & safety",
+            "share": 0.042,
+            "source": "Home Office, Ministry of Justice",
+            "note": "Police forces, prisons and probation, courts and tribunals, fire and rescue, border force, immigration enforcement."
+          },
+          {
+            "label": "Transport",
+            "share": 0.032,
+            "source": "Department for Transport",
+            "note": "Rail subsidy and Network Rail, strategic road network (National Highways), HS2, local transport grants, aviation and maritime regulation."
+          },
+          {
+            "label": "Business & industry",
+            "share": 0.025,
+            "source": "DBT, DESNZ",
+            "note": "R&D tax relief offsets, energy support schemes, regional growth funds, trade promotion, post-office and shipbuilding subsidies."
+          },
+          {
+            "label": "Government administration",
+            "share": 0.021,
+            "source": "Cabinet Office, HMT",
+            "note": "Running costs of central departments and cross-government functions not allocated to a specific service."
+          },
+          {
+            "label": "Culture, sport & heritage",
+            "share": 0.016,
+            "source": "DCMS",
+            "note": "Arts Council England, museums and galleries, Sport England, heritage bodies, BBC World Service grant."
+          },
+          {
+            "label": "Environment",
+            "share": 0.015,
+            "source": "Defra, DESNZ",
+            "note": "Flood defence, agricultural transition payments, environmental protection, waste, air quality."
+          },
+          {
+            "label": "Housing & utilities",
+            "share": 0.015,
+            "source": "DLUHC (now MHCLG)",
+            "note": "Affordable housing programme, building safety remediation, regulation of water and energy networks (central share)."
+          },
+          {
+            "label": "Overseas aid",
+            "share": 0.01,
+            "source": "FCDO",
+            "note": "Cut from 0.7% to 0.5% of GNI in 2021 as a temporary measure. Includes humanitarian, development and multilateral commitments."
+          },
+          {
+            "label": "Other / rounding",
+            "share": 0.04,
+            "source": "Reconciliation residual — HMRC Annual Tax Summary published category percentages don't sum to exactly 100% due to rounding and small unallocated items (transitional EU payments, minor lines). Treated here as a single 'Other' bucket so the tree totals correctly.",
+            "note": "Unallocated remainder. Reflects rounding in the published figures and minor items not assigned to a major category."
+          }
         ]
       }
     },
@@ -66,10 +185,14 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with British Gas",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "British Gas — annual gas bill",
-        "source": "Ofgem default tariff cap cost breakdown, illustrative; supplier-margin branch from Centrica plc Annual Report 2023",
+        "source": "Ofgem default tariff cap cost breakdown (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); supplier-margin branch from Centrica plc Annual Report 2023 (https://www.centrica.com/investors/results-reports-presentations/). Top-level Ofgem percentages are firm; supplier-margin sub-allocations are illustrative — Centrica reports group-level figures, not per-customer-margin allocation.",
         "note": "British Gas is the retail brand of Centrica plc. The shape of every domestic gas bill in Great Britain is set by Ofgem's default tariff cap, which is built from a stack of cost components. Below is an approximate split of where each pound goes.",
         "children": [
           {
@@ -78,10 +201,30 @@
             "source": "Ofgem default tariff cap; ICIS / Heren wholesale price benchmarks",
             "note": "The cost of buying the gas itself on the wholesale market. Suppliers hedge purchases months ahead, so the price you pay reflects past traded prices rather than the spot price on the day.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Imported through the Langeled and Vesterled pipelines from the Norwegian Continental Shelf. Equinor (majority Norwegian state-owned) is the dominant supplier. Norway has been the UK's largest single source of gas since the loss of Russian supply in 2022." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic gas produced from North Sea and Irish Sea fields. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies. UK production is in long-term decline as fields mature." },
-              { "label": "LNG imports", "share": 0.18, "note": "Liquefied gas shipped to terminals at Milford Haven (South Hook, Dragon LNG) and Isle of Grain. Major sources include Qatar (QatarEnergy) and the United States (Cheniere). LNG's share has grown sharply since 2022." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "Costs of using gas storage (Centrica's own Rough field reopened in 2022), and the National Balancing Point market mechanism that keeps the system in equilibrium." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Imported through the Langeled and Vesterled pipelines from the Norwegian Continental Shelf. Equinor (majority Norwegian state-owned) is the dominant supplier. Norway has been the UK's largest single source of gas since the loss of Russian supply in 2022."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic gas produced from North Sea and Irish Sea fields. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies. UK production is in long-term decline as fields mature."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Liquefied gas shipped to terminals at Milford Haven (South Hook, Dragon LNG) and Isle of Grain. Major sources include Qatar (QatarEnergy) and the United States (Cheniere). LNG's share has grown sharply since 2022."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "Costs of using gas storage (Centrica's own Rough field reopened in 2022), and the National Balancing Point market mechanism that keeps the system in equilibrium."
+              }
             ]
           },
           {
@@ -90,9 +233,24 @@
             "source": "Ofgem RIIO-2 price control; National Gas / GDN regulated revenues",
             "note": "The cost of moving gas across the country and into your home. These charges are the same whoever your supplier is, because every supplier uses the same physical network.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "Operated by National Gas Transmission, which carries gas at high pressure across Great Britain. Sold by National Grid plc to a Macquarie-led consortium in early 2024." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Eight regional gas distribution networks deliver gas to homes at lower pressure. Cadent is the largest (covering much of England); the others are Northern Gas Networks, SGN and Wales & West Utilities. All are privately owned and regulated by Ofgem." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Costs of installing, maintaining and reading gas meters, including the national smart meter programme." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "Operated by National Gas Transmission, which carries gas at high pressure across Great Britain. Sold by National Grid plc to a Macquarie-led consortium in early 2024."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Eight regional gas distribution networks deliver gas to homes at lower pressure. Cadent is the largest (covering much of England); the others are Northern Gas Networks, SGN and Wales & West Utilities. All are privately owned and regulated by Ofgem."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Costs of installing, maintaining and reading gas meters, including the national smart meter programme."
+              }
             ]
           },
           {
@@ -101,11 +259,36 @@
             "source": "Ofgem operating cost allowance; Centrica annual report cost lines",
             "note": "The cost of running British Gas as a retail supplier: paying staff, engineers, billing systems, vans and IT. Also covers bad debt (customers who don't pay), which has risen materially since 2022.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.45, "note": "Call centre staff, smart-meter installers, service engineers, account managers. British Gas employs around 20,000 people across the UK." },
-              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "The infrastructure that produces your bill, runs the website and app, handles direct debits and meter reads." },
-              { "label": "Bad debt provisions", "share": 0.18, "note": "An allowance for customers who fall behind on their bills. The cap explicitly includes a bad-debt allowance which has been increased since the cost-of-living crisis began." },
-              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Advertising and switching incentives. Has fallen significantly since the price cap reduced the headroom for competition." },
-              { "label": "Property & overheads", "share": 0.10, "note": "Offices, call-centre buildings, depots, head-office functions." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.45,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Centrica plc annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Call centre staff, smart-meter installers, service engineers, account managers. British Gas employs around 20,000 people across the UK."
+              },
+              {
+                "label": "Billing, IT & customer systems",
+                "share": 0.2,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Centrica plc annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "The infrastructure that produces your bill, runs the website and app, handles direct debits and meter reads."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.18,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Centrica plc annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "An allowance for customers who fall behind on their bills. The cap explicitly includes a bad-debt allowance which has been increased since the cost-of-living crisis began."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Centrica plc annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Advertising and switching incentives. Has fallen significantly since the price cap reduced the headroom for competition."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.1,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Centrica plc annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Offices, call-centre buildings, depots, head-office functions."
+              }
             ]
           },
           {
@@ -114,10 +297,30 @@
             "source": "BEIS / DESNZ levy schemes; Ofgem policy cost component",
             "note": "Government schemes funded through your bill rather than through general taxation. Smaller for gas than electricity; most green levies sit on the electricity bill.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Suppliers are required to fund insulation, heating upgrades and other efficiency measures for low-income and vulnerable households. The cost is recovered across all customer bills." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "A £150 rebate paid to eligible low-income households over winter, recovered from suppliers and ultimately spread across all bill-payers." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Funds the Green Gas Support Scheme, which subsidises biomethane injection into the gas grid." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs and administrative levies attached to the gas bill." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Suppliers are required to fund insulation, heating upgrades and other efficiency measures for low-income and vulnerable households. The cost is recovered across all customer bills."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "A £150 rebate paid to eligible low-income households over winter, recovered from suppliers and ultimately spread across all bill-payers."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Funds the Green Gas Support Scheme, which subsidises biomethane injection into the gas grid."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller scheme costs and administrative levies attached to the gas bill."
+              }
             ]
           },
           {
@@ -126,12 +329,29 @@
             "source": "Ofgem EBIT allowance ~1.9% of cap; Centrica plc Annual Report 2023",
             "note": "The profit allowance built into the price cap. Ofgem permits an EBIT margin of around 1.9% of the cap value. This is where the user's bill becomes the supplier's profit — and where it then flows out to shareholders, executives, the taxman and reinvestment.",
             "children": [
-              { "label": "Corporation tax & energy profits levy", "share": 0.22, "xref": "income-tax", "note": "Profits from gas supply attract standard corporation tax (25% from April 2023). Centrica's upstream gas production is also subject to ring-fence corporation tax (30%) plus the Energy Profits Levy (35%). Click to follow these payments into the UK Income Tax tree." },
-              { "label": "Dividends to shareholders", "share": 0.30, "note": "Centrica plc is listed on the FTSE 100 with around 5.4 billion shares in issue. The largest shareholders are typically institutional investors: BlackRock, Vanguard, Legal & General Investment Management. Through pension funds and ISAs many UK households are indirect Centrica shareholders. The 2023 full-year dividend was 4.0p per share." },
-              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "Funds new investment by the group: Centrica's 15% stake in Sizewell C nuclear, the reopening and expansion of the Rough gas-storage field, battery storage, and trading-business growth. Reinvested profit grows the asset base rather than being paid out." },
+              {
+                "label": "Corporation tax & energy profits levy",
+                "share": 0.22,
+                "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. Centrica plc reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Profits from gas supply attract standard corporation tax (25% from April 2023). Centrica's upstream gas production is also subject to ring-fence corporation tax (30%) plus the Energy Profits Levy (35%). Click to follow these payments into the UK Income Tax tree."
+              },
+              {
+                "label": "Dividends to shareholders",
+                "share": 0.3,
+                "source": "Illustrative allocation of the supplier-margin slice. Centrica plc reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Centrica plc is listed on the FTSE 100 with around 5.4 billion shares in issue. The largest shareholders are typically institutional investors: BlackRock, Vanguard, Legal & General Investment Management. Through pension funds and ISAs many UK households are indirect Centrica shareholders. The 2023 full-year dividend was 4.0p per share."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.3,
+                "source": "Illustrative allocation of the supplier-margin slice. Centrica plc reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Funds new investment by the group: Centrica's 15% stake in Sizewell C nuclear, the reopening and expansion of the Rough gas-storage field, battery storage, and trading-business growth. Reinvested profit grows the asset base rather than being paid out."
+              },
               {
                 "label": "Executive remuneration",
                 "share": 0.02,
+                "source": "Illustrative allocation of the supplier-margin slice. Centrica plc reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Centrica's CEO Chris O'Shea reported total remuneration of around £8.2m for FY2023, predominantly from share awards rather than salary. This figure covers the entire Centrica group, not British Gas alone, so only a fraction is attributable to retail-supply profits.",
                 "payRatio": {
                   "label": "Chris O'Shea, CEO — FY2023 single figure",
@@ -139,12 +359,33 @@
                   "caveats": "Single-figure remuneration is the standard UK reporting basis: salary, bonus, share awards and pension combined. Verify against Centrica's 2023 Annual Report Directors' Remuneration Report."
                 }
               },
-              { "label": "Retained for the business", "share": 0.16, "note": "Earnings kept on the balance sheet to fund future operations, smooth volatility, and rebuild buffers depleted during the 2021-22 supplier collapses (Centrica was awarded the Bulb customer book under the Special Administration Regime)." }
+              {
+                "label": "Retained for the business",
+                "share": 0.16,
+                "source": "Illustrative allocation of the supplier-margin slice. Centrica plc reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Earnings kept on the balance sheet to fund future operations, smooth volatility, and rebuild buffers depleted during the 2021-22 supplier collapses (Centrica was awarded the Bulb customer book under the Special Administration Regime)."
+              }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Smaller line items inside the cap: an adjustment allowance for unrecovered costs, a headroom allowance to absorb forecasting error, and the net cost of the smart-meter rollout." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "The cap is built from a model. Real bills include cost-recovery items (under- or over-collection from prior periods) and supplier-specific adjustments. Treated here as unallocated so the bill totals to 100%." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total. Click to follow VAT receipts into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost",
+            "note": "Smaller line items inside the cap: an adjustment allowance for unrecovered costs, a headroom allowance to absorb forecasting error, and the net cost of the smart-meter rollout."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual — reflects variation between cap components and actual bills",
+            "note": "The cap is built from a model. Real bills include cost-recovery items (under- or over-collection from prior periods) and supplier-specific adjustments. Treated here as unallocated so the bill totals to 100%."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate of 5% applies to domestic energy",
+            "note": "Domestic energy is charged at the 5% reduced rate of VAT. Strictly this is 5% of the rest of the bill, not 5% of the total. Click to follow VAT receipts into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -155,10 +396,14 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with Octopus Energy",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "Octopus Energy — annual gas bill",
-        "source": "Ofgem default tariff cap (top-level shape); Octopus Energy Group Ltd Companies House filings for supplier-margin branch",
+        "source": "Ofgem default tariff cap (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); Octopus Energy Group Ltd accounts at Companies House (company 09718624, https://find-and-update.company-information.service.gov.uk/company/09718624). Latest accounts filed 09 Jan 2026 for FY ending April 2025 are image-only PDFs requiring OCR or manual review for specific exec-pay verification.",
         "note": "Octopus Energy now supplies around 7 million UK households after the Bulb acquisition (2022) and the Shell Energy retail acquisition (2024). Their bills are governed by the same Ofgem default tariff cap as every other supplier, so the cost-stack shape is identical to British Gas's — but the supplier-margin branch differs substantially because Octopus is privately held rather than FTSE-listed. Octopus also frequently prices its Tracker and Agile tariffs below the cap, which in practice trims the margin component below what the cap implies.",
         "children": [
           {
@@ -167,10 +412,30 @@
             "source": "Ofgem default tariff cap; national-level UK gas supply mix",
             "note": "Identical structure to British Gas — at this scale, every UK supplier buys from the same global wholesale market.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Imported from the Norwegian Continental Shelf via the Langeled and Vesterled pipelines. Equinor remains the dominant supplier." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea / Irish Sea production. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies." },
-              { "label": "LNG imports", "share": 0.18, "note": "Liquefied gas from Qatar (QatarEnergy) and the United States (Cheniere) via Milford Haven and Isle of Grain terminals." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "Octopus operates its own wholesale trading desk; uses third-party storage including Centrica's Rough field." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Imported from the Norwegian Continental Shelf via the Langeled and Vesterled pipelines. Equinor remains the dominant supplier."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic North Sea / Irish Sea production. Operators include Shell, BP, Harbour Energy, Spirit Energy and TotalEnergies."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Liquefied gas from Qatar (QatarEnergy) and the United States (Cheniere) via Milford Haven and Isle of Grain terminals."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "Octopus operates its own wholesale trading desk; uses third-party storage including Centrica's Rough field."
+              }
             ]
           },
           {
@@ -179,9 +444,24 @@
             "source": "Ofgem RIIO-2 price control — regulated and identical across all suppliers",
             "note": "Identical to British Gas. The same physical pipes deliver your gas regardless of which supplier sends the bill.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission — Macquarie-led consortium-owned since early 2024." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN: Cadent, Northern Gas Networks, SGN or Wales & West Utilities depending on postcode." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs. Octopus pushes smart-meter installations hard because their Agile and Tracker tariffs need half-hourly data." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "National Gas Transmission — Macquarie-led consortium-owned since early 2024."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Regional GDN: Cadent, Northern Gas Networks, SGN or Wales & West Utilities depending on postcode."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Standard meter costs. Octopus pushes smart-meter installations hard because their Agile and Tracker tariffs need half-hourly data."
+              }
             ]
           },
           {
@@ -190,11 +470,36 @@
             "source": "Ofgem operating cost allowance; Octopus Energy Group Ltd accounts",
             "note": "Same cap allowance as British Gas, but Octopus weights it differently — built around its proprietary Kraken platform, which automates customer management and significantly reduces headcount per customer. Kraken is also licensed to other suppliers globally (E.ON Next, EDF in France, Origin Energy in Australia and others), generating separate licensing revenue that doesn't flow through to UK domestic bills.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.35, "note": "Octopus employs roughly 8,000 people in the UK — proportionally lower per customer than a traditional supplier thanks to Kraken automation." },
-              { "label": "Billing, IT & customer systems (Kraken)", "share": 0.35, "note": "The Kraken platform — Octopus's own customer-service, billing, energy-management and trading software. A bigger share of operating costs than at a legacy supplier; the entire competitive thesis." },
-              { "label": "Bad debt provisions", "share": 0.15, "note": "Same statutory allowance as every supplier; raised since 2022 cost-of-living pressure." },
-              { "label": "Marketing & customer acquisition", "share": 0.08, "note": "Includes Octopus's £50 referral credit. Acquisition spend fell across the industry under the cap." },
-              { "label": "Property & overheads", "share": 0.07, "note": "Head office in London plus a small number of regional sites — smaller property footprint than a legacy supplier." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.35,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Octopus Energy Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Octopus employs roughly 8,000 people in the UK — proportionally lower per customer than a traditional supplier thanks to Kraken automation."
+              },
+              {
+                "label": "Billing, IT & customer systems (Kraken)",
+                "share": 0.35,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Octopus Energy Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "The Kraken platform — Octopus's own customer-service, billing, energy-management and trading software. A bigger share of operating costs than at a legacy supplier; the entire competitive thesis."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.15,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Octopus Energy Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Same statutory allowance as every supplier; raised since 2022 cost-of-living pressure."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.08,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Octopus Energy Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Includes Octopus's £50 referral credit. Acquisition spend fell across the industry under the cap."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Octopus Energy Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Head office in London plus a small number of regional sites — smaller property footprint than a legacy supplier."
+              }
             ]
           },
           {
@@ -203,10 +508,30 @@
             "source": "BEIS / DESNZ levy schemes — statutory, identical across all suppliers",
             "note": "Identical to British Gas: the same government levies are recovered from every supplier's bills.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory obligation on all suppliers to fund insulation and heating upgrades for low-income households." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate to eligible households, recovered across all bills." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Subsidises biomethane injection into the gas grid." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller statutory scheme costs and admin levies." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Statutory obligation on all suppliers to fund insulation and heating upgrades for low-income households."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "£150 winter rebate to eligible households, recovered across all bills."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Subsidises biomethane injection into the gas grid."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller statutory scheme costs and admin levies."
+              }
             ]
           },
           {
@@ -219,33 +544,54 @@
                 "label": "Corporation tax",
                 "share": 0.22,
                 "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. Octopus Energy Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Retail-supply profits attract standard UK corporation tax (25% from April 2023). Unlike Centrica, Octopus has no upstream gas production, so the ring-fence corporation tax and Energy Profits Levy don't apply. Click to follow these payments into the UK Income Tax tree."
               },
               {
                 "label": "Distributions to investors",
-                "share": 0.20,
+                "share": 0.2,
+                "source": "Illustrative allocation of the supplier-margin slice. Octopus Energy Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Octopus Energy Group is privately held — no public dividend. Major investors include Generation Investment Management (Al Gore's firm, an early backer), CPP Investments (Canada Pension Plan), Tokyo Gas, and KKR (which took roughly a 10–13% stake in 2024 for around $1.6bn, valuing the group at ~$9bn). Founder & CEO Greg Jackson retains a substantial personal stake. Investor returns will primarily come through a future liquidity event (IPO or onward sale) rather than annual dividends."
               },
               {
                 "label": "Capital expenditure & reinvestment",
-                "share": 0.40,
+                "share": 0.4,
+                "source": "Illustrative allocation of the supplier-margin slice. Octopus Energy Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Weighted more heavily than at British Gas. Octopus reinvests aggressively into: (a) the Kraken platform — both for its own customers and for the licensing business; (b) generation assets through Octopus Energy Generation, which invests separately in wind and solar; (c) integrating acquired customer books (Bulb 2022, Shell Energy 2024). Sustained reinvestment is the engine that's grown Octopus from a 2015 start-up into one of the UK's largest suppliers."
               },
               {
                 "label": "Executive remuneration",
                 "share": 0.03,
+                "source": "Illustrative allocation of the supplier-margin slice. Octopus Energy Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Greg Jackson is founder, CEO and majority-or-near-majority shareholder. As a privately-held company, Octopus discloses director remuneration in its Companies House filings, but at less detail than the FTSE 'single figure' disclosure required of Centrica. Reported figures put Greg Jackson's annual compensation at materially less than Centrica's CEO (millions rather than tens of millions), with much of the founder's value tied up in his Octopus shareholding rather than cash compensation. Pay-ratio panel intentionally omitted until verified from the most recent accounts."
               },
               {
                 "label": "Retained for growth",
                 "share": 0.15,
+                "source": "Illustrative allocation of the supplier-margin slice. Octopus Energy Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
                 "note": "Earnings kept on the balance sheet to fund further customer-book acquisitions, technology investment, and to maintain operating reserves under Ofgem's financial resilience rules (tightened after the 2021–22 supplier collapses)."
               }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost", "note": "Same as British Gas: smaller line items inside the cap, including adjustment allowance, headroom for forecasting error, and smart-meter rollout costs." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — reflects variation between cap components and actual bills", "note": "Same residual as British Gas. Octopus often charges below the cap on its Tracker and Agile tariffs, so actual bills can have a smaller margin component than the cap-derived split implies." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate as every domestic energy bill. Click to follow VAT into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology — adjustment, headroom, smart-meter net cost",
+            "note": "Same as British Gas: smaller line items inside the cap, including adjustment allowance, headroom for forecasting error, and smart-meter rollout costs."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual — reflects variation between cap components and actual bills",
+            "note": "Same residual as British Gas. Octopus often charges below the cap on its Tracker and Agile tariffs, so actual bills can have a smaller margin component than the cap-derived split implies."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate of 5% applies to domestic energy",
+            "note": "Same 5% reduced rate as every domestic energy bill. Click to follow VAT into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -256,71 +602,202 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with E.ON Next",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "E.ON Next — annual gas bill",
-        "source": "Ofgem default tariff cap (top-level shape); E.ON SE Annual Report for supplier-margin branch",
+        "source": "Ofgem default tariff cap (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); E.ON SE Annual Report (https://www.eon.com/en/investor-relations.html). UK retail-segment economics not separately disclosed; figures are group-level allocations.",
         "note": "E.ON Next is the UK retail brand of E.ON SE, the German utility (Frankfurt Stock Exchange-listed, DAX 40). E.ON took over nPower's UK retail customer book in 2019, then rebranded the combined operation as E.ON Next. Around 5 million UK households. Built on the Kraken platform — E.ON was one of the first big external licensees of Octopus's technology.",
         "children": [
           {
-            "label": "Wholesale gas", "share": 0.38,
+            "label": "Wholesale gas",
+            "share": 0.38,
             "source": "Ofgem default tariff cap; national wholesale market",
             "note": "Same wholesale gas market as every UK supplier — country-of-origin shares are national-level.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf via Equinor and pipelines." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production — Shell, BP, Harbour Energy, TotalEnergies, Spirit Energy." },
-              { "label": "LNG imports", "share": 0.18, "note": "Qatar (QatarEnergy) and US (Cheniere) cargoes." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market and third-party storage." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Norwegian Continental Shelf via Equinor and pipelines."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic North Sea production — Shell, BP, Harbour Energy, TotalEnergies, Spirit Energy."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Qatar (QatarEnergy) and US (Cheniere) cargoes."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "National Balancing Point market and third-party storage."
+              }
             ]
           },
           {
-            "label": "Network costs", "share": 0.22,
+            "label": "Network costs",
+            "share": 0.22,
             "source": "Ofgem RIIO-2 price control — identical across suppliers",
             "note": "Identical to every other supplier — the regulated network charges the same.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission (Macquarie consortium since 2024)." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Cadent, NGN, SGN or W&W Utilities depending on postcode." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs and the national smart meter programme." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "National Gas Transmission (Macquarie consortium since 2024)."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Cadent, NGN, SGN or W&W Utilities depending on postcode."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Standard meter costs and the national smart meter programme."
+              }
             ]
           },
           {
-            "label": "Operating costs", "share": 0.14,
+            "label": "Operating costs",
+            "share": 0.14,
             "source": "Ofgem operating cost allowance; E.ON SE UK segment reporting",
             "note": "Same cap allowance as every supplier. E.ON Next runs on Kraken (licensed from Octopus), which has reduced the operating cost relative to legacy E.ON / nPower systems.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.40, "note": "Call centre and field engineering staff in the UK." },
-              { "label": "Billing, IT & customer systems (Kraken)", "share": 0.30, "note": "E.ON pays Octopus a per-customer licence fee for the Kraken platform — meaning a slice of E.ON Next's operating cost ends up as Octopus revenue." },
-              { "label": "Bad debt provisions", "share": 0.16, "note": "Standard Ofgem-cap bad-debt allowance." },
-              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced switching since the price cap began." },
-              { "label": "Property & overheads", "share": 0.07, "note": "Coventry HQ and regional sites." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.4,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from E.ON SE annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Call centre and field engineering staff in the UK."
+              },
+              {
+                "label": "Billing, IT & customer systems (Kraken)",
+                "share": 0.3,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from E.ON SE annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "E.ON pays Octopus a per-customer licence fee for the Kraken platform — meaning a slice of E.ON Next's operating cost ends up as Octopus revenue."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.16,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from E.ON SE annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Standard Ofgem-cap bad-debt allowance."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from E.ON SE annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Reduced switching since the price cap began."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from E.ON SE annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Coventry HQ and regional sites."
+              }
             ]
           },
           {
-            "label": "Policy & social costs", "share": 0.04,
+            "label": "Policy & social costs",
+            "share": 0.04,
             "source": "BEIS / DESNZ levy schemes — statutory",
             "note": "Identical to every supplier: statutory government levies.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory levy funding insulation and heating upgrades for low-income households." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate, recovered across all bills." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Subsidises biomethane injection into the grid." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs and admin levies." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Statutory levy funding insulation and heating upgrades for low-income households."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "£150 winter rebate, recovered across all bills."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Subsidises biomethane injection into the grid."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller scheme costs and admin levies."
+              }
             ]
           },
           {
-            "label": "Supplier margin (E.ON SE)", "share": 0.02,
+            "label": "Supplier margin (E.ON SE)",
+            "share": 0.02,
             "source": "Ofgem EBIT allowance; E.ON SE Annual Report",
             "note": "E.ON's UK retail margin flows up the corporate chain to E.ON SE, parent group headquartered in Essen, Germany. E.ON SE is FTSE-equivalent in German terms — DAX 40, with major shareholders including German state RAG-Stiftung (~15%), BlackRock, and Norwegian sovereign wealth fund (Norges Bank Investment Management).",
             "children": [
-              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax. Click to follow these into the UK Income Tax tree." },
-              { "label": "Dividends to E.ON SE shareholders", "share": 0.30, "note": "E.ON SE pays an annual dividend (€0.55/share FY2023). Largest shareholders are RAG-Stiftung (the German foundation that manages legacy coal-mining liabilities and is funded by stakes in big German energy companies), BlackRock, Vanguard, and Norges Bank. A meaningful share of E.ON's annual dividend is therefore paid into the German social-cost/legacy-clean-up trust." },
-              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "E.ON group is investing heavily in distribution networks and customer-solutions (heat pumps, EV charging, solar) — the bulk goes to E.ON's German and central-European businesses rather than the UK retail arm." },
-              { "label": "Executive remuneration", "share": 0.03, "note": "Chris Norbury (CEO, E.ON Next UK) — UK retail-segment executive pay is not separately disclosed at FTSE/DAX 'single figure' level. Group CEO Leonhard Birnbaum's FY2023 total comp was around €5–6m. Pay-ratio panel omitted pending verification of the specific UK figure." },
-              { "label": "Retained for the business", "share": 0.17, "note": "Earnings retained in the UK subsidiary and/or repatriated to the group." }
+              {
+                "label": "Corporation tax (UK)",
+                "share": 0.2,
+                "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. E.ON SE reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "UK retail profits attract standard 25% corporation tax. Click to follow these into the UK Income Tax tree."
+              },
+              {
+                "label": "Dividends to E.ON SE shareholders",
+                "share": 0.3,
+                "source": "Illustrative allocation of the supplier-margin slice. E.ON SE reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "E.ON SE pays an annual dividend (€0.55/share FY2023). Largest shareholders are RAG-Stiftung (the German foundation that manages legacy coal-mining liabilities and is funded by stakes in big German energy companies), BlackRock, Vanguard, and Norges Bank. A meaningful share of E.ON's annual dividend is therefore paid into the German social-cost/legacy-clean-up trust."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.3,
+                "source": "Illustrative allocation of the supplier-margin slice. E.ON SE reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "E.ON group is investing heavily in distribution networks and customer-solutions (heat pumps, EV charging, solar) — the bulk goes to E.ON's German and central-European businesses rather than the UK retail arm."
+              },
+              {
+                "label": "Executive remuneration",
+                "share": 0.03,
+                "source": "Illustrative allocation of the supplier-margin slice. E.ON SE reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Chris Norbury (CEO, E.ON Next UK) — UK retail-segment executive pay is not separately disclosed at FTSE/DAX 'single figure' level. Group CEO Leonhard Birnbaum's FY2023 total comp was around €5–6m. Pay-ratio panel omitted pending verification of the specific UK figure."
+              },
+              {
+                "label": "Retained for the business",
+                "share": 0.17,
+                "source": "Illustrative allocation of the supplier-margin slice. E.ON SE reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Earnings retained in the UK subsidiary and/or repatriated to the group."
+              }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Same as British Gas: adjustment, headroom and smart-meter rollout components of the cap." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual — model vs actual variance", "note": "Same residual treatment as other suppliers." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate of 5% applies to domestic energy", "note": "Same 5% reduced rate. Click to follow into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology",
+            "note": "Same as British Gas: adjustment, headroom and smart-meter rollout components of the cap."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual — model vs actual variance",
+            "note": "Same residual treatment as other suppliers."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate of 5% applies to domestic energy",
+            "note": "Same 5% reduced rate. Click to follow into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -331,71 +808,202 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with EDF Energy",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "EDF Energy — annual gas bill",
-        "source": "Ofgem default tariff cap (top-level shape); EDF SA Annual Report for supplier-margin branch",
+        "source": "Ofgem default tariff cap (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); EDF SA Universal Registration Document (https://www.edf.fr/en/the-edf-group/dedicated-sections/finance). EDF was renationalised in 2023; CEO pay is capped under French state-owned-enterprise rules.",
         "note": "EDF Energy is the UK retail and generation arm of Électricité de France (EDF SA), now 100% owned by the French state following completion of renationalisation in 2023. EDF operates the UK's nuclear fleet (Heysham, Hartlepool, Hinkley Point B/C, Sizewell B) and leads the Sizewell C development consortium (Centrica holds a smaller stake). Around 5 million UK customers across gas and electricity.",
         "children": [
           {
-            "label": "Wholesale gas", "share": 0.38,
+            "label": "Wholesale gas",
+            "share": 0.38,
             "source": "Ofgem default tariff cap; national wholesale market",
             "note": "Same wholesale gas market as every UK supplier.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf via Equinor and pipelines." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
-              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Norwegian Continental Shelf via Equinor and pipelines."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic North Sea production."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Qatar and US LNG cargoes."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "National Balancing Point market."
+              }
             ]
           },
           {
-            "label": "Network costs", "share": 0.22,
+            "label": "Network costs",
+            "share": 0.22,
             "source": "Ofgem RIIO-2 price control — identical across suppliers",
             "note": "Same regulated network costs as every other supplier.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN — Cadent / NGN / SGN / W&W." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter and smart-meter programme costs." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "National Gas Transmission."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Regional GDN — Cadent / NGN / SGN / W&W."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Standard meter and smart-meter programme costs."
+              }
             ]
           },
           {
-            "label": "Operating costs", "share": 0.14,
+            "label": "Operating costs",
+            "share": 0.14,
             "source": "Ofgem operating cost allowance; EDF Energy UK accounts",
             "note": "Same allowance as every supplier. EDF Energy uses its own legacy systems rather than Kraken.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.45, "note": "UK customer-service and field engineering — EDF Energy employs around 11,000 people in the UK across retail and generation." },
-              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "EDF's own platform." },
-              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap bad-debt allowance." },
-              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition spend across the industry under the cap." },
-              { "label": "Property & overheads", "share": 0.10, "note": "London HQ plus customer-service centres." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.45,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from EDF SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "UK customer-service and field engineering — EDF Energy employs around 11,000 people in the UK across retail and generation."
+              },
+              {
+                "label": "Billing, IT & customer systems",
+                "share": 0.2,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from EDF SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "EDF's own platform."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.18,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from EDF SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Standard Ofgem-cap bad-debt allowance."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from EDF SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Reduced acquisition spend across the industry under the cap."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.1,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from EDF SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "London HQ plus customer-service centres."
+              }
             ]
           },
           {
-            "label": "Policy & social costs", "share": 0.04,
+            "label": "Policy & social costs",
+            "share": 0.04,
             "source": "BEIS / DESNZ levy schemes — statutory",
             "note": "Identical to every supplier.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory levy for low-income energy efficiency." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate, recovered across all bills." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme admin costs." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Statutory levy for low-income energy efficiency."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "£150 winter rebate, recovered across all bills."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Biomethane support."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller scheme admin costs."
+              }
             ]
           },
           {
-            "label": "Supplier margin (EDF SA → French state)", "share": 0.02,
+            "label": "Supplier margin (EDF SA → French state)",
+            "share": 0.02,
             "source": "Ofgem EBIT allowance; EDF SA Annual Report",
             "note": "EDF's UK retail margin flows up to EDF SA in Paris — and since the 2023 completion of renationalisation, EDF SA is wholly owned by the French state. Functionally that means the supplier-margin portion of every EDF Energy bill is ultimately revenue to the French government. Capital-intensive: EDF group reinvests heavily into UK nuclear (Hinkley Point C is the largest single nuclear construction project in Europe).",
             "children": [
-              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of French state ownership). Click to follow into the UK Income Tax tree." },
-              { "label": "Distributions to the French state (sole shareholder)", "share": 0.20, "note": "Since EDF was taken fully back into state ownership in 2023, all distributions from EDF SA flow to the French Treasury. The annual dividend mechanism still applies but the recipient is the state, not a public shareholder base." },
-              { "label": "Capital expenditure & reinvestment", "share": 0.42, "note": "Weighted heavily because EDF is the lead developer of UK new-build nuclear (Hinkley C, Sizewell C) and operator of the existing fleet — a meaningful share of group capex sits in the UK." },
-              { "label": "Executive remuneration", "share": 0.02, "note": "Group CEO Luc Rémont's compensation is capped under French state-owned-enterprise rules at around €450,000 per year — dramatically lower than FTSE / DAX equivalents. The UK Energy CEO is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure." },
-              { "label": "Retained for the business", "share": 0.16, "note": "Retained for operating reserves and the UK generation business." }
+              {
+                "label": "Corporation tax (UK)",
+                "share": 0.2,
+                "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. EDF SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of French state ownership). Click to follow into the UK Income Tax tree."
+              },
+              {
+                "label": "Distributions to the French state (sole shareholder)",
+                "share": 0.2,
+                "source": "Illustrative allocation of the supplier-margin slice. EDF SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Since EDF was taken fully back into state ownership in 2023, all distributions from EDF SA flow to the French Treasury. The annual dividend mechanism still applies but the recipient is the state, not a public shareholder base."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.42,
+                "source": "Illustrative allocation of the supplier-margin slice. EDF SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Weighted heavily because EDF is the lead developer of UK new-build nuclear (Hinkley C, Sizewell C) and operator of the existing fleet — a meaningful share of group capex sits in the UK."
+              },
+              {
+                "label": "Executive remuneration",
+                "share": 0.02,
+                "source": "Illustrative allocation of the supplier-margin slice. EDF SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Group CEO Luc Rémont's compensation is capped under French state-owned-enterprise rules at around €450,000 per year — dramatically lower than FTSE / DAX equivalents. The UK Energy CEO is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure."
+              },
+              {
+                "label": "Retained for the business",
+                "share": 0.16,
+                "source": "Illustrative allocation of the supplier-margin slice. EDF SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Retained for operating reserves and the UK generation business."
+              }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology",
+            "note": "Standard adjustment, headroom and smart-meter components."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual",
+            "note": "Standard cap-vs-actual residual."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate 5% applies to domestic energy",
+            "note": "Same 5% rate. Click to follow into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -406,71 +1014,202 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with OVO Energy",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "OVO Energy — annual gas bill",
-        "source": "Ofgem default tariff cap (top-level shape); OVO Group Ltd Companies House filings",
+        "source": "Ofgem default tariff cap (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); OVO Group Ltd accounts at Companies House (parent company 06890795, https://find-and-update.company-information.service.gov.uk/company/06890795). Private company — less granular disclosure than FTSE-listed firms.",
         "note": "OVO Energy is a UK supplier founded in 2009 by Stephen Fitzpatrick. In January 2020 OVO acquired SSE's domestic energy retail business (~3.5m customers), which transformed it overnight into one of the UK's largest suppliers. OVO is privately held: Stephen Fitzpatrick's family office retains a major stake, Mitsubishi Corporation has held around a 20% strategic stake since 2019, and Mayfair Equity Partners has been an investor.",
         "children": [
           {
-            "label": "Wholesale gas", "share": 0.38,
+            "label": "Wholesale gas",
+            "share": 0.38,
             "source": "Ofgem default tariff cap; national wholesale market",
             "note": "Same wholesale market as every UK supplier.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
-              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Norwegian Continental Shelf."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic North Sea production."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Qatar and US LNG cargoes."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "National Balancing Point market."
+              }
             ]
           },
           {
-            "label": "Network costs", "share": 0.22,
+            "label": "Network costs",
+            "share": 0.22,
             "source": "Ofgem RIIO-2 price control — identical across suppliers",
             "note": "Same regulated network costs.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "National Gas Transmission."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Regional GDN."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Standard meter costs."
+              }
             ]
           },
           {
-            "label": "Operating costs", "share": 0.14,
+            "label": "Operating costs",
+            "share": 0.14,
             "source": "Ofgem operating cost allowance; OVO Group accounts",
             "note": "Same allowance. OVO has gone through significant operational restructuring since the SSE acquisition, with headcount reductions in 2022–24.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.42, "note": "Customer-service and field engineering — has been reduced significantly since 2022." },
-              { "label": "Billing, IT & customer systems", "share": 0.25, "note": "OVO's own platform (Orion / Plan Zero family of products) — built and operated in-house." },
-              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap allowance." },
-              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition activity across the industry." },
-              { "label": "Property & overheads", "share": 0.08, "note": "Bristol HQ plus customer-service sites." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.42,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from OVO Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Customer-service and field engineering — has been reduced significantly since 2022."
+              },
+              {
+                "label": "Billing, IT & customer systems",
+                "share": 0.25,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from OVO Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "OVO's own platform (Orion / Plan Zero family of products) — built and operated in-house."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.18,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from OVO Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Standard Ofgem-cap allowance."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from OVO Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Reduced acquisition activity across the industry."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.08,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from OVO Group Ltd annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Bristol HQ plus customer-service sites."
+              }
             ]
           },
           {
-            "label": "Policy & social costs", "share": 0.04,
+            "label": "Policy & social costs",
+            "share": 0.04,
             "source": "BEIS / DESNZ levy schemes — statutory",
             "note": "Identical to every supplier.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory energy-efficiency levy." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Statutory energy-efficiency levy."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "£150 winter rebate."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Biomethane support."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller scheme costs."
+              }
             ]
           },
           {
-            "label": "Supplier margin (OVO Group)", "share": 0.02,
+            "label": "Supplier margin (OVO Group)",
+            "share": 0.02,
             "source": "Ofgem EBIT allowance; OVO Group Ltd Companies House accounts",
             "note": "OVO is privately held — no public dividend. The supplier-margin component flows to OVO Group's investor base: founder Stephen Fitzpatrick's family office (controlling stake), Mitsubishi Corporation (~20% strategic stake since 2019), and other private-equity backers.",
             "children": [
-              { "label": "Corporation tax", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax. Click to follow into the UK Income Tax tree." },
-              { "label": "Distributions to investors", "share": 0.22, "note": "No public dividend. Returns to investors come through retained-earnings growth, Mitsubishi Corporation's strategic accounting, and potential future liquidity events (an IPO has been periodically mooted but not executed)." },
-              { "label": "Capital expenditure & reinvestment", "share": 0.30, "note": "Plan Zero (decarbonisation product suite), customer-service technology, and Kaluza (OVO's smart-grid / flexibility platform, run as a separate company)." },
-              { "label": "Executive remuneration", "share": 0.03, "note": "Stephen Fitzpatrick is founder and significant shareholder. As a privately-held UK company, OVO discloses director remuneration at Companies House — less granular than FTSE single-figure. The headline value to Fitzpatrick is in his shareholding rather than cash compensation. Pay-ratio panel omitted pending verification of the specific figure." },
-              { "label": "Retained for the business", "share": 0.25, "note": "Earnings retained to absorb post-2022 operational losses and to fund the integration of the SSE customer book — a particularly large share at OVO because the SSE acquisition consumed working capital for several years." }
+              {
+                "label": "Corporation tax",
+                "share": 0.2,
+                "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. OVO Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "UK retail profits attract standard 25% corporation tax. Click to follow into the UK Income Tax tree."
+              },
+              {
+                "label": "Distributions to investors",
+                "share": 0.22,
+                "source": "Illustrative allocation of the supplier-margin slice. OVO Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "No public dividend. Returns to investors come through retained-earnings growth, Mitsubishi Corporation's strategic accounting, and potential future liquidity events (an IPO has been periodically mooted but not executed)."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.3,
+                "source": "Illustrative allocation of the supplier-margin slice. OVO Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Plan Zero (decarbonisation product suite), customer-service technology, and Kaluza (OVO's smart-grid / flexibility platform, run as a separate company)."
+              },
+              {
+                "label": "Executive remuneration",
+                "share": 0.03,
+                "source": "Illustrative allocation of the supplier-margin slice. OVO Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Stephen Fitzpatrick is founder and significant shareholder. As a privately-held UK company, OVO discloses director remuneration at Companies House — less granular than FTSE single-figure. The headline value to Fitzpatrick is in his shareholding rather than cash compensation. Pay-ratio panel omitted pending verification of the specific figure."
+              },
+              {
+                "label": "Retained for the business",
+                "share": 0.25,
+                "source": "Illustrative allocation of the supplier-margin slice. OVO Group Ltd reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Earnings retained to absorb post-2022 operational losses and to fund the integration of the SSE customer book — a particularly large share at OVO because the SSE acquisition consumed working capital for several years."
+              }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology",
+            "note": "Standard adjustment, headroom and smart-meter components."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual",
+            "note": "Standard cap-vs-actual residual."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate 5% applies to domestic energy",
+            "note": "Same 5% rate. Click to follow into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -481,71 +1220,202 @@
       "prompt": "If your annual gas bill was",
       "promptSuffix": "with Scottish Power",
       "defaultAmount": 1000,
-      "presets": [500, 1000, 2000],
+      "presets": [
+        500,
+        1000,
+        2000
+      ],
       "root": {
         "label": "Scottish Power — annual gas bill",
-        "source": "Ofgem default tariff cap (top-level shape); Iberdrola SA Annual Report for supplier-margin branch",
+        "source": "Ofgem default tariff cap (https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/energy-price-cap); Iberdrola SA Annual Report (https://www.iberdrola.com/shareholders-investors). UK ScottishPower segment economics partially separately disclosed; group-level allocations apply for the rest.",
         "note": "Scottish Power is the UK retail and generation business of Iberdrola SA, the Spanish utility group (Madrid Stock Exchange, IBEX 35). Iberdrola is one of the largest utilities in the world by market capitalisation. In the UK, Scottish Power operates a large onshore wind portfolio (ScottishPower Renewables) plus offshore wind through the East Anglia One project. Around 4 million UK retail customers.",
         "children": [
           {
-            "label": "Wholesale gas", "share": 0.38,
+            "label": "Wholesale gas",
+            "share": 0.38,
             "source": "Ofgem default tariff cap; national wholesale market",
             "note": "Same wholesale market as every UK supplier.",
             "children": [
-              { "label": "Norwegian pipeline gas", "share": 0.50, "note": "Norwegian Continental Shelf." },
-              { "label": "UK Continental Shelf", "share": 0.30, "note": "Domestic North Sea production." },
-              { "label": "LNG imports", "share": 0.18, "note": "Qatar and US LNG cargoes." },
-              { "label": "Storage, balancing & trading", "share": 0.02, "note": "National Balancing Point market." }
+              {
+                "label": "Norwegian pipeline gas",
+                "share": 0.5,
+                "source": "DESNZ Digest of UK Energy Statistics (DUKES) Table 4.3 — UK natural-gas imports by country of origin (https://www.gov.uk/government/statistics/digest-of-uk-energy-statistics-dukes). Norway has been the UK's single largest gas source since 2022.",
+                "note": "Norwegian Continental Shelf."
+              },
+              {
+                "label": "UK Continental Shelf",
+                "share": 0.3,
+                "source": "DESNZ DUKES Table 4.1 — UK natural-gas production; North Sea Transition Authority (NSTA) field-level production data (https://www.nstauthority.co.uk/data-centre/data-downloads-and-publications/).",
+                "note": "Domestic North Sea production."
+              },
+              {
+                "label": "LNG imports",
+                "share": 0.18,
+                "source": "DESNZ DUKES Table 4.3 (LNG imports by source country); National Gas Transmission entry-point flow data. Qatar and the US are the largest sources via Milford Haven (South Hook, Dragon LNG) and Isle of Grain terminals.",
+                "note": "Qatar and US LNG cargoes."
+              },
+              {
+                "label": "Storage, balancing & trading",
+                "share": 0.02,
+                "source": "National Gas Transmission system operator monthly reports; Ofgem Wholesale Markets Indicators quarterly. Covers National Balancing Point trading, line-pack management and storage charges.",
+                "note": "National Balancing Point market."
+              }
             ]
           },
           {
-            "label": "Network costs", "share": 0.22,
+            "label": "Network costs",
+            "share": 0.22,
             "source": "Ofgem RIIO-2 price control — identical across suppliers",
             "note": "Same regulated network costs as every supplier. Note: Scottish Power also operates electricity transmission and distribution networks (SP Energy Networks) — but those revenues come through a separate regulated arm, not through retail bills.",
             "children": [
-              { "label": "Gas transmission", "share": 0.25, "note": "National Gas Transmission." },
-              { "label": "Gas distribution", "share": 0.70, "note": "Regional GDN — same suppliers as every other retailer." },
-              { "label": "Metering & smart meter rollout", "share": 0.05, "note": "Standard meter costs." }
+              {
+                "label": "Gas transmission",
+                "share": 0.25,
+                "source": "Ofgem RIIO-T2 final determinations for National Gas Transmission (price control period 2021-2026); sold by National Grid plc to a Macquarie-led consortium in early 2024 for ~£2.2bn equity. https://www.ofgem.gov.uk/energy-policy-and-regulation/policy-and-regulatory-programmes/network-price-controls-2021-2026-riio-2",
+                "note": "National Gas Transmission."
+              },
+              {
+                "label": "Gas distribution",
+                "share": 0.7,
+                "source": "Ofgem RIIO-GD2 final determinations (2021-2026) for the four UK gas distribution networks: Cadent (largest), Northern Gas Networks, SGN, and Wales & West Utilities. Allowed revenues published per GDN annual report.",
+                "note": "Regional GDN — same suppliers as every other retailer."
+              },
+              {
+                "label": "Metering & smart meter rollout",
+                "share": 0.05,
+                "source": "DESNZ Smart Metering Implementation Programme annual reports (https://www.gov.uk/government/collections/smart-meters-statistics); Ofgem price-cap methodology smart-meter net-cost component.",
+                "note": "Standard meter costs."
+              }
             ]
           },
           {
-            "label": "Operating costs", "share": 0.14,
+            "label": "Operating costs",
+            "share": 0.14,
             "source": "Ofgem operating cost allowance; Iberdrola UK segment reporting",
             "note": "Same Ofgem allowance. Scottish Power's UK retail operation is integrated with the wider ScottishPower group (renewables, networks, retail), with shared back-office functions.",
             "children": [
-              { "label": "Staff & field operations", "share": 0.45, "note": "UK customer-service staff, mainly based in Glasgow." },
-              { "label": "Billing, IT & customer systems", "share": 0.20, "note": "Scottish Power's own platform, shared partly with the wider Iberdrola group." },
-              { "label": "Bad debt provisions", "share": 0.18, "note": "Standard Ofgem-cap allowance." },
-              { "label": "Marketing & customer acquisition", "share": 0.07, "note": "Reduced acquisition under the cap." },
-              { "label": "Property & overheads", "share": 0.10, "note": "Glasgow HQ and customer-service sites." }
+              {
+                "label": "Staff & field operations",
+                "share": 0.45,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Iberdrola SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "UK customer-service staff, mainly based in Glasgow."
+              },
+              {
+                "label": "Billing, IT & customer systems",
+                "share": 0.2,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Iberdrola SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Scottish Power's own platform, shared partly with the wider Iberdrola group."
+              },
+              {
+                "label": "Bad debt provisions",
+                "share": 0.18,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Iberdrola SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Standard Ofgem-cap allowance."
+              },
+              {
+                "label": "Marketing & customer acquisition",
+                "share": 0.07,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Iberdrola SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Reduced acquisition under the cap."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.1,
+                "source": "Illustrative breakdown of the Ofgem default-tariff-cap operating-cost allowance. The cap sets a total operating allowance per customer; the split between staff, IT, bad debt, marketing and property is the supplier's internal allocation and is not directly disclosed in this form. Numbers triangulate from Iberdrola SA annual report cost lines plus the Ofgem allowance methodology.",
+                "note": "Glasgow HQ and customer-service sites."
+              }
             ]
           },
           {
-            "label": "Policy & social costs", "share": 0.04,
+            "label": "Policy & social costs",
+            "share": 0.04,
             "source": "BEIS / DESNZ levy schemes — statutory",
             "note": "Identical to every supplier.",
             "children": [
-              { "label": "Energy Company Obligation (ECO4)", "share": 0.55, "note": "Statutory energy-efficiency levy." },
-              { "label": "Warm Home Discount", "share": 0.30, "note": "£150 winter rebate." },
-              { "label": "Green Gas Levy", "share": 0.10, "note": "Biomethane support." },
-              { "label": "Other policy levies", "share": 0.05, "note": "Smaller scheme costs." }
+              {
+                "label": "Energy Company Obligation (ECO4)",
+                "share": 0.55,
+                "source": "DESNZ ECO4 Order 2022 (Statutory Instrument 2022/875); Ofgem ECO administration annual reports (https://www.ofgem.gov.uk/environmental-and-social-schemes/energy-company-obligation-eco). Largest single component of energy-bill policy costs.",
+                "note": "Statutory energy-efficiency levy."
+              },
+              {
+                "label": "Warm Home Discount",
+                "share": 0.3,
+                "source": "DESNZ Warm Home Discount Regulations 2022 (SI 2022/687). £150 rebate per eligible household over winter, recovered from suppliers and spread across all bill-payers.",
+                "note": "£150 winter rebate."
+              },
+              {
+                "label": "Green Gas Levy",
+                "share": 0.1,
+                "source": "DESNZ Green Gas Support Scheme Regulations 2021 (https://www.gov.uk/government/publications/green-gas-support-scheme-and-green-gas-levy). Funds biomethane injection into the gas grid.",
+                "note": "Biomethane support."
+              },
+              {
+                "label": "Other policy levies",
+                "share": 0.05,
+                "source": "Aggregate of smaller statutory levies and admin charges within the Ofgem cap's policy-cost component (capacity market admin, supplier-of-last-resort levies). Per-component breakdown not separately published; treated here as a residual.",
+                "note": "Smaller scheme costs."
+              }
             ]
           },
           {
-            "label": "Supplier margin (Iberdrola SA)", "share": 0.02,
+            "label": "Supplier margin (Iberdrola SA)",
+            "share": 0.02,
             "source": "Ofgem EBIT allowance; Iberdrola SA Annual Report",
             "note": "Scottish Power's UK retail margin flows up to Iberdrola SA in Bilbao. Iberdrola is one of Europe's largest utilities — major shareholders include Qatar Investment Authority (~8–9%), Norges Bank, BlackRock and Spanish retail investors. Iberdrola pays one of the most consistent dividends in European utilities.",
             "children": [
-              { "label": "Corporation tax (UK)", "share": 0.20, "xref": "income-tax", "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of Spanish parent ownership). Click to follow into the UK Income Tax tree." },
-              { "label": "Dividends to Iberdrola SA shareholders", "share": 0.32, "note": "Iberdrola distributes around €0.50/share annually via its Dividendo Flexible scheme (option to take dividend in cash or scrip). Largest shareholders include Qatar Investment Authority (~9%, sovereign wealth), Norges Bank Investment Management (Norwegian SWF), BlackRock and Spanish retail investors." },
-              { "label": "Capital expenditure & reinvestment", "share": 0.28, "note": "Iberdrola invests heavily in renewables — Scottish Power Renewables operates one of the UK's largest onshore wind portfolios plus East Anglia offshore. A meaningful share of group capex sits in the UK." },
-              { "label": "Executive remuneration", "share": 0.05, "note": "Iberdrola has historically had one of the highest CEO pay packages in European utilities. Long-serving Chairman Ignacio Galán's total compensation has been reported at around €15m+ in recent years (Iberdrola is a public Spanish company so detailed disclosure is available). UK Scottish Power CEO Keith Anderson is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure." },
-              { "label": "Retained for the business", "share": 0.15, "note": "Earnings retained in the UK subsidiary or repatriated to Iberdrola group." }
+              {
+                "label": "Corporation tax (UK)",
+                "share": 0.2,
+                "xref": "income-tax",
+                "source": "Illustrative allocation of the supplier-margin slice. Iberdrola SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "UK retail profits attract standard 25% corporation tax (paid to HMRC, regardless of Spanish parent ownership). Click to follow into the UK Income Tax tree."
+              },
+              {
+                "label": "Dividends to Iberdrola SA shareholders",
+                "share": 0.32,
+                "source": "Illustrative allocation of the supplier-margin slice. Iberdrola SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Iberdrola distributes around €0.50/share annually via its Dividendo Flexible scheme (option to take dividend in cash or scrip). Largest shareholders include Qatar Investment Authority (~9%, sovereign wealth), Norges Bank Investment Management (Norwegian SWF), BlackRock and Spanish retail investors."
+              },
+              {
+                "label": "Capital expenditure & reinvestment",
+                "share": 0.28,
+                "source": "Illustrative allocation of the supplier-margin slice. Iberdrola SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Iberdrola invests heavily in renewables — Scottish Power Renewables operates one of the UK's largest onshore wind portfolios plus East Anglia offshore. A meaningful share of group capex sits in the UK."
+              },
+              {
+                "label": "Executive remuneration",
+                "share": 0.05,
+                "source": "Illustrative allocation of the supplier-margin slice. Iberdrola SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Iberdrola has historically had one of the highest CEO pay packages in European utilities. Long-serving Chairman Ignacio Galán's total compensation has been reported at around €15m+ in recent years (Iberdrola is a public Spanish company so detailed disclosure is available). UK Scottish Power CEO Keith Anderson is paid on UK private-sector terms but not separately disclosed at FTSE single-figure level. Pay-ratio panel omitted pending verification of the specific UK figure."
+              },
+              {
+                "label": "Retained for the business",
+                "share": 0.15,
+                "source": "Illustrative allocation of the supplier-margin slice. Iberdrola SA reports group-level totals for tax, dividends, capex, executive pay and retained earnings; the share specifically attributable to UK retail-supply margin is not separately disclosed. Numbers reflect directional weighting based on each company's stated capital allocation.",
+                "note": "Earnings retained in the UK subsidiary or repatriated to Iberdrola group."
+              }
             ]
           },
-          { "label": "Other allowances", "share": 0.05, "source": "Ofgem cap methodology", "note": "Standard adjustment, headroom and smart-meter components." },
-          { "label": "Unallocated / cost recovery", "share": 0.10, "source": "Residual", "note": "Standard cap-vs-actual residual." },
-          { "label": "VAT", "share": 0.05, "xref": "income-tax", "source": "HMRC; reduced rate 5% applies to domestic energy", "note": "Same 5% rate. Click to follow into the UK Income Tax tree." }
+          {
+            "label": "Other allowances",
+            "share": 0.05,
+            "source": "Ofgem cap methodology",
+            "note": "Standard adjustment, headroom and smart-meter components."
+          },
+          {
+            "label": "Unallocated / cost recovery",
+            "share": 0.1,
+            "source": "Residual",
+            "note": "Standard cap-vs-actual residual."
+          },
+          {
+            "label": "VAT",
+            "share": 0.05,
+            "xref": "income-tax",
+            "source": "HMRC; reduced rate 5% applies to domestic energy",
+            "note": "Same 5% rate. Click to follow into the UK Income Tax tree."
+          }
         ]
       }
     },
@@ -556,24 +1426,28 @@
       "prompt": "If you paid",
       "promptSuffix": "for a 330ml can of Coke at a UK supermarket",
       "defaultAmount": 0.85,
-      "presets": [0.85, 1.20, 0.50],
+      "presets": [
+        0.85,
+        1.2,
+        0.5
+      ],
       "root": {
         "label": "A 330ml can of Coca-Cola — UK supermarket",
-        "source": "HMRC for VAT/SDIL; Coca-Cola Europacific Partners and The Coca-Cola Company Annual Reports for the corporate splits; supermarket margin and CCEP cost-component splits are industry-illustrative — exact contract terms are commercially confidential",
+        "source": "PRICE — no single authoritative source. ONS CPI tracks soft drinks at category level (https://www.ons.gov.uk/economy/inflationandpriceindices) but not at SKU level, and Coca-Cola does not publish per-can recommended retail prices. The 85p default is a representative single-can supermarket price for 2025-26 based on observed Tesco / Sainsbury's shelf pricing; real prices range ~75p to £1.20 by retailer, location, and pack-size pro-rata. STRUCTURE — HMRC for VAT (Notice 701/40) and SDIL (Finance Act 2017 Part 2); CCEP investor relations (https://www.cocacolaep.com/investors) and TCCC 10-K filings (https://investors.coca-colacompany.com) for the corporate splits; supermarket-margin and CCEP cost-component sub-splits are industry-illustrative because exact contract terms across this supply chain are commercially confidential.",
         "note": "A standard 330ml can of Coke from a UK supermarket (representative price ~85p; actual prices range from about 75p to £1.20 depending on retailer, location and pack size). The chain of hands is longer than the price suggests: HMRC takes two bites (VAT and the sugar tax), the supermarket takes its retail margin, the bottler — Coca-Cola Europacific Partners — takes the largest share, and a famous concentrate fee flows from CCEP to The Coca-Cola Company in Atlanta. The headline figures are firm (VAT and SDIL are statutory); the deeper splits are illustrative.",
         "children": [
           {
             "label": "VAT (20%)",
             "share": 0.17,
             "xref": "income-tax",
-            "source": "HMRC; soft drinks are standard-rated for VAT",
+            "source": "HMRC VAT Notice 701/40 (food and drink) — https://www.gov.uk/guidance/food-products-and-vat-notice-70114. Soft drinks are standard-rated; the food-and-drink zero-rating does NOT apply.",
             "note": "Soft drinks are standard-rated, so VAT is one-sixth of the sticker price. On an 85p can the VAT is roughly 14p. Click to follow into the UK Income Tax tree."
           },
           {
             "label": "Soft Drinks Industry Levy (sugar tax)",
             "share": 0.09,
             "xref": "income-tax",
-            "source": "HMRC; SDIL higher band (24p/litre) for drinks with >8g sugar per 100ml",
+            "source": "HMRC Soft Drinks Industry Levy — Finance Act 2017 Part 2 (https://www.gov.uk/guidance/soft-drinks-industry-levy). Higher band: 24p/litre for drinks ≥8g sugar/100ml; lower band: 18p/litre for 5–8g/100ml. Standard Coke at ~10.6g/100ml falls in the higher band.",
             "note": "Standard Coke is over the 8g sugar / 100ml threshold so attracts the higher SDIL rate of 24p per litre — about 8p on a 330ml can. The levy is paid by the bottler to HMRC and passed through in the wholesale price to the retailer. Introduced 2018; standard Coke chose not to reformulate. Click to follow into the UK Income Tax tree."
           },
           {
@@ -582,10 +1456,30 @@
             "source": "Industry estimates; branded soft-drink gross margin typically 10–20%",
             "note": "The supermarket buys the can wholesale from the bottler and resells with a margin covering staff, refrigeration, rent, distribution to store, and operating profit. Coke is a 'destination' SKU — supermarkets often advertise Coke pricing competitively, so margins compress periodically. The sub-split below is illustrative; supermarkets don't publish margin breakdowns at SKU level.",
             "children": [
-              { "label": "Store operating costs (staff, lighting, refrigeration)", "share": 0.45, "note": "Wages, electricity, in-store labour allocated to this category." },
-              { "label": "Distribution from regional DC to store", "share": 0.18, "note": "The supermarket's own logistics network — separate from the bottler's distribution to the supermarket's DC." },
-              { "label": "Property & overheads", "share": 0.12, "note": "Store property costs and head-office allocation." },
-              { "label": "Retailer operating profit", "share": 0.25, "note": "Becomes part of the parent retailer's group profit. Tesco and Sainsbury's are FTSE 100 plcs paying public dividends; Asda is owned by TDR Capital and the Issa brothers; Morrisons is owned by Clayton, Dubilier & Rice (private equity, since 2021)." }
+              {
+                "label": "Store operating costs (staff, lighting, refrigeration)",
+                "share": 0.45,
+                "source": "Illustrative — UK grocery retailers do not publish gross margin at SKU or category level. Component split estimated from industry analyst reports (IGD, Kantar) and the retailers' aggregate store-operating-cost disclosures.",
+                "note": "Wages, electricity, in-store labour allocated to this category."
+              },
+              {
+                "label": "Distribution from regional DC to store",
+                "share": 0.18,
+                "source": "Illustrative — supermarket internal logistics cost per SKU is not published. Estimated from the retailers' aggregate distribution-and-warehousing cost lines in their annual reports (Tesco, Sainsbury's, Asda).",
+                "note": "The supermarket's own logistics network — separate from the bottler's distribution to the supermarket's DC."
+              },
+              {
+                "label": "Property & overheads",
+                "share": 0.12,
+                "source": "Illustrative — store property and head-office allocation. Estimated from the retailers' aggregate property cost lines (rent, business rates, depreciation).",
+                "note": "Store property costs and head-office allocation."
+              },
+              {
+                "label": "Retailer operating profit",
+                "share": 0.25,
+                "source": "Illustrative — branded-soft-drink contribution to retailer profit is not separately disclosed. Tesco / Sainsbury's group operating margin (~3-5%) provides directional context but individual SKU profitability varies materially.",
+                "note": "Becomes part of the parent retailer's group profit. Tesco and Sainsbury's are FTSE 100 plcs paying public dividends; Asda is owned by TDR Capital and the Issa brothers; Morrisons is owned by Clayton, Dubilier & Rice (private equity, since 2021)."
+              }
             ]
           },
           {
@@ -600,42 +1494,143 @@
                 "source": "Industry estimates from TCCC and CCEP segment reporting; the exact per-can fee is commercially confidential",
                 "note": "The marquee line on any Coke cost structure: CCEP pays TCCC for the concentrate (the syrup that becomes Coke when mixed with carbonated water). TCCC's gross margin on concentrate sales is famously around 60–65%, making this one of the most profitable products in branded consumer goods. The drill-down below estimates where TCCC's share of the can ultimately goes.",
                 "children": [
-                  { "label": "TCCC concentrate manufacturing & ingredients", "share": 0.30, "note": "Sweetener concentrate, flavourings, secret-formula additives, drum packaging for shipment to bottlers." },
-                  { "label": "TCCC global marketing & brand investment", "share": 0.20, "note": "Global brand campaigns, sponsorships (Olympics, FIFA World Cup), the Christmas truck advertising. TCCC funds the global brand; CCEP and other regional bottlers do local activation separately." },
-                  { "label": "TCCC R&D, overheads & corporate functions", "share": 0.08, "note": "New product development (Coke Zero, Diet Coke variants), corporate functions, IT systems." },
+                  {
+                    "label": "TCCC concentrate manufacturing & ingredients",
+                    "share": 0.3,
+                    "source": "Illustrative — TCCC reports concentrate operations at a high level in its 10-K. Concentrate ingredients (sweetener concentrate, flavourings, additives) are a small fraction of concentrate revenue; the high TCCC gross margin reflects this.",
+                    "note": "Sweetener concentrate, flavourings, secret-formula additives, drum packaging for shipment to bottlers."
+                  },
+                  {
+                    "label": "TCCC global marketing & brand investment",
+                    "share": 0.2,
+                    "source": "TCCC 10-K — marketing spend disclosed at company level (~$4bn/year). Per-can attribution is illustrative; TCCC's brand spend supports the whole portfolio, not just standard Coke.",
+                    "note": "Global brand campaigns, sponsorships (Olympics, FIFA World Cup), the Christmas truck advertising. TCCC funds the global brand; CCEP and other regional bottlers do local activation separately."
+                  },
+                  {
+                    "label": "TCCC R&D, overheads & corporate functions",
+                    "share": 0.08,
+                    "source": "TCCC 10-K — research and development and SG&A lines. Per-can attribution is illustrative.",
+                    "note": "New product development (Coke Zero, Diet Coke variants), corporate functions, IT systems."
+                  },
                   {
                     "label": "TCCC operating profit",
                     "share": 0.42,
                     "source": "TCCC FY2023 10-K (concentrate operations are one of TCCC's most profitable lines)",
                     "note": "Proceeds flow to US federal and state corporation tax, dividends to TCCC shareholders, share buybacks, capex and executive pay.",
                     "children": [
-                      { "label": "US federal & state corporation tax", "share": 0.18, "note": "TCCC's effective tax rate has historically been around 18–22% after various international structures." },
-                      { "label": "Dividends to TCCC shareholders", "share": 0.40, "note": "TCCC pays a quarterly dividend with one of the longest unbroken increase streaks in US equities. Largest shareholders: Berkshire Hathaway (~9%, Warren Buffett's longest-held position), Vanguard, BlackRock, and US retail investors." },
-                      { "label": "Share buybacks", "share": 0.15, "note": "TCCC regularly buys back its own shares — a different form of capital return to shareholders." },
-                      { "label": "Capital expenditure & reinvestment", "share": 0.10, "note": "Concentrate production facilities, R&D capex, brand investments capitalised on the balance sheet." },
-                      { "label": "Executive remuneration (TCCC)", "share": 0.02, "note": "TCCC CEO James Quincey — total compensation reported in SEC proxy filings, of the order of $20–28m in recent years. Pay-ratio panel omitted pending verification of the most recent figure." },
-                      { "label": "Retained for the business", "share": 0.15, "note": "Earnings kept on the balance sheet for future investment." }
+                      {
+                        "label": "US federal & state corporation tax",
+                        "share": 0.18,
+                        "source": "TCCC effective tax rate from 10-K (typically 18-22% in recent years). Per-can attribution is illustrative because TCCC's tax is on global group profit, not a single product line.",
+                        "note": "TCCC's effective tax rate has historically been around 18–22% after various international structures."
+                      },
+                      {
+                        "label": "Dividends to TCCC shareholders",
+                        "share": 0.4,
+                        "source": "TCCC dividend history (~$1.94/share FY2024, one of the longest unbroken dividend-increase streaks in US equities). Largest holders per TCCC proxy filing: Berkshire Hathaway, Vanguard, BlackRock.",
+                        "note": "TCCC pays a quarterly dividend with one of the longest unbroken increase streaks in US equities. Largest shareholders: Berkshire Hathaway (~9%, Warren Buffett's longest-held position), Vanguard, BlackRock, and US retail investors."
+                      },
+                      {
+                        "label": "Share buybacks",
+                        "share": 0.15,
+                        "source": "TCCC buyback authorisations and execution per 10-K filings. Per-can attribution is illustrative.",
+                        "note": "TCCC regularly buys back its own shares — a different form of capital return to shareholders."
+                      },
+                      {
+                        "label": "Capital expenditure & reinvestment",
+                        "share": 0.1,
+                        "source": "TCCC 10-K capex line — concentrate plants, R&D capex, capitalised brand investment.",
+                        "note": "Concentrate production facilities, R&D capex, brand investments capitalised on the balance sheet."
+                      },
+                      {
+                        "label": "Executive remuneration (TCCC)",
+                        "share": 0.02,
+                        "source": "TCCC DEF 14A proxy filings (annual; SEC EDGAR). CEO James Quincey total comp reported around $20-28m in recent years. Per-can attribution is illustrative — exec pay is fixed not proportional.",
+                        "note": "TCCC CEO James Quincey — total compensation reported in SEC proxy filings, of the order of $20–28m in recent years. Pay-ratio panel omitted pending verification of the most recent figure."
+                      },
+                      {
+                        "label": "Retained for the business",
+                        "share": 0.15,
+                        "source": "Residual — earnings retained on TCCC balance sheet.",
+                        "note": "Earnings kept on the balance sheet for future investment."
+                      }
                     ]
                   }
                 ]
               },
-              { "label": "Aluminium can", "share": 0.16, "note": "The can itself is among the largest raw-material costs. Aluminium price moves with the London Metal Exchange. UK can supply is dominated by Ball Corporation and Crown Holdings, the two largest global beverage-can makers." },
-              { "label": "Sugar, water, CO2 & labels", "share": 0.07, "note": "Sugar (largely from British Sugar — Tate & Lyle pulled out of UK beet sugar — and imported cane), carbon dioxide (industrial-gas market), purified water from CCEP's UK plants, and printed label artwork." },
-              { "label": "Manufacturing & bottling labour", "share": 0.10, "note": "Wages at CCEP's UK plants (Wakefield, Sidcup, Edmonton, Milton Keynes), plus plant utilities and maintenance." },
-              { "label": "Distribution & logistics", "share": 0.12, "note": "CCEP's fleet, warehousing, and transport to supermarket regional distribution centres." },
-              { "label": "Sales, customer activation & local marketing", "share": 0.09, "note": "CCEP's UK marketing spend (separate from TCCC's global brand investment), in-store promotions, key-account management with the major grocers." },
-              { "label": "Overheads & admin", "share": 0.05, "note": "Head-office costs, finance, HR, IT across the CCEP group." },
+              {
+                "label": "Aluminium can",
+                "share": 0.16,
+                "source": "Illustrative within CCEP's published COGS. CCEP discloses cost-of-sales as a single line in its segment results; the share attributable to aluminium-can purchases is estimated from LME aluminium prices and industry-reported can-making margins (Ball Corporation, Crown Holdings annual reports).",
+                "note": "The can itself is among the largest raw-material costs. Aluminium price moves with the London Metal Exchange. UK can supply is dominated by Ball Corporation and Crown Holdings, the two largest global beverage-can makers."
+              },
+              {
+                "label": "Sugar, water, CO2 & labels",
+                "share": 0.07,
+                "source": "Illustrative within CCEP COGS. Sugar prices from British Sugar and Tate & Lyle; CO2 from industrial-gas market reports; water and label costs from CCEP segment cost commentary.",
+                "note": "Sugar (largely from British Sugar — Tate & Lyle pulled out of UK beet sugar — and imported cane), carbon dioxide (industrial-gas market), purified water from CCEP's UK plants, and printed label artwork."
+              },
+              {
+                "label": "Manufacturing & bottling labour",
+                "share": 0.1,
+                "source": "Illustrative within CCEP COGS / SG&A. CCEP discloses total employee costs in its annual report but not per-bottle attribution. Derived from CCEP UK headcount (~3,500) and reported pay.",
+                "note": "Wages at CCEP's UK plants (Wakefield, Sidcup, Edmonton, Milton Keynes), plus plant utilities and maintenance."
+              },
+              {
+                "label": "Distribution & logistics",
+                "share": 0.12,
+                "source": "Illustrative within CCEP cost lines. CCEP discloses aggregate distribution and warehousing costs in its annual report; per-can attribution is estimated from delivered-volume statistics.",
+                "note": "CCEP's fleet, warehousing, and transport to supermarket regional distribution centres."
+              },
+              {
+                "label": "Sales, customer activation & local marketing",
+                "share": 0.09,
+                "source": "Illustrative within CCEP SG&A. CCEP discloses aggregate selling, general and administrative expenses; the marketing portion is estimated from CCEP investor presentations on marketing investment.",
+                "note": "CCEP's UK marketing spend (separate from TCCC's global brand investment), in-store promotions, key-account management with the major grocers."
+              },
+              {
+                "label": "Overheads & admin",
+                "share": 0.05,
+                "source": "Illustrative within CCEP SG&A. Head-office and group corporate cost allocation as reported in CCEP annual report.",
+                "note": "Head-office costs, finance, HR, IT across the CCEP group."
+              },
               {
                 "label": "CCEP operating margin",
                 "share": 0.23,
                 "source": "CCEP FY2023 Annual Report — group operating margin",
                 "note": "From CCEP's operating margin, profits flow to UK corporation tax, dividends to CCEP shareholders (Olive Partners ~36%, TCCC ~19%, public free float ~45%), capital investment, and executive pay.",
                 "children": [
-                  { "label": "UK corporation tax (CCEP)", "share": 0.20, "xref": "income-tax", "note": "Standard 25% UK corporation tax on UK-attributable profits. Click to follow into the UK Income Tax tree." },
-                  { "label": "Dividends to CCEP shareholders", "share": 0.35, "note": "CCEP pays a quarterly dividend. Largest beneficiaries: Olive Partners (the Daurella family's Cobega vehicle, ~36%), The Coca-Cola Company itself (~19% — so a slice of CCEP dividends recycles back to TCCC), and public free-float holders." },
-                  { "label": "Capital expenditure & reinvestment", "share": 0.28, "note": "Bottling plant upgrades, fleet electrification, digital systems, packaging-line automation." },
-                  { "label": "Executive remuneration (CCEP)", "share": 0.02, "note": "CCEP CEO Damian Gammell — total compensation disclosed in CCEP's Annual Report (NYSE-listed, so full disclosure). Pay-ratio panel omitted pending verification of the specific most-recent figure." },
-                  { "label": "Retained for the business", "share": 0.15, "note": "Earnings kept on the balance sheet for future investment or volatility buffer." }
+                  {
+                    "label": "UK corporation tax (CCEP)",
+                    "share": 0.2,
+                    "xref": "income-tax",
+                    "source": "Statutory 25% UK corporation tax (from April 2023) on UK-attributable accounting profit. Per-margin share is illustrative because tax is a function of accounting profit (which includes group cost allocations) rather than operating margin.",
+                    "note": "Standard 25% UK corporation tax on UK-attributable profits. Click to follow into the UK Income Tax tree."
+                  },
+                  {
+                    "label": "Dividends to CCEP shareholders",
+                    "share": 0.35,
+                    "source": "CCEP dividend history (quarterly; ~$1.80/share annual run-rate FY2023) from CCEP investor relations. Per-margin attribution is illustrative — CCEP pays dividends from group profit, not a specific revenue line.",
+                    "note": "CCEP pays a quarterly dividend. Largest beneficiaries: Olive Partners (the Daurella family's Cobega vehicle, ~36%), The Coca-Cola Company itself (~19% — so a slice of CCEP dividends recycles back to TCCC), and public free-float holders."
+                  },
+                  {
+                    "label": "Capital expenditure & reinvestment",
+                    "share": 0.28,
+                    "source": "CCEP capex disclosure (~€800m group capex FY2023) per CCEP annual report. UK-attributable share illustrative.",
+                    "note": "Bottling plant upgrades, fleet electrification, digital systems, packaging-line automation."
+                  },
+                  {
+                    "label": "Executive remuneration (CCEP)",
+                    "share": 0.02,
+                    "source": "CCEP Directors' Remuneration Report (NYSE-listed; full disclosure). Per-margin share is illustrative because executive pay is a fixed cost not proportional to a revenue line.",
+                    "note": "CCEP CEO Damian Gammell — total compensation disclosed in CCEP's Annual Report (NYSE-listed, so full disclosure). Pay-ratio panel omitted pending verification of the specific most-recent figure."
+                  },
+                  {
+                    "label": "Retained for the business",
+                    "share": 0.15,
+                    "source": "Residual balancing figure — earnings retained on the balance sheet for future investment or volatility buffer.",
+                    "note": "Earnings kept on the balance sheet for future investment or volatility buffer."
+                  }
                 ]
               }
             ]
