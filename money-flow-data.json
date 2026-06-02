@@ -1647,9 +1647,9 @@
     {
       "id": "starbucks-coffee",
       "category": "consumer",
-      "label": "A coffee from Starbucks",
+      "label": "Starbucks",
       "prompt": "If you paid",
-      "promptSuffix": "for a grande latte at a UK Starbucks",
+      "promptSuffix": "for a coffee from",
       "defaultAmount": 4.0,
       "presets": [
         3.85,
@@ -1837,6 +1837,147 @@
             "share": 0.1,
             "source": "Starbucks Coffee Company (UK) Ltd accounts at Companies House — operating profit line. Some recent years have shown losses or thin profits at the UK entity, partly because the royalty and intercompany cost lines absorb much of what would otherwise be UK profit.",
             "note": "What's left after all the above. In some years Starbucks UK has reported losses; in others modest profit. The reported UK operating profit understates the economic return to Starbucks group from UK operations, because the royalty / IP-fee line (paid to other Starbucks subsidiaries upstream) is itself a transfer of UK-generated economic value to other tax jurisdictions."
+          }
+        ]
+      },
+      "group": "coffee"
+    },
+    {
+      "id": "coffee-independent",
+      "category": "consumer",
+      "group": "coffee",
+      "label": "an independent coffee shop",
+      "prompt": "If you paid",
+      "promptSuffix": "for a coffee from",
+      "defaultAmount": 4.0,
+      "presets": [
+        3.5,
+        4.0,
+        4.5
+      ],
+      "root": {
+        "label": "A flat white — independent UK coffee shop",
+        "source": "PRICE — no single authoritative source. UK speciality coffee shops typically charge £3.50–£4.50 for a flat white in mid-2026; the £4.00 default sits at the higher end of regional pricing and the middle of London pricing. ONS CPI tracks 'hot drinks consumed away from home' at category level but not by chain-vs-independent or by SKU. STRUCTURE — Allegra Strategies / World Coffee Portal UK & Ireland Project Café reports (https://www.worldcoffeeportal.com); MCA Insight coffee-shop sector data; aggregate small-business cost benchmarks from UK Hospitality (https://www.ukhospitality.org.uk) and the Federation of Small Businesses (https://www.fsb.org.uk). No single 'average independent coffee shop' exists — these figures are illustrative across the segment.",
+        "note": "A flat white from a typical UK independent / 'third-wave' speciality coffee shop. The segment grew up alongside the chains during the 2010s — Monmouth Coffee (Borough Market), Workshop Coffee, Allpress, Origin Coffee, Square Mile, HasBean, Climpson & Sons — and now exists in most UK cities. Compared to Starbucks at the same £4 price-point: no royalty/IP payment to a global parent (that ~5% stays in the UK economy), substantially higher coffee-bean cost (speciality roasters typically charge £25–40/kg vs Starbucks's bulk pricing), more labour-intensive drink preparation, no global head office, no CEO with a record-setting pay package. The owner-operator drawings (typically £30–50k/year for a single-shop business) replace what would be the executive-pay line at a chain.",
+        "children": [
+          {
+            "label": "VAT (20%)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC VAT Notice 709/1 (catering and take-away food, https://www.gov.uk/guidance/catering-takeaway-food-and-vat-notice-7091). Hot drinks are standard-rated at 20% whether eaten in or taken away.",
+            "note": "Identical VAT treatment to Starbucks — same statutory rate. On a £4 coffee, VAT is ~67p. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Cost of goods (ingredients & cup)",
+            "share": 0.16,
+            "source": "Industry estimates from Allegra Strategies World Coffee Portal reports; UK speciality-roaster wholesale price ranges (Square Mile, Workshop, Origin, HasBean, Climpson & Sons publish or quote wholesale rates around £25-40/kg); AHDB UK Dairy Markets for milk pricing. Higher proportional share than Starbucks because of the speciality-bean premium.",
+            "note": "Higher cost-of-goods share than Starbucks (16% vs 13%) because speciality roasters charge meaningfully more per kg than Starbucks's bulk-supply pricing. Often the most visible quality differentiation for the customer.",
+            "children": [
+              {
+                "label": "Coffee beans",
+                "share": 0.3,
+                "source": "UK speciality-roaster wholesale price lists — Square Mile, Workshop, Origin, HasBean, Climpson & Sons, Allpress all publish or quote wholesale rates around £25-40/kg. Per-drink translates to ~25-35p of beans at a typical 18-20g dose for a double-shot espresso.",
+                "note": "Substantially higher per-cup than Starbucks (~25-35p vs ~10-15p). Independents typically source from named UK roasters who buy direct from origin and roast in small batches. The bean is the visible 'quality' line that differentiates speciality from chain coffee."
+              },
+              {
+                "label": "Milk",
+                "share": 0.3,
+                "source": "AHDB UK Dairy Markets (https://ahdb.org.uk/dairy). Independents often source from named dairies (Estate Dairy in London, Ivy House in Bristol, Brades Farm in Lancashire) at a small premium over standard wholesale.",
+                "note": "~150-180ml of whole milk per flat white (smaller drink than a Starbucks grande latte, so less milk per cup). Independents have led the move to named-dairy milks and plant-based alternatives without the chain-style upcharge."
+              },
+              {
+                "label": "Cup, lid, sleeve, stirrer",
+                "share": 0.15,
+                "source": "Industry packaging cost data. Independents often use slightly higher-quality cups and have a meaningful share of ceramic cups for eat-in customers (which costs less per use than disposables over time).",
+                "note": "Takeaway disposables for take-out; ceramic for eat-in. Many independents charge a 25-50p discount for reusable cups; a growing minority charge a small disposable-cup levy."
+              },
+              {
+                "label": "Sugar, syrups, other",
+                "share": 0.15,
+                "source": "Industry estimates; speciality shops often use fewer flavoured syrups than chains (focus is on coffee quality), so this line is genuinely smaller at many independents than at Starbucks.",
+                "note": "Speciality shops typically de-emphasise flavoured-syrup drinks. Sugar packets, stirrers, napkins for those who want them."
+              },
+              {
+                "label": "Wastage & spillage allowance",
+                "share": 0.1,
+                "source": "Standard accounting allowance for shrinkage in food-service operations.",
+                "note": "Drinks remade, spills, expired milk. Speciality shops often have higher wastage rates than chains because of the quality focus (a poorly-pulled espresso gets binned)."
+              }
+            ]
+          },
+          {
+            "label": "Store operating costs (the shop)",
+            "share": 0.5,
+            "source": "MCA Insight and Allegra Strategies coffee-shop sector reports; standard food-service-retail cost structures. Independents publish less detailed cost data than chains; sub-component allocations are illustrative.",
+            "note": "By far the biggest slice, similar to Starbucks. Labour, rent, utilities, equipment, cleaning. Slightly higher share than Starbucks (50% vs 45%) because independents are typically more labour-intensive per drink (each cup is hand-crafted) and have less scale to amortise overheads.",
+            "children": [
+              {
+                "label": "Labour (baristas, head barista, owner working shifts)",
+                "share": 0.55,
+                "source": "Industry estimates; many UK speciality shops pay above National Minimum Wage (often Real Living Wage or higher to attract skilled baristas — speciality coffee is a craft skill). Federation of Small Businesses employment data; UK Hospitality wage benchmarks.",
+                "note": "Bigger labour share than at Starbucks (~55% of store costs vs ~50%). Speciality shops are more labour-intensive: each drink is hand-crafted, milk-steaming is individual, latte art is standard. Many owners work shifts behind the bar themselves — that portion of their labour shows up here, not in owner drawings."
+              },
+              {
+                "label": "Property rent",
+                "share": 0.2,
+                "source": "Industry estimates from CoStar UK retail-rent data and UK Hospitality sector reports. Independent shop rents vary enormously — a railway-arch site might be £20-40k/year, a prime Soho corner £150-200k.",
+                "note": "Similar share to chain operators but absolute amounts vary widely. Many UK independents have grown in 'secondary' locations (side streets, railway arches, repurposed industrial sites) where rents are lower than the prime-corner sites chains favour."
+              },
+              {
+                "label": "Utilities (electricity, gas, water)",
+                "share": 0.08,
+                "source": "Industry estimates; UK small-business utility cost averages from the Federation of Small Businesses.",
+                "note": "Same as chains: espresso machines, fridges, hot-water boilers, lighting are energy-intensive."
+              },
+              {
+                "label": "Equipment depreciation & maintenance",
+                "share": 0.07,
+                "source": "Standard accounting depreciation. Speciality shops often run higher-end espresso machines (La Marzocco Linea PB, Synesso S-series — £12-25k each) and grinders (Mahlkönig EK43 — £3-4k), so per-cup depreciation can match or exceed chains.",
+                "note": "Independents often own the same or even higher-end espresso equipment than chain stores."
+              },
+              {
+                "label": "Cleaning, supplies & consumables",
+                "share": 0.05,
+                "source": "Standard food-service operations cost.",
+                "note": "Cleaning products, uniforms, small wares, point-of-sale supplies, training materials."
+              },
+              {
+                "label": "Store-level overheads",
+                "share": 0.05,
+                "source": "Standard food-service operations cost.",
+                "note": "Music licensing (PRS/PPL), insurance, training, internal admin."
+              }
+            ]
+          },
+          {
+            "label": "Marketing & business overheads",
+            "share": 0.03,
+            "source": "Industry estimates; Federation of Small Businesses small-business cost benchmarks. Independents spend a much smaller share on marketing than chains because they rely on local word-of-mouth and Instagram rather than national brand campaigns.",
+            "note": "Much lower than Starbucks (3% vs 7%) because there's no global brand investment, no national advertising, no district-management layer. Local marketing is largely social-media driven (Instagram is the de-facto channel). Accountancy, legal, banking fees also sit here."
+          },
+          {
+            "label": "UK corporation tax (or sole-trader income tax)",
+            "share": 0.04,
+            "xref": "income-tax",
+            "source": "HMRC corporation tax (25% from April 2023, https://www.gov.uk/corporation-tax) for limited-company structures; income-tax bands for sole-trader / partnership structures. UK independent coffee shops use both structures; corporation tax for incorporated businesses, personal income tax for unincorporated. Both ultimately accrue to HMRC.",
+            "note": "Slightly higher share than Starbucks's UK tax (4% vs 3%) because independents have no royalty / intercompany cost lines to reduce taxable profit — the UK profit is the actual UK profit. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Owner-operator drawings",
+            "share": 0.05,
+            "source": "Industry estimates; UK Hospitality and Federation of Small Businesses small-business owner-drawings benchmarks. A typical single-shop independent owner draws £30,000-£50,000/year as salary or dividends from a business turning over £300k-£800k; multi-shop minichain owners draw more.",
+            "note": "The 'CEO equivalent' line for an independent coffee shop. Often the owner also works behind the bar (that labour sits in the labour line above); this captures the profit they take out as personal income. Replaces what would be the global-CEO pay line at a chain. Same proportional slice (small share of revenue) but the absolute figure is several orders of magnitude smaller — and goes to a single UK-based individual who pays UK income tax on it.",
+            "payRatio": {
+              "label": "Typical UK independent coffee-shop owner — annual drawings (illustrative)",
+              "amount": 40000,
+              "caveats": "Illustrative — a typical single-shop independent UK coffee shop owner draws around £30-50k/year as personal income. Used £40,000 as a representative midpoint. Real figures vary widely: some owners draw less (especially in early years), some multi-shop minichain owners much more. UK Hospitality and Federation of Small Businesses publish small-business owner-drawings benchmarks. For contrast: Brian Niccol's ~£89m FY2025 Starbucks package is roughly 2,200× more — the most striking comparison the app makes."
+            }
+          },
+          {
+            "label": "Reinvestment / retained for the business",
+            "share": 0.05,
+            "source": "Standard small-business retention pattern; UK Hospitality and Federation of Small Businesses small-business financial benchmarks. Many independents retain a meaningful share of profit for equipment upgrades, refurbishment (typically every 5-7 years), and emergency reserves.",
+            "note": "What's kept in the business for future investment — new equipment, refurbishment, expansion to a second site, or simply a cash buffer for slow months. The single most-cited reason independent coffee shops close is undercapitalisation, so this slice is genuinely important to the business's survival."
           }
         ]
       }

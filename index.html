@@ -859,9 +859,10 @@ const BUNDLED_DATA = {
     {
       id: 'starbucks-coffee',
       category: 'consumer',
-      label: 'A coffee from Starbucks',
+      group: 'coffee',
+      label: 'Starbucks',
       prompt: 'If you paid',
-      promptSuffix: 'for a grande latte at a UK Starbucks',
+      promptSuffix: 'for a coffee from',
       defaultAmount: 4.00,
       presets: [3.85, 4.25, 4.85],
       root: {
@@ -916,6 +917,51 @@ const BUNDLED_DATA = {
           { label: 'Starbucks UK operating profit (or loss)', share: 0.10 }
         ]
       }
+    },
+    {
+      id: 'coffee-independent',
+      category: 'consumer',
+      group: 'coffee',
+      label: 'an independent coffee shop',
+      prompt: 'If you paid',
+      promptSuffix: 'for a coffee from',
+      defaultAmount: 4.00,
+      presets: [3.50, 4.00, 4.50],
+      root: {
+        label: 'A flat white — independent UK coffee shop',
+        note: 'Representative £4 flat white from a typical UK speciality / third-wave independent. No royalty to a global parent — that slice stays in the UK economy. Higher bean cost, more labour-intensive, owner-operator drawings replace global-CEO pay.',
+        children: [
+          { label: 'VAT (20%)', share: 0.17, xref: 'income-tax' },
+          {
+            label: 'Cost of goods (ingredients & cup)', share: 0.16,
+            children: [
+              { label: 'Coffee beans', share: 0.30 },
+              { label: 'Milk', share: 0.30 },
+              { label: 'Cup, lid, sleeve, stirrer', share: 0.15 },
+              { label: 'Sugar, syrups, other', share: 0.15 },
+              { label: 'Wastage & spillage allowance', share: 0.10 }
+            ]
+          },
+          {
+            label: 'Store operating costs (the shop)', share: 0.50,
+            children: [
+              { label: 'Labour (baristas, head barista, owner working shifts)', share: 0.55 },
+              { label: 'Property rent', share: 0.20 },
+              { label: 'Utilities (electricity, gas, water)', share: 0.08 },
+              { label: 'Equipment depreciation & maintenance', share: 0.07 },
+              { label: 'Cleaning, supplies & consumables', share: 0.05 },
+              { label: 'Store-level overheads', share: 0.05 }
+            ]
+          },
+          { label: 'Marketing & business overheads', share: 0.03 },
+          { label: 'UK corporation tax (or sole-trader income tax)', share: 0.04, xref: 'income-tax' },
+          {
+            label: 'Owner-operator drawings', share: 0.05,
+            payRatio: { label: 'Typical UK independent coffee-shop owner — annual drawings (illustrative)', amount: 40000 }
+          },
+          { label: 'Reinvestment / retained for the business', share: 0.05 }
+        ]
+      }
     }
   ]
 };
@@ -936,6 +982,7 @@ function isEnergyTree(t) { return t.category === 'energy'; }
 // uncluttered when several variants of the same product type are modelled.
 const GROUP_LABELS = {
   'gas-bill': 'Gas bill',
+  'coffee': 'Coffee',
 };
 function treesInGroup(groupId) {
   return DATA.trees.map((t, i) => ({ t, i })).filter(x => x.t.group === groupId);

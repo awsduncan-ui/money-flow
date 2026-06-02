@@ -224,3 +224,7 @@ A brief log of what changed each working session, so a fresh session can catch u
 - Ali edits and pushes.
 - Ali's friend views via the GitHub Pages URL — no GitHub account needed.
 - Commits authored as `awsduncan-ui <awsduncan-ui@users.noreply.github.com>` with a Claude co-author line. Switch to plain attribution by adjusting the `-c user.name`/`user.email` flags on commits, or removing the Co-Authored-By trailer.
+
+### 2026-05-12 (very late)
+- Added **a coffee from an independent UK coffee shop** as the third consumer tree, grouped with Starbucks under a new "Coffee" pill (group key: `coffee`). Same £4 default amount so switching the dropdown is a direct comparison. Editorial story: at the same price point, no royalty leaves the UK; speciality bean cost is ~3× Starbucks's bulk-supply pricing; labour share is higher; the owner-operator drawings line (~£40k/year typical) replaces what would be the global-CEO pay line. Brian Niccol's ~£89m FY2025 package against the typical independent owner's ~£40k is ~2,200× — the most striking single comparison the app makes.
+- Updated GROUP_LABELS to add `coffee: 'Coffee'`. BUNDLED_DATA updated to match.
