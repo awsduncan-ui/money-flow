@@ -1981,6 +1981,425 @@
           }
         ]
       }
+    },
+    {
+      "id": "tank-of-petrol",
+      "category": "consumer",
+      "label": "A tank of petrol",
+      "prompt": "If you paid",
+      "promptSuffix": "to fill up with petrol at a UK forecourt",
+      "defaultAmount": 70.0,
+      "presets": [
+        40,
+        70,
+        100
+      ],
+      "root": {
+        "label": "A tank of petrol — UK forecourt",
+        "source": "PRICE — RAC Fuel Watch (https://www.rac.co.uk/drive/advice/fuel-watch/) and AA Fuel Price Report publish weekly average UK pump prices. Mid-2026 unleaded average is around £1.40/litre; £70 represents a typical 50-litre fill-up. STRUCTURE — HMRC Hydrocarbon Oils Duty rates (https://www.gov.uk/government/publications/rates-and-allowances-excise-duty-hydrocarbon-oils) for fuel duty; HMRC VAT Notice 700 for VAT; UK Petroleum Industry Association (UKPIA, https://www.ukpia.com) for wholesale and refining cost components; UK forecourt market data from EG Group, Motor Fuel Group annual reports and the supermarket grocers' fuel divisions.",
+        "note": "The headline reveal: roughly 55% of every litre of UK petrol is tax. Fuel duty has been frozen at 52.95p/litre since 2011 (extended budget after budget), and VAT applies on top of the duty-inclusive price (so you pay VAT on the duty itself). The rest — wholesale refined fuel plus retailer margin — splits between the global oil and refining chain and your local forecourt operator.",
+        "children": [
+          {
+            "label": "Fuel duty (52.95p/litre)",
+            "share": 0.38,
+            "xref": "income-tax",
+            "source": "HMRC Hydrocarbon Oils Duty current rates (https://www.gov.uk/government/publications/rates-and-allowances-excise-duty-hydrocarbon-oils). Unleaded petrol and diesel rate: 52.95p per litre, frozen since the 2011 Budget and rolled over annually since. The 5p temporary cut introduced in 2022 was made permanent at successive budgets.",
+            "note": "Specific (per-litre) duty paid by the wholesale supplier to HMRC and passed through in the pump price. The single largest line in your fuel bill. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "VAT (20% on fuel including duty)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC VAT Notice 700 — fuel is standard-rated at 20%. Critically, VAT is charged on the duty-inclusive price (tax-on-tax), which is widely criticised by motoring groups but is the standard EU/UK VAT mechanic.",
+            "note": "VAT is calculated on the pump price including fuel duty — so the duty gets taxed too. On a £70 fill-up at £1.40/litre, VAT is ~£11.70 of which a meaningful portion is VAT on duty. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Wholesale fuel (refined petrol)",
+            "share": 0.38,
+            "source": "UK Petroleum Industry Association (UKPIA) data; ICIS / Argus / Platts refined-product benchmarks; weekly wholesale prices tracked by RAC Fuel Watch. UK pump prices closely follow refined-product (not crude) prices because the refining margin is the marginal cost.",
+            "note": "The cost of buying refined petrol on the wholesale market. The wholesale price moves with both crude oil prices and refining margins (the 'crack spread'). UK refining is dominated by a small number of refineries (Stanlow operated by EET Fuels, Pembroke by Valero, Humber by Phillips 66, Lindsey by Prax, Grangemouth by Petroineos).",
+            "children": [
+              {
+                "label": "Crude oil cost",
+                "share": 0.65,
+                "source": "Brent crude benchmark (https://www.ice.com); IEA Oil Market Report; OPEC monthly reports. Brent prices vary daily; mid-2026 range $70-$95/bbl.",
+                "note": "The single largest input. UK consumes crude from a mix of sources — the historic North Sea share has declined as UKCS production has matured, replaced by Norwegian, Middle Eastern (Saudi Arabia, UAE), African (Nigeria, Angola) and increasingly US shale crude.",
+                "children": [
+                  {
+                    "label": "Middle Eastern producers (Saudi Arabia, UAE, Kuwait)",
+                    "share": 0.25,
+                    "source": "DESNZ DUKES Table 3.7 — UK crude oil imports by country; IEA monthly oil statistics.",
+                    "note": "Saudi Aramco, ADNOC and Kuwait Petroleum supply significant UK crude. State-owned national oil companies dominate Gulf supply; their revenues largely accrue to their respective governments."
+                  },
+                  {
+                    "label": "Norway (Norwegian Continental Shelf)",
+                    "share": 0.2,
+                    "source": "DESNZ DUKES Table 3.7. Equinor (majority Norwegian state-owned) is the largest single producer.",
+                    "note": "Norway has been a major UK crude source since the 1970s. Equinor's profits — and therefore most of this slice — flow into the Norwegian Government Pension Fund Global (the world's largest sovereign wealth fund, ~$1.6 trillion)."
+                  },
+                  {
+                    "label": "US (shale crude)",
+                    "share": 0.18,
+                    "source": "DESNZ DUKES Table 3.7; US Energy Information Administration export data. US has been a meaningful UK crude supplier since the export ban was lifted in 2015.",
+                    "note": "Largely from West Texas / Permian Basin shale producers."
+                  },
+                  {
+                    "label": "UK Continental Shelf",
+                    "share": 0.12,
+                    "source": "DESNZ DUKES Table 3.1; North Sea Transition Authority production data.",
+                    "note": "Shell, BP, Harbour Energy, TotalEnergies and others. UKCS share has declined as fields mature."
+                  },
+                  {
+                    "label": "African producers (Nigeria, Angola, Libya)",
+                    "share": 0.1,
+                    "source": "DESNZ DUKES Table 3.7; OPEC country production data.",
+                    "note": "Variable supply; Nigerian and Angolan crude is high-quality and well-suited to UK refineries."
+                  },
+                  {
+                    "label": "Other (Russia historically, now various)",
+                    "share": 0.15,
+                    "source": "DESNZ DUKES Table 3.7. UK banned direct Russian crude imports in 2022; supply shifted to other Atlantic basin sources.",
+                    "note": "Pre-2022 Russia was a significant supplier (~8-10% of UK crude). Post-sanctions, this slice is filled by other producers including more US shale and Middle Eastern volumes."
+                  }
+                ]
+              },
+              {
+                "label": "Refining cost & refiner margin",
+                "share": 0.18,
+                "source": "UKPIA reports; ICIS refining-margin data; oil major segment results (Shell, BP downstream).",
+                "note": "Cost of converting crude into petrol at UK refineries (Stanlow, Pembroke, Humber, Lindsey, Grangemouth). The 'crack spread' between crude and refined product is the refiner's margin — has been historically thin but spiked 2022-23."
+              },
+              {
+                "label": "Distribution & logistics",
+                "share": 0.1,
+                "source": "UKPIA; oil company downstream segment reports. UK has ~7 major fuel-distribution terminal networks (Inter Terminals, Vopak, Greenergy, ExxonMobil etc.).",
+                "note": "Tankers, terminals, pipelines, road delivery to forecourts. Distance from refinery to forecourt is a meaningful component (motorway and remote-area forecourts pay more)."
+              },
+              {
+                "label": "Wholesale supplier margin",
+                "share": 0.07,
+                "source": "UKPIA; oil company segment results. Margin at the wholesale-supply level is normally thin but expands when refining capacity is tight.",
+                "note": "Net wholesale margin earned by the supplier (oil major, independent refiner, or trading company) selling to retailers."
+              }
+            ]
+          },
+          {
+            "label": "Retailer margin (forecourt operator)",
+            "share": 0.07,
+            "source": "UK forecourt retail market data — Asda, Tesco, Sainsbury's, Morrisons (supermarkets ~50% of volume), Shell and BP company-owned, EG Group, Motor Fuel Group, Applegreen as the largest independents. Competition and Markets Authority Road Fuel Market Study 2023 (https://www.gov.uk/cma-cases/road-fuel-market-study) examined per-litre margins.",
+            "note": "Per-litre retailer margin varies hugely — supermarkets typically 3-7p/L, motorway forecourts 15-25p/L, prime urban sites somewhere in between. The CMA found margins widened materially post-2022, particularly at supermarkets, prompting the Pumpwatch transparency scheme.",
+            "children": [
+              {
+                "label": "Forecourt operating costs (staff, lighting, equipment)",
+                "share": 0.4,
+                "source": "Industry estimates; EG Group, Motor Fuel Group annual reports for operating cost lines.",
+                "note": "Forecourt staff, lighting, fuel pumps, payment systems. Per-litre this is small because volume is high."
+              },
+              {
+                "label": "Property rent or freehold cost",
+                "share": 0.25,
+                "source": "Industry estimates from CoStar UK retail-rent data; forecourt freeholder portfolios are concentrated (LCN Capital Partners, Realty Income, EG Group's property arm).",
+                "note": "Many forecourts are now sale-leaseback arrangements where the operator pays rent to a property investor — a sizeable share of forecourt 'profit' flows to property funds rather than the operator."
+              },
+              {
+                "label": "Maintenance, environmental compliance, fuel-handling licences",
+                "share": 0.1,
+                "source": "DESNZ environmental permitting requirements; HSE Petroleum (Consolidation) Act compliance.",
+                "note": "Tank integrity testing, vapour-recovery systems, spill containment, fuel-handling permits."
+              },
+              {
+                "label": "Retailer operating profit",
+                "share": 0.25,
+                "source": "Operator annual reports — EG Group (privately held by the Issa brothers and TDR Capital), Motor Fuel Group (Patron Capital), supermarket fuel divisions.",
+                "note": "The Issa brothers' EG Group (with TDR Capital as co-owner) controls thousands of UK forecourts; supermarket fuel margins are a meaningful portion of grocer group profits."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pint-of-beer",
+      "category": "consumer",
+      "label": "A pint of beer",
+      "prompt": "If you paid",
+      "promptSuffix": "for a pint of lager at a UK pub",
+      "defaultAmount": 5.0,
+      "presets": [
+        4.0,
+        5.0,
+        6.5
+      ],
+      "root": {
+        "label": "A pint of lager — UK pub",
+        "source": "PRICE — no single authoritative source. British Beer & Pub Association (BBPA, https://beerandpub.com) and CGA by NIQ publish on-trade average pint prices; mid-2026 UK average pint is around £4.80-£5.20 for mainstream lager (London £6.00+; Wetherspoon and regional pubs cheaper). The £5 default sits at the centre. STRUCTURE — HMRC Alcohol Duty current rates (https://www.gov.uk/guidance/alcohol-duty); BBPA Statistical Handbook; brewer annual reports (Heineken N.V., Molson Coors, AB InBev, Carlsberg); pubco annual reports (Stonegate, Greene King, Punch).",
+        "note": "A pint of mainstream 4.5% lager in a UK pub. Three editorial stories collide here: tax (beer duty plus VAT take ~27%), the 'tied pub' relationship between pubs and pubcos (most UK pubs lease the building from a property company AND must buy their beer from them at a markup), and the foreign-ownership of nearly every UK 'British' beer brand — Carling, Foster's UK, Tetley's, Boddingtons and others are all owned by US, Belgian, Dutch or Danish multinationals.",
+        "children": [
+          {
+            "label": "VAT (20%)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC VAT Notice 700 — alcohol served for on-premises consumption is standard-rated at 20%.",
+            "note": "Standard 20% VAT. On a £5 pint, ~83p. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Beer duty",
+            "share": 0.1,
+            "xref": "income-tax",
+            "source": "HMRC Alcohol Duty current rates (https://www.gov.uk/guidance/alcohol-duty). From August 2023 reform: standard beer duty 21.78p/litre per % ABV; reduced draught rate 19.08p/litre per % ABV for on-trade kegs ('Brexit pub duty cut'). For a 568ml 4.5% ABV pint on draught: 0.568 × 4.5 × 19.08 ≈ 48.8p.",
+            "note": "Beer duty was reformed in August 2023 to apply per-litre per-ABV-percentage point and introduced a lower draught rate. The famous 'pubs Brexit dividend' — though small in absolute terms (a few pence per pint). Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Wholesale beer cost (to brewer)",
+            "share": 0.3,
+            "source": "Industry estimates from BBPA Statistical Handbook; brewer annual reports (Heineken N.V., Molson Coors plc, AB InBev SA/NV, Carlsberg Group). Wholesale price varies by brand and pubco contract — tied pubs typically pay 10-30% above free-trade rates.",
+            "note": "What the pub pays the brewer (or pubco's beer-supply arm) per pint. The biggest UK beer brands are owned by foreign multinationals: Heineken (Foster's UK, Heineken, Amstel, Strongbow), Molson Coors (Carling — the UK's biggest lager — plus Coors and Cobra), AB InBev (Stella Artois, Budweiser, Corona), Carlsberg (Carlsberg, Tetley's, San Miguel UK), Asahi (Peroni, Grolsch).",
+            "children": [
+              {
+                "label": "Brewing cost (malt, hops, water, energy, packaging)",
+                "share": 0.3,
+                "source": "Brewer annual reports — cost-of-sales line. UK brewing cost has risen materially since 2021 due to energy and ingredient inflation.",
+                "note": "Raw materials (malted barley from East Anglian growers, hops from international suppliers), brewing energy, kegs or packaging. Energy is now a much bigger component than pre-2021."
+              },
+              {
+                "label": "Brewer marketing & distribution",
+                "share": 0.2,
+                "source": "Brewer annual reports — selling, general and administrative expenses lines.",
+                "note": "Brand marketing, on-trade sales teams, wholesale logistics. Beer is heavily marketed (TV ads, sports sponsorship)."
+              },
+              {
+                "label": "Brewer operating profit",
+                "share": 0.3,
+                "source": "Brewer annual reports — operating margin lines.",
+                "note": "Big-brewer operating margins are healthy — Heineken ~13-15%, Molson Coors ~11-13%, AB InBev ~30%+ globally. UK margins are typically squeezed by competition.",
+                "children": [
+                  {
+                    "label": "Corporation tax (mostly foreign jurisdiction)",
+                    "share": 0.2,
+                    "source": "Brewer 10-K / annual report tax notes. UK arms pay UK corp tax; group profits taxed in the parent's jurisdiction (Netherlands for Heineken; US/Canada for Molson Coors; Belgium for AB InBev; Denmark for Carlsberg).",
+                    "note": "UK retail-supply profits attract UK corp tax (25%); upstream brewery operations may sit under different tax structures depending on entity."
+                  },
+                  {
+                    "label": "Dividends to brewer parent shareholders",
+                    "share": 0.35,
+                    "source": "Brewer dividend histories. Heineken pays ~€1.73/share; Molson Coors ~$1.84/share; AB InBev ~€0.85/share; Carlsberg ~DKK 27/share.",
+                    "note": "Heineken's largest shareholders: Heineken Holding (Heineken family ~50%), Femsa (Mexican beverages group), public free-float. AB InBev: BRC Capital / 3G Capital, Stichting AB InBev (Brazilian and Belgian founding families), public. Most UK beer dividend money leaves the UK."
+                  },
+                  {
+                    "label": "Capital expenditure & reinvestment",
+                    "share": 0.25,
+                    "source": "Brewer 10-K / annual report capex lines.",
+                    "note": "Brewing capacity, packaging lines, marketing platform investment."
+                  },
+                  {
+                    "label": "Executive remuneration",
+                    "share": 0.03,
+                    "source": "Heineken N.V. Annual Report 2023 — Dolf van den Brink (CEO) total compensation ~€5.6m. Comparable figures: Molson Coors CEO Gavin Hattersley ~$11m, AB InBev CEO Michel Doukeris ~$15m, Carlsberg CEO Jacob Aarup-Andersen ~DKK 50m (~£5.7m).",
+                    "note": "Using Heineken's CEO as the representative figure (Heineken N.V. owns most of the recognisable UK brand portfolio including Foster's UK, Strongbow, Amstel, Heineken). Verify against current Annual Report.",
+                    "payRatio": {
+                      "label": "Dolf van den Brink, Heineken N.V. CEO — FY2023 total compensation",
+                      "amount": 4900000,
+                      "caveats": "Approximately €5.6m FY2023 (~£4.9m). Other UK-relevant brewer CEOs in similar range (Molson Coors ~$11m / ~£8.7m; AB InBev's Michel Doukeris ~$15m / ~£11.8m). The Heineken figure is used as a representative pint-of-Heineken-equivalent. Verify against Heineken's most recent Annual Report Remuneration section."
+                    }
+                  },
+                  {
+                    "label": "Retained for the business",
+                    "share": 0.17,
+                    "source": "Brewer 10-K / annual report retained earnings.",
+                    "note": "Earnings kept for future investment."
+                  }
+                ]
+              },
+              {
+                "label": "Brewer-to-pub distribution",
+                "share": 0.2,
+                "source": "BBPA Statistical Handbook; brewer logistics costs; UK on-trade wholesale operators (LWC Drinks, Matthew Clark, Inn Express).",
+                "note": "Cold-chain delivery to pub cellars. Often done by the brewer's own logistics arm or third-party wholesalers."
+              }
+            ]
+          },
+          {
+            "label": "Pub operations (the pub's slice)",
+            "share": 0.43,
+            "source": "BBPA Statistical Handbook 2023-24 (https://beerandpub.com); pubco annual reports (Stonegate Pub Company, Greene King, Punch Pubs Co); the Pubs Code Adjudicator (https://www.gov.uk/government/organisations/pubs-code-adjudicator) for tied-pub economics.",
+            "note": "The pub's gross take — what's left for the pub operator after the brewer and HMRC. Most UK pubs are 'tied' (leased from a pubco like Stonegate, Greene King or Punch, and required to buy beer from the pubco's nominated supplier at marked-up prices). The rent line below captures the tied-pub extraction: tied pubs pay above-market rent precisely because the pubco has the beer-supply margin separately. The Pubs Code Adjudicator was created in 2016 to police this.",
+            "children": [
+              {
+                "label": "Pub labour (bar staff, manager, cleaning)",
+                "share": 0.3,
+                "source": "BBPA Statistical Handbook — workforce costs; UK Hospitality wage benchmarks.",
+                "note": "Bar staff (often students or hospitality workers on Real Living Wage or close to NMW), shift managers, cleaning. Bigger share of cost than at chains because of lower throughput per drink."
+              },
+              {
+                "label": "Property rent (often to a pubco)",
+                "share": 0.3,
+                "source": "Pubco annual reports (Stonegate Pub Company, Greene King, Punch Pubs Co) — rental income lines; Pubs Code Adjudicator annual reports.",
+                "note": "For tied pubs (~30% of UK pubs), rent is paid to a pubco that ALSO supplies the beer at marked-up wholesale prices — the 'wet rent' model. Stonegate (Slug & Lettuce, Be At One, many high-street brands), Greene King (~2,700 pubs), Punch Pubs Co are the largest pubcos. Stonegate is owned by TDR Capital (also part-owner of EG Group); Greene King is owned by CK Asset Holdings (Li Ka-shing). So pub rent is a major flow to private-equity and Hong Kong infrastructure investors."
+              },
+              {
+                "label": "Utilities (cellar refrigeration, lighting, kitchen)",
+                "share": 0.1,
+                "source": "BBPA Statistical Handbook utilities cost data.",
+                "note": "Cellar cooling, kitchen energy, lighting. Pubs are energy-intensive; many independent pubs were hit hard by 2022-23 energy price spikes."
+              },
+              {
+                "label": "Equipment, maintenance, cleaning supplies",
+                "share": 0.08,
+                "source": "BBPA Statistical Handbook operational cost data.",
+                "note": "Glassware, beer-line cleaning, refrigeration servicing, furniture maintenance."
+              },
+              {
+                "label": "Licensing fees, insurance, business rates",
+                "share": 0.07,
+                "source": "UK Hospitality sector data; local authority business rates schedules.",
+                "note": "Premises licence (Licensing Act 2003), music licensing (PRS, PPL), public liability insurance, business rates (often a meaningful cost for pubs in valuable property)."
+              },
+              {
+                "label": "Pub operating profit / publican drawings",
+                "share": 0.15,
+                "source": "BBPA Statistical Handbook profit margins; pubco annual reports for operator-pub models.",
+                "note": "Net to the pub operator — could be a publican drawing salary, a pubco's branded-pub profit, or a small remainder. Many UK tied pubs run at very thin margins; closures are common."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pack-of-cigarettes",
+      "category": "consumer",
+      "label": "A pack of cigarettes",
+      "prompt": "If you paid",
+      "promptSuffix": "for a pack of 20 cigarettes at a UK newsagent",
+      "defaultAmount": 14.5,
+      "presets": [
+        12.5,
+        14.5,
+        16.5
+      ],
+      "root": {
+        "label": "A pack of 20 cigarettes — UK newsagent",
+        "source": "PRICE — HMRC Tobacco Statistics (https://www.gov.uk/government/statistics/tobacco-bulletin) and ASH Fact Sheet pricing data; mid-2026 UK retail average for a premium pack is around £14-£16. The £14.50 default represents a typical 20-pack of a premium brand (Marlboro, Benson & Hedges, JPS) at a high-street newsagent. STRUCTURE — HMRC Tobacco Products Duty current rates (https://www.gov.uk/government/publications/rates-and-allowances-excise-duty-tobacco); ASH (Action on Smoking and Health, https://ash.org.uk) Big Tobacco UK Tactics reporting; BAT (British American Tobacco), Imperial Brands, JTI (Japan Tobacco International) and Philip Morris International annual reports.",
+        "note": "The most extreme tax-share figure in the app: roughly 77% of every pack of cigarettes is tax. Tobacco duty (specific + ad valorem) plus 20% VAT take ~£11.13 of a £14.50 pack. The remaining ~£3.37 splits between the tobacco company (Big Tobacco — BAT, Imperial, JTI, PMI control ~95% of UK market) and the retailer. UK has one of the world's highest tobacco taxation rates as part of an explicit public-health policy.",
+        "children": [
+          {
+            "label": "Tobacco duty (specific + ad valorem)",
+            "share": 0.6,
+            "xref": "income-tax",
+            "source": "HMRC Tobacco Products Duty rates (current at https://www.gov.uk/government/publications/rates-and-allowances-excise-duty-tobacco). From October 2024 (and updated each Budget): specific duty £316.70 per 1,000 cigarettes (i.e. £6.33 per 20-pack) PLUS ad valorem 16.5% of retail price (~£2.39 on a £14.50 pack) = ~£8.72 total duty per pack. The minimum excise tax floor (~£11.81 per pack as of late 2024) means cheap cigarettes pay disproportionately more.",
+            "note": "The single largest line on a cigarette pack. UK tobacco duty is among the world's highest as a deliberate public-health and revenue policy. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "VAT (20%)",
+            "share": 0.17,
+            "xref": "income-tax",
+            "source": "HMRC VAT Notice 700 — tobacco is standard-rated at 20%. VAT is charged on the duty-inclusive retail price.",
+            "note": "Standard 20% VAT, calculated on the duty-inclusive price. ~£2.42 on a £14.50 pack. Click to follow into the UK Income Tax tree."
+          },
+          {
+            "label": "Retailer margin (newsagent / convenience store)",
+            "share": 0.07,
+            "source": "Industry estimates; Association of Convenience Stores (ACS) Local Shop Report 2023-24 (https://www.acs.org.uk/research/local-shop-report); tobacco retail margins typically 6-9% of retail price.",
+            "note": "UK convenience retailers earn a modest per-pack margin on cigarettes — tobacco is an important footfall driver but a tightly-controlled, low-margin category. Most cigarettes are sold through small independent newsagents, the major convenience chains (Tesco Express, Sainsbury's Local, Co-op, McColl's), and 'symbol groups' (Spar, Premier, Londis).",
+            "children": [
+              {
+                "label": "Store operating costs (staff, utilities, premises)",
+                "share": 0.55,
+                "source": "ACS Local Shop Report cost analysis; convenience-store operating cost benchmarks.",
+                "note": "Wages, rent, energy, security — disproportionate per-pack because tobacco-display rules and age-verification add compliance cost."
+              },
+              {
+                "label": "Licence & compliance costs",
+                "share": 0.1,
+                "source": "Retailers of tobacco products must comply with Display, Tobacco Track & Trace (introduced 2019), age-verification and pack-warning regulations; ACS compliance cost reporting.",
+                "note": "Tobacco track-and-trace, plain-packaging compliance, age-verification systems, security for behind-counter storage."
+              },
+              {
+                "label": "Retailer operating profit",
+                "share": 0.35,
+                "source": "ACS Local Shop Report; convenience-chain annual reports (Tesco, Sainsbury's, Co-op groups; McColl's prior to administration; SPAR symbol group).",
+                "note": "The independent newsagent's profit, or the convenience-chain's allocation. Many small newsagents rely heavily on tobacco sales for footfall and basket value."
+              }
+            ]
+          },
+          {
+            "label": "Tobacco manufacturer (Big Tobacco)",
+            "share": 0.16,
+            "source": "Big four tobacco companies' annual reports: British American Tobacco plc (FTSE 100, https://www.bat.com/investors), Imperial Brands plc (FTSE 100, https://www.imperialbrandsplc.com), Japan Tobacco International (parent JT listed in Tokyo), Philip Morris International (NYSE: PM). Together they hold ~95% of UK market.",
+            "note": "Big Tobacco's share of a UK pack is modest in percentage terms because tax dominates, but the per-pack profitability is high. Two of the four are UK FTSE 100 companies (BAT and Imperial) — their dividends flow heavily into UK pension funds and institutional investors. BAT alone is one of the FTSE 100's largest dividend payers.",
+            "children": [
+              {
+                "label": "Tobacco growing & raw material procurement",
+                "share": 0.2,
+                "source": "Big Tobacco company sustainability reports — leaf-sourcing programmes; smallholder farming in Africa (Zimbabwe, Malawi, Mozambique), Brazil and China.",
+                "note": "Tobacco leaf is grown primarily by smallholder farmers in Africa, Brazil and China and bought by the big four through contract-growing programmes. The leaf-buying price is a small fraction of the eventual retail price; farmer income is one of the public-health debates within tobacco supply."
+              },
+              {
+                "label": "Manufacturing & packaging",
+                "share": 0.18,
+                "source": "Big Tobacco annual reports — manufacturing cost lines. UK manufacturing has largely been offshored to other markets; UK consumed cigarettes are often manufactured in Poland, Germany or other EU sites.",
+                "note": "Cigarette manufacturing is high-volume and increasingly automated. Plain-packaging compliance (UK 2017) added some cost."
+              },
+              {
+                "label": "Marketing (restricted) & corporate overheads",
+                "share": 0.15,
+                "source": "Big Tobacco annual reports — SG&A lines. Direct tobacco marketing is heavily restricted in the UK (Tobacco Advertising and Promotion Act 2002, plain packaging since 2017), so most spending is on corporate functions and lobbying.",
+                "note": "Direct consumer marketing for cigarettes is almost entirely banned in the UK. Big Tobacco overhead spending includes corporate functions, R&D into next-generation products (vapes, heated tobacco — Philip Morris's IQOS, BAT's Glo), and policy/regulatory engagement."
+              },
+              {
+                "label": "Tobacco company operating profit",
+                "share": 0.47,
+                "source": "BAT plc and Imperial Brands plc Annual Reports — Combustibles segment operating margins (typically 40-50% on revenue). High margins reflect the inelastic nature of tobacco demand.",
+                "note": "Big Tobacco operating margins on combustibles are exceptionally high (~40-50% globally). The slice flows to UK corp tax, dividends (most UK pension funds hold BAT and Imperial), buybacks and exec pay.",
+                "children": [
+                  {
+                    "label": "UK corporation tax",
+                    "share": 0.2,
+                    "xref": "income-tax",
+                    "source": "BAT plc and Imperial Brands plc Annual Reports — tax notes. UK retail-supply profits attract standard 25% corporation tax; group structures are complex.",
+                    "note": "Standard 25% UK corporation tax on UK-attributable profit. Click to follow into the UK Income Tax tree."
+                  },
+                  {
+                    "label": "Dividends to shareholders",
+                    "share": 0.4,
+                    "source": "BAT plc dividend ~234p/share annual (FY2024); Imperial Brands plc dividend ~146p/share annual. Both are among the FTSE 100's highest-yielding dividends and are widely held by UK pension funds and income-investment funds.",
+                    "note": "BAT and Imperial together pay billions in dividends annually. Largest shareholders are global asset managers (BlackRock, Vanguard) and UK pension funds. Through pension exposure, many UK savers are unwittingly Big Tobacco shareholders."
+                  },
+                  {
+                    "label": "Share buybacks",
+                    "share": 0.15,
+                    "source": "BAT plc and Imperial Brands plc share repurchase programmes — both announced multi-year buybacks in 2024-2025.",
+                    "note": "Both BAT and Imperial run significant buyback programmes as a further capital-return mechanism."
+                  },
+                  {
+                    "label": "Capital expenditure & next-gen product R&D",
+                    "share": 0.15,
+                    "source": "BAT plc 'New Categories' segment reporting; Imperial Brands NGP investment. Big Tobacco is investing heavily in vapes, heated tobacco and oral nicotine to replace declining combustibles revenue.",
+                    "note": "Capex into next-generation products (Vuse and Glo at BAT; blu and Pulze at Imperial; IQOS at PMI; Ploom at JT) is one of the few growing investment areas in the sector."
+                  },
+                  {
+                    "label": "Executive remuneration",
+                    "share": 0.02,
+                    "source": "BAT plc Annual Report Directors' Remuneration Report; CEO Tadeu Marroco (appointed May 2023) FY2024 single figure reported in BAT 2024 Annual Report.",
+                    "note": "BAT CEO compensation. Using BAT as the representative since BAT plc is UK-domiciled and the FTSE 100's largest tobacco company.",
+                    "payRatio": {
+                      "label": "Tadeu Marroco, BAT plc CEO — FY2024 single-figure total remuneration",
+                      "amount": 3500000,
+                      "caveats": "Approximately £3.5m FY2024 (verify against BAT's 2024 Annual Report Directors' Remuneration Report). Modest compared to Centrica's CEO or Starbucks's Brian Niccol, but consistent with FTSE 100 utility-and-consumer-staples CEO range. Imperial Brands CEO (currently Stefan Bomhard) is in similar range."
+                    }
+                  },
+                  {
+                    "label": "Retained for the business",
+                    "share": 0.08,
+                    "source": "BAT and Imperial annual reports — retained earnings.",
+                    "note": "Earnings kept on balance sheet for future investment or volatility buffer."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }

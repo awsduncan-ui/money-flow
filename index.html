@@ -962,6 +962,147 @@ const BUNDLED_DATA = {
           { label: 'Reinvestment / retained for the business', share: 0.05 }
         ]
       }
+    },
+    {
+      id: 'tank-of-petrol',
+      category: 'consumer',
+      label: 'A tank of petrol',
+      prompt: 'If you paid',
+      promptSuffix: 'to fill up with petrol at a UK forecourt',
+      defaultAmount: 70.00,
+      presets: [40, 70, 100],
+      root: {
+        label: 'A tank of petrol — UK forecourt',
+        note: '~55% of every litre is tax — fuel duty (52.95p/L, frozen since 2011) plus 20% VAT on top of the duty.',
+        children: [
+          { label: 'Fuel duty (52.95p/litre)', share: 0.38, xref: 'income-tax' },
+          { label: 'VAT (20% on fuel including duty)', share: 0.17, xref: 'income-tax' },
+          {
+            label: 'Wholesale fuel (refined petrol)', share: 0.38,
+            children: [
+              {
+                label: 'Crude oil cost', share: 0.65,
+                children: [
+                  { label: 'Middle Eastern producers (Saudi Arabia, UAE, Kuwait)', share: 0.25 },
+                  { label: 'Norway (Norwegian Continental Shelf)', share: 0.20 },
+                  { label: 'US (shale crude)', share: 0.18 },
+                  { label: 'UK Continental Shelf', share: 0.12 },
+                  { label: 'African producers (Nigeria, Angola, Libya)', share: 0.10 },
+                  { label: 'Other (Russia historically, now various)', share: 0.15 }
+                ]
+              },
+              { label: 'Refining cost & refiner margin', share: 0.18 },
+              { label: 'Distribution & logistics', share: 0.10 },
+              { label: 'Wholesale supplier margin', share: 0.07 }
+            ]
+          },
+          {
+            label: 'Retailer margin (forecourt operator)', share: 0.07,
+            children: [
+              { label: 'Forecourt operating costs (staff, lighting, equipment)', share: 0.40 },
+              { label: 'Property rent or freehold cost', share: 0.25 },
+              { label: 'Maintenance, environmental compliance, fuel-handling licences', share: 0.10 },
+              { label: 'Retailer operating profit', share: 0.25 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'pint-of-beer',
+      category: 'consumer',
+      label: 'A pint of beer',
+      prompt: 'If you paid',
+      promptSuffix: 'for a pint of lager at a UK pub',
+      defaultAmount: 5.00,
+      presets: [4.00, 5.00, 6.50],
+      root: {
+        label: 'A pint of lager — UK pub',
+        note: '~27% tax (VAT + beer duty). Most UK \'British\' beer brands owned by foreign multinationals; most UK pubs are \'tied\' to a pubco.',
+        children: [
+          { label: 'VAT (20%)', share: 0.17, xref: 'income-tax' },
+          { label: 'Beer duty', share: 0.10, xref: 'income-tax' },
+          {
+            label: 'Wholesale beer cost (to brewer)', share: 0.30,
+            children: [
+              { label: 'Brewing cost (malt, hops, water, energy, packaging)', share: 0.30 },
+              { label: 'Brewer marketing & distribution', share: 0.20 },
+              {
+                label: 'Brewer operating profit', share: 0.30,
+                children: [
+                  { label: 'Corporation tax (mostly foreign jurisdiction)', share: 0.20 },
+                  { label: 'Dividends to brewer parent shareholders', share: 0.35 },
+                  { label: 'Capital expenditure & reinvestment', share: 0.25 },
+                  {
+                    label: 'Executive remuneration', share: 0.03,
+                    payRatio: { label: 'Dolf van den Brink, Heineken N.V. CEO — FY2023 total compensation', amount: 4900000 }
+                  },
+                  { label: 'Retained for the business', share: 0.17 }
+                ]
+              },
+              { label: 'Brewer-to-pub distribution', share: 0.20 }
+            ]
+          },
+          {
+            label: 'Pub operations (the pub\'s slice)', share: 0.43,
+            children: [
+              { label: 'Pub labour (bar staff, manager, cleaning)', share: 0.30 },
+              { label: 'Property rent (often to a pubco)', share: 0.30 },
+              { label: 'Utilities (cellar refrigeration, lighting, kitchen)', share: 0.10 },
+              { label: 'Equipment, maintenance, cleaning supplies', share: 0.08 },
+              { label: 'Licensing fees, insurance, business rates', share: 0.07 },
+              { label: 'Pub operating profit / publican drawings', share: 0.15 }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'pack-of-cigarettes',
+      category: 'consumer',
+      label: 'A pack of cigarettes',
+      prompt: 'If you paid',
+      promptSuffix: 'for a pack of 20 cigarettes at a UK newsagent',
+      defaultAmount: 14.50,
+      presets: [12.50, 14.50, 16.50],
+      root: {
+        label: 'A pack of 20 cigarettes — UK newsagent',
+        note: '~77% tax. The most extreme tax-share figure in the app. Tobacco duty (specific + ad valorem) plus 20% VAT take ~£11 of a £14.50 pack.',
+        children: [
+          { label: 'Tobacco duty (specific + ad valorem)', share: 0.60, xref: 'income-tax' },
+          { label: 'VAT (20%)', share: 0.17, xref: 'income-tax' },
+          {
+            label: 'Retailer margin (newsagent / convenience store)', share: 0.07,
+            children: [
+              { label: 'Store operating costs (staff, utilities, premises)', share: 0.55 },
+              { label: 'Licence & compliance costs', share: 0.10 },
+              { label: 'Retailer operating profit', share: 0.35 }
+            ]
+          },
+          {
+            label: 'Tobacco manufacturer (Big Tobacco)', share: 0.16,
+            children: [
+              { label: 'Tobacco growing & raw material procurement', share: 0.20 },
+              { label: 'Manufacturing & packaging', share: 0.18 },
+              { label: 'Marketing (restricted) & corporate overheads', share: 0.15 },
+              {
+                label: 'Tobacco company operating profit', share: 0.47,
+                children: [
+                  { label: 'UK corporation tax', share: 0.20, xref: 'income-tax' },
+                  { label: 'Dividends to shareholders', share: 0.40 },
+                  { label: 'Share buybacks', share: 0.15 },
+                  { label: 'Capital expenditure & next-gen product R&D', share: 0.15 },
+                  {
+                    label: 'Executive remuneration', share: 0.02,
+                    payRatio: { label: 'Tadeu Marroco, BAT plc CEO — FY2024 single-figure total remuneration', amount: 3500000 }
+                  },
+                  { label: 'Retained for the business', share: 0.08 }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 };
